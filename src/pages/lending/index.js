@@ -1,10 +1,10 @@
-const GasLess = () => {
+const Lending = () => {
   return (
     <section class='section_header-text-image'>
       <div class='container-large'>
         <div class='header-text-image_content'>
           <div class='margin-bottom margin-small'>
-            <h1 class='heading-style-h4 mb-4'>Gasless Meta-Transaction</h1>
+            <h1 class='heading-style-h4 mb-4'>Cross Chain Lending</h1>
             <div class='card is-pro'>
               <div class='card-content is-large'>
                 <div class='features_image-wrapper'>
@@ -29,4 +29,4 @@ const GasLess = () => {
   )
 }
 
-export default GasLess
+export default Lending
