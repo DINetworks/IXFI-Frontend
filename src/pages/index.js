@@ -10,7 +10,6 @@ const Home = () => {
   return (
     <main class='main-wrapper'>
       <Introduction />
-      <LogoSlider />
       <Features />
       <Ecosystems />
       {/* <Applications /> */}
