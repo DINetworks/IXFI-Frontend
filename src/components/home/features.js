@@ -1,23 +1,4 @@
-const features = [
-  {
-    icon: 'gasless.svg',
-    title: 'Gas-Less Transactions For Multiple Chains',
-    description:
-      'Gas fees are a significant barrier to seamless blockchain interactions, often requiring users to hold native tokens for each network they interact with. The IXFI Protocol introduces a gas-less transaction system, enabling frictionless cross-chain interactions without requiring users to manage gas tokens for multiple chains.'
-  },
-  {
-    icon: 'evm.svg',
-    title: 'Supports All EVM Networks',
-    description:
-      'The IXFI Protocol is designed to operate seamlessly across all EVM-compatible blockchains, ensuring maximum interoperability and accessibility for users. By supporting a wide range of networks, IXFI enables truly borderless transactions, liquidity aggregation, and smart contract interactions across multiple ecosystems.'
-  },
-  {
-    icon: 'cross-chain.svg',
-    title: 'The foundation for cross-chain DApps',
-    description:
-      'The IXFI Protocol is more than just a cross-chain swap solution—it serves as the core infrastructure for the next wave of DApps. By enabling seamless interoperability, gas-less transactions, and liquidity aggregation across multiple chains, IXFI empowers developers and users to unlock the full potential of blockchain technology.'
-  }
-]
+import { features } from 'src/configs/constant'
 
 const Features = () => {
   return (

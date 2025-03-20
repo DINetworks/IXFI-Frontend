@@ -1,64 +1,8 @@
 import { useRef, useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-// Import Swiper styles
+import { slides, logos } from 'src/configs/constant'
 import 'swiper/css'
-
-const slides = [
-  {
-    title: 'Stocks',
-    description:
-      'With different stock exchanges over different time zones, it’s sometimes hard to keep track of all your stocks. Uniswap connects with all your brokers and does the work for you.'
-  },
-  {
-    title: 'Crypto',
-    description:
-      'So many coins, so little time. We auto-synchronize all your wallets to give you a real-time overview of all your crypto. We give you the overview so you can make decisions fast.'
-  },
-  {
-    title: 'ETF',
-    description: 'Trust is good, knowledge is better. Keep track of all your funds in one place.&nbsp;'
-  },
-  {
-    title: 'Forex',
-    description:
-      'World events and politics have a major impact on currencies. Explore and follow all currency pairs, get the latest exchange rates and stay in the know.'
-  },
-  {
-    title: 'NFTs',
-    description:
-      'Track &amp; Explore NFT’s with Uniswap. Connect your wallets to get an overview of all your NFT’s. Get notified on floor price moves and more.'
-  },
-  {
-    title: 'Commodities',
-    description:
-      'Commodities are the raw materials that drive the economy. Uniswap gives you a clear overview of all your commodities.'
-  },
-  {
-    title: 'Indices',
-    description:
-      'Indices are a measure of the value of a section of the stock market. Uniswap gives you a clear overview of all your indices.'
-  },
-  {
-    title: 'Funds',
-    description: 'Trust is good, knowledge is better. Keep track of all your funds in one place.'
-  }
-]
-
-const logos = [
-  'walletconnect.svg',
-  'trade-republic.svg',
-  'robinhood.svg',
-  'metamask.svg',
-  'kucoin.svg',
-  'fidelity.svg',
-  'light.svg',
-  'degiro.svg',
-  'crypto.svg',
-  'coinbase.svg',
-  'binance.svg',
-  'ameritrade.svg'
-]
 
 const ApiSDK = () => {
   const swiperRef = useRef(null)

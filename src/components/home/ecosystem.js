@@ -1,31 +1,5 @@
 import { useState } from 'react'
-
-const useCases = [
-  {
-    title: 'DEX Aggregators & Swap',
-    description:
-      'A Cross-Chain DEX Aggregator enables users to swap assets across multiple blockchain networks seamlessly by aggregating liquidity from different DEXs. This ensures optimal trade execution, lower slippage, and enhanced price discovery, regardless of the network.',
-    image: 'tab1.webp'
-  },
-  {
-    title: 'Lending & Borrowing Platform',
-    description:
-      'This allows users to lend and borrow assets across multiple blockchain networks, eliminating liquidity fragmentation and enabling seamless capital efficiency in DeFi. By leveraging cross-chain interoperability, users can supply assets on one chain and borrow against them on another without relying on centralized intermediaries.',
-    image: 'tab2.webp'
-  },
-  {
-    title: 'Multi-Chain Liquidity Provisioning',
-    description:
-      'Multi-chain liquidity provisioning is a system that enables users to supply liquidity across multiple blockchain networks, ensuring efficient token swaps, lending, and yield farming opportunities. It allows liquidity providers (LPs) to earn rewards while enhancing cross-chain DeFi efficiency.',
-    image: 'tab3.webp'
-  },
-  {
-    title: 'Cross-Chain Messaging',
-    description:
-      'Cross-chain messaging enables seamless communication between different blockchain networks, allowing smart contracts and applications to share data, execute transactions, and interact beyond a single chain’s limitations.',
-    image: 'tab1.webp'
-  }
-]
+import { useCases } from 'src/configs/constant'
 
 const Ecosystems = () => {
   const [activeCase, setActiveCase] = useState(0)
