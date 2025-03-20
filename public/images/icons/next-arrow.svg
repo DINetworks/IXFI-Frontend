@@ -1,0 +1,22 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="100%"
+  height="100%"
+  viewBox="0 0 29.541 22.323">
+  <g transform="translate(0 1.014)">
+    <path
+      d="M115.445,20.633l9.311-10.148L115.445.338"
+      transform="translate(-97.25 -0.338)"
+      fill="none"
+      stroke="currentColor"
+      stroke-miterlimit="10"
+      stroke-width="3" />
+    <line
+      x1="27.506"
+      transform="translate(0 10.148)"
+      fill="none"
+      stroke="currentColor"
+      stroke-miterlimit="10"
+      stroke-width="3" />
+  </g>
+</svg>
