@@ -12341,3 +12341,19 @@ figcaption {
 .mb-4 {
   margin-bottom: 40px;
 }
+
+.roadmap-title {
+  color: #0c0b0c;
+  opacity: 0.8;
+}
+
+.roadmap-period {
+  text-align: center;
+  border-radius: 100px;
+  font-weight: 600;
+  background-color: var(--violet);
+  color: var(--white-100);
+  transition: opacity 0.2s;
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+}

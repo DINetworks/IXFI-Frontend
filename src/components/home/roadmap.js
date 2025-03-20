@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { slides, logos } from 'src/configs/constant'
+import { roadmaps } from 'src/configs/constant'
 import 'swiper/css'
 
 const ApiSDK = () => {
@@ -19,7 +19,7 @@ const ApiSDK = () => {
   }
 
   const isPrevClass = activeSwipe === 0 ? 'is-disabled' : ''
-  const isNextClass = activeSwipe === slides.length - 1 ? 'is-disabled' : ''
+  const isNextClass = activeSwipe === roadmaps.length - 1 ? 'is-disabled' : ''
 
   return (
     <section className='section_tracker-cards radius-corners-top'>
@@ -27,13 +27,11 @@ const ApiSDK = () => {
         <section className='section_logo-slider'>
           <div className='padding-section-large no-bottom'>
             <div className='page-padding'>
-              <div className='margin-bottom margin-xxlarge'>
+              <div className='margin-bottom'>
                 <div className='text-align-center'>
                   <div className='max-width-large align-center'>
                     <div className='margin-bottom margin-small'>
-                      <h2 className='heading-style-h2'>
-                        Discover your <span className='text-gradient-light-pink-lilac'>Applications</span>
-                      </h2>
+                      <h2 className='heading-style-h2 roadmap-title'>Roadmap</h2>
                     </div>
                     <p className='text-size-medium limited-w'>
                       It’s time to get a clear overview of your application with our interoperability system.
@@ -42,49 +40,6 @@ const ApiSDK = () => {
                 </div>
               </div>
             </div>
-            <section className='section_logo-slider'>
-              <div className='padding-section-medium no-padding'>
-                <div className='padding-global z-index-2'>
-                  <div className='container-large'>
-                    <div className='margin-bottom margin-large'>
-                      <div className='text-align-center'>
-                        <div className='logo-slider-max-width-large max-width-large align-center'></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className='logo-slider_component'>
-                  <div className='logo-loop'>
-                    <div className='logo-loop-row'>
-                      <div className='w-dyn-list'>
-                        <div className='logo-slider_list w-dyn-items'>
-                          {logos.map((logo, index) => (
-                            <div key={index} className='w-dyn-item'>
-                              <div className='logo-slider_logo-wrapper'>
-                                <img alt='' src={`/images/partners/${logo}`} className='logo-slider_logo' />
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    <div className='logo-loop-row'>
-                      <div className='w-dyn-list'>
-                        <div className='logo-slider_list w-dyn-items'>
-                          {logos.map((logo, index) => (
-                            <div key={index} className='w-dyn-item'>
-                              <div className='logo-slider_logo-wrapper'>
-                                <img alt='' src={`/images/partners/${logo}`} className='logo-slider_logo' />
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
           </div>
         </section>
         <div className='container'>
@@ -93,21 +48,33 @@ const ApiSDK = () => {
               <Swiper
                 className='is-slider-main'
                 ref={swiperRef}
-                spaceBetween={20}
-                slidesPerView={3}
+                spaceBetween={30}
+                slidesPerView={4}
                 onSlideChange={handleSlideChange}
               >
-                {slides.map((slide, index) => (
+                {roadmaps.map((slide, index) => (
                   <SwiperSlide key={index} className={`is-slider-main card ${index == activeSwipe ? 'is-active' : ''}`}>
                     <a className='tracker-cards_item-link w-inline-block interact-button'>
                       <div className='card-content is-medium'>
-                        <div className='tracker-cards_image-wrapper'>
-                          <div className='tracker-lottie-animation'></div>
+                        <div>
+                          <div className='roadmap-period margin-bottom margin-xxsmall'>{slide.period}</div>
+                        </div>
+                        <div class='cards-small_icon-wrapper-wrapper margin-bottom margin-small'>
+                          <div class='cards-small_icon-wrapper'>
+                            <img src={`/images/icons/gasless.svg`} alt='' class='icon-1x1-small' />
+                          </div>
                         </div>
                         <div className='tracker-cards_item-content-top'>
                           <div className='tracker-cards_title-wrapper'>
-                            <h8 className='heading-style-h8'>{slide.title}</h8>
-                            <p className='text-size-regular'>{slide.description}</p>
+                            <div className='heading-style-h6 text-center'>{slide.title}</div>
+                            {/* <p className='text-size-regular'>{slide.description}</p> */}
+                            <ul>
+                              {slide.items.map((item, index) => (
+                                <li className='text-size-regular' key={index}>
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                           <div className='tracker-cards_button-wrapper'>
                             <div className='button is-link is-icon'>
@@ -125,7 +92,7 @@ const ApiSDK = () => {
               </Swiper>
               <div className='slider-main_top-wrapper'>
                 <div className='swiper-bullet-wrapper is-slider-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal'>
-                  {slides.map((slide, index) => (
+                  {roadmaps.map((slide, index) => (
                     <button key={index} className={`swiper-bullet ${index == activeSwipe ? 'is-active' : ''}`}></button>
                   ))}
                 </div>

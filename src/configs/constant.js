@@ -1,41 +1,38 @@
-const slides = [
+const roadmaps = [
   {
-    title: 'Stocks',
-    description:
-      'With different stock exchanges over different time zones, it’s sometimes hard to keep track of all your stocks. Uniswap connects with all your brokers and does the work for you.'
+    period: '2025 Q1',
+    title: 'MVP Development',
+    items: ['Develop Gas Abstraction Layer', 'Develop Relayer Node System', 'Develop IXFI Token & GMP']
   },
   {
-    title: 'Crypto',
-    description:
-      'So many coins, so little time. We auto-synchronize all your wallets to give you a real-time overview of all your crypto. We give you the overview so you can make decisions fast.'
+    period: '2025 Q2',
+    title: 'Development & Test',
+    items: [
+      'Improve & Update MVP Version',
+      'Develop Cross Chain Aggregator',
+      'Develop Cross Chain Bridge',
+      'IXN Token & Presale'
+    ]
   },
   {
-    title: 'ETF',
-    description: 'Trust is good, knowledge is better. Keep track of all your funds in one place.&nbsp;'
+    period: '2025 Q3',
+    title: 'Mainnet Launch',
+    items: ['Integration Test', 'Conduct Security Audit', 'Mainnet Lunch', 'Token Presale']
   },
   {
-    title: 'Forex',
-    description:
-      'World events and politics have a major impact on currencies. Explore and follow all currency pairs, get the latest exchange rates and stay in the know.'
+    period: '2025 Q4',
+    title: 'Development Network & Strategies',
+    items: ['Develop Governance', 'Develop Staking', 'Incentive for Network Users', 'Development API & SDK']
   },
   {
-    title: 'NFTs',
-    description:
-      'Track &amp; Explore NFT’s with Uniswap. Connect your wallets to get an overview of all your NFT’s. Get notified on floor price moves and more.'
+    period: '2026 Q1',
+    title: 'Launch Staking & Governance',
+    items: ['Security Audit for Governance & Staking', 'Incentive for Network Users', 'Partnerships with 3rd parties']
   },
   {
-    title: 'Commodities',
-    description:
-      'Commodities are the raw materials that drive the economy. Uniswap gives you a clear overview of all your commodities.'
-  },
-  {
-    title: 'Indices',
-    description:
-      'Indices are a measure of the value of a section of the stock market. Uniswap gives you a clear overview of all your indices.'
-  },
-  {
-    title: 'Funds',
-    description: 'Trust is good, knowledge is better. Keep track of all your funds in one place.'
+    period: '2026 Q2',
+    title: 'Further Development & Maintenance',
+    items: ['...', '...', '...']
   }
 ]
 
@@ -102,4 +99,4 @@ const logos = [
   'ameritrade.svg'
 ]
 
-export { slides, useCases, features, logos }
+export { roadmaps, useCases, features, logos }
