@@ -6,9 +6,6 @@ import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/s
 // ** Theme Config
 import themeConfig from 'src/configs/themeConfig'
 
-// ** Direction component for LTR or RTL
-import Direction from 'src/layouts/components/Direction'
-
 // ** Theme
 import themeOptions from './ThemeOptions'
 
@@ -29,11 +26,9 @@ const ThemeComponent = props => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Direction direction={settings.direction}>
-        <CssBaseline />
-        <GlobalStyles styles={() => GlobalStyling(theme)} />
-        {children}
-      </Direction>
+      <CssBaseline />
+      <GlobalStyles styles={() => GlobalStyling(theme)} />
+      {children}
     </ThemeProvider>
   )
 }

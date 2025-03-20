@@ -95,7 +95,6 @@ const ApiSDK = () => {
                 ref={swiperRef}
                 spaceBetween={20}
                 slidesPerView={3}
-                onSwiper={swiper => console.log(swiper)}
                 onSlideChange={handleSlideChange}
               >
                 {slides.map((slide, index) => (
@@ -114,15 +113,7 @@ const ApiSDK = () => {
                             <div className='button is-link is-icon'>
                               <div>Read more</div>
                               <div className='icon-embed-xxsmall w-embed'>
-                                <svg
-                                  width='16'
-                                  height='16'
-                                  viewBox='0 0 16 16'
-                                  fill='none'
-                                  xmlns='http://www.w3.org/2000/svg'
-                                >
-                                  <path d='M6 3L11 8L6 13' stroke='CurrentColor' stroke-width='1.5'></path>
-                                </svg>
+                                <img src='/images/icons/right-arrow.svg' alt='' />
                               </div>
                             </div>
                           </div>

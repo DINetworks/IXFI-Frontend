@@ -69,13 +69,7 @@ const NewsLetter = () => {
                       </div>
                     </div>
                   </form>
-                  <div
-                    fs-recptch-element='success'
-                    class='success-message w-form-done'
-                    tabindex='-1'
-                    role='region'
-                    aria-label='Newsletter sign-up success'
-                  >
+                  <div class='success-message w-form-done'>
                     <div class='div-block-2'>
                       <img
                         src='./Uniswap _ Portfolio Tracker_files/65266a4434fd99c7f31a619f_Radio.svg'

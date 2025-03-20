@@ -30,37 +30,37 @@ const AppFooter = () => {
               <div className='w-layout-grid footer_bottom'>
                 <div className='footer_row1'>
                   <a className='footer_logo-link w-nav-brand interact-button'>
-                    <img src='./images/logo.png' alt='Logo' className='site-logo' />
+                    <img src='/images/logo.png' alt='Logo' className='site-logo' />
                   </a>
                   <div className='w-layout-grid footer_social-list'>
                     <a target='_blank' className='footer_social-link w-inline-block interact-button'>
                       <div className='social-icon w-embed'>
-                        <img src='images/icons/facebook.svg' alt='' />
+                        <img src='/images/icons/facebook.svg' alt='' />
                       </div>
                     </a>
                     <a target='_blank' className='footer_social-link w-inline-block interact-button'>
                       <div className='social-icon w-embed'>
-                        <img src='images/icons/instagram.svg' alt='' />
+                        <img src='/images/icons/instagram.svg' alt='' />
                       </div>
                     </a>
                     <a target='_blank' className='footer_social-link w-inline-block interact-button'>
                       <div className='social-icon w-embed'>
-                        <img src='images/icons/discord.svg' alt='' />
+                        <img src='/images/icons/discord.svg' alt='' />
                       </div>
                     </a>
                     <a target='_blank' className='footer_social-link w-inline-block interact-button'>
                       <div className='social-icon w-embed'>
-                        <img src='images/icons/twitter.svg' alt='' />
+                        <img src='/images/icons/twitter.svg' alt='' />
                       </div>
                     </a>
                     <a target='_blank' className='footer_social-link w-inline-block interact-button'>
                       <div className='social-icon w-embed'>
-                        <img src='images/icons/linkedin.svg' alt='' />
+                        <img src='/images/icons/linkedin.svg' alt='' />
                       </div>
                     </a>
                     <a target='_blank' className='footer_social-link w-inline-block interact-button'>
                       <div className='social-icon w-embed'>
-                        <img src='images/icons/youtube.svg' alt='' />
+                        <img src='/images/icons/youtube.svg' alt='' />
                       </div>
                     </a>
                   </div>

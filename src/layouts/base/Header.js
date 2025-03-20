@@ -21,9 +21,9 @@ const Header = () => {
   return (
     <div className='navbar_component w-nav'>
       <div className='navbar_container'>
-        <a className='navbar_logo-link test w-nav-brand interact-button'>
-          <img src='./images/logo.png' alt='Logo' className='site-logo' />
-        </a>
+        <Link href={'/'} className='navbar_logo-link test w-nav-brand interact-button'>
+          <img src='/images/logo.png' alt='Logo' className='site-logo' />
+        </Link>
         <div className='navbar_menu w-nav-menu'>
           <Link
             href={'/gasless'}
@@ -63,7 +63,7 @@ const Header = () => {
           <div className='nav-background-blur'></div>
         </div>
         <div id='w-node-_9808c09c-041a-d6d4-c3be-ab9cddd7a758-ddd7a741' className='navbar_button-wrapper'>
-          <a className='button is-navbar-button w-button interact-button'>Try It Now</a>
+          <a className='button is-navbar-button w-button interact-button'>Download</a>
           <div
             data-w-id='9808c09c-041a-d6d4-c3be-ab9cddd7a75b'
             className='navbar_menu-button w-nav-button'
@@ -107,7 +107,7 @@ const Header = () => {
             <a className='navbar_link w-nav-link interact-button'>Get PRO</a>
           </div>
           <a target='_blank' className='button is-mobile-button w-button interact-button'>
-            Check Now
+            Download
           </a>
         </div>
       </div>

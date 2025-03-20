@@ -1,6 +1,6 @@
 {
-  "name": "vuexy-nextjs-admin-template",
-  "version": "1.2.0",
+  "name": "ixfi-protocol",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

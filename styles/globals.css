@@ -3487,6 +3487,7 @@ figcaption {
   height: 64px;
   padding: 0.5rem 0.7rem 0.5rem 1rem;
   display: flex;
+  font-size: 1.1rem;
   position: fixed;
 }
 .navbar_menu-dropdown {
@@ -4303,7 +4304,7 @@ figcaption {
   grid-column-gap: 2rem;
   grid-row-gap: 1rem;
   grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   align-items: start;
 }
 .footer_link-list {
@@ -4319,7 +4320,7 @@ figcaption {
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 600;
 }
 .footer_link {
@@ -4328,6 +4329,7 @@ figcaption {
   padding-bottom: 0.5rem;
   text-decoration: none;
   transition: all 0.2s;
+  font-size: 1rem;
 }
 .footer_link:hover {
   color: var(--light-grey);
@@ -4440,7 +4442,7 @@ figcaption {
     url(https://cdn.prod.website-files.com/649412cd35852fa073a7748d/64e72c23549c69b0f665cc31_hero-gradient-left.svg);
   background-position: 100% 0, 0 0;
   background-repeat: no-repeat, no-repeat;
-  background-size: 45%, 45%;
+  background-size: 40%, 40%;
 }
 .text-gradient-light-pink-lilac {
   background-image: linear-gradient(to right, var(--lilac), var(--light-pink));
@@ -4839,7 +4841,7 @@ figcaption {
   grid-template-columns: 1fr 1fr;
   grid-auto-columns: 1fr;
   grid-auto-flow: row;
-  justify-content: start;
+  justify-content: flex-start;
   justify-items: start;
   padding: 1rem;
   display: flex;
@@ -5222,7 +5224,7 @@ figcaption {
     url(https://cdn.prod.website-files.com/649412cd35852fa073a7748d/64e72d0df94ee221e0849218_pro-gradient-left.svg);
   background-position: 100% 0, 0 0;
   background-repeat: no-repeat, no-repeat;
-  background-size: 45%, 45%;
+  background-size: 35%, 35%;
 }
 .header-home_download-wrapper {
   grid-column-gap: 16px;
@@ -9397,6 +9399,7 @@ figcaption {
     padding: 1rem 5% 2.5rem;
     display: flex;
     position: absolute;
+    font-size: 1.2rem;
     overflow: auto;
   }
   .navbar_menu.is-page-height-tablet {
@@ -12333,4 +12336,8 @@ figcaption {
 
 .text-center {
   text-align: center;
+}
+
+.mb-4 {
+  margin-bottom: 40px;
 }
