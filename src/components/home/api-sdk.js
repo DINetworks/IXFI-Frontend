@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 // Import Swiper styles
@@ -45,6 +46,14 @@ const slides = [
 ]
 
 const ApiSDK = () => {
+  const swiperRef = useRef(null)
+
+  useEffect(() => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.updateAutoHeight()
+    }
+  }, [])
+
   return (
     <section class='section_tracker-cards radius-corners-top'>
       <div class='background-gradient-purple-radial-top'>
@@ -318,7 +327,7 @@ const ApiSDK = () => {
             <div class='slider-main_component'>
               <Swiper
                 className='is-slider-main'
-                autoHeight
+                ref={swiperRef}
                 spaceBetween={20}
                 slidesPerView={3}
                 onSwiper={swiper => console.log(swiper)}
