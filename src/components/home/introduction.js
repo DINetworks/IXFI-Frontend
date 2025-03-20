@@ -18,7 +18,7 @@ const Introduction = () => {
                 </p>
                 <div class='padding-section-medium md:pt-[90px] pb-0'>
                   <div class='button-group check-now-btn'>
-                    <a class='connectButton button is-desktop-modal w-button interact-button'>Check Now</a>
+                    <a class='button is-desktop-modal w-button interact-button'>Check Now</a>
                   </div>
                 </div>
               </div>

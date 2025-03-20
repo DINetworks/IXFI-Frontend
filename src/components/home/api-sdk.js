@@ -100,7 +100,7 @@ const ApiSDK = () => {
               >
                 {slides.map((slide, index) => (
                   <SwiperSlide key={index} className={`is-slider-main card ${index == activeSwipe ? 'is-active' : ''}`}>
-                    <a className='connectButton tracker-cards_item-link w-inline-block interact-button'>
+                    <a className='tracker-cards_item-link w-inline-block interact-button'>
                       <div className='card-content is-medium'>
                         <div className='tracker-cards_image-wrapper'>
                           <div className='tracker-lottie-animation'></div>
