@@ -1,3 +1,49 @@
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+// Import Swiper styles
+import 'swiper/css'
+
+const slides = [
+  {
+    title: 'Stocks',
+    description:
+      'With different stock exchanges over different time zones, it’s sometimes hard to keep track of all your stocks. Uniswap connects with all your brokers and does the work for you.'
+  },
+  {
+    title: 'Crypto',
+    description:
+      'So many coins, so little time. We auto-synchronize all your wallets to give you a real-time overview of all your crypto. We give you the overview so you can make decisions fast.'
+  },
+  {
+    title: 'ETF',
+    description: 'Trust is good, knowledge is better. Keep track of all your funds in one place.&nbsp;'
+  },
+  {
+    title: 'Forex',
+    description:
+      'World events and politics have a major impact on currencies. Explore and follow all currency pairs, get the latest exchange rates and stay in the know.'
+  },
+  {
+    title: 'NFTs',
+    description:
+      'Track &amp; Explore NFT’s with Uniswap. Connect your wallets to get an overview of all your NFT’s. Get notified on floor price moves and more.'
+  },
+  {
+    title: 'Commodities',
+    description:
+      'Commodities are the raw materials that drive the economy. Uniswap gives you a clear overview of all your commodities.'
+  },
+  {
+    title: 'Indices',
+    description:
+      'Indices are a measure of the value of a section of the stock market. Uniswap gives you a clear overview of all your indices.'
+  },
+  {
+    title: 'Funds',
+    description: 'Trust is good, knowledge is better. Keep track of all your funds in one place.'
+  }
+]
+
 const ApiSDK = () => {
   return (
     <section class='section_tracker-cards radius-corners-top'>
@@ -270,7 +316,49 @@ const ApiSDK = () => {
         <div class='container'>
           <div class='page-padding-slider'>
             <div class='slider-main_component'>
-              <div class='swiper is-slider-main swiper-initialized swiper-horizontal swiper-pointer-events swiper-autoheight swiper-css-mode'>
+              <Swiper
+                className='is-slider-main'
+                autoHeight
+                spaceBetween={20}
+                slidesPerView={3}
+                onSwiper={swiper => console.log(swiper)}
+                onSlideChange={() => console.log('slide change')}
+              >
+                {slides.map((slide, index) => (
+                  <SwiperSlide key={index} className='is-slider-main card is-active'>
+                    <a class='connectButton tracker-cards_item-link w-inline-block interact-button'>
+                      <div class='card-content is-medium'>
+                        <div class='tracker-cards_image-wrapper'>
+                          <div class='tracker-lottie-animation'></div>
+                        </div>
+                        <div class='tracker-cards_item-content-top'>
+                          <div class='tracker-cards_title-wrapper'>
+                            <h8 class='heading-style-h8'>{slide.title}</h8>
+                            <p class='text-size-regular'>{slide.description}</p>
+                          </div>
+                          <div class='tracker-cards_button-wrapper'>
+                            <div class='button is-link is-icon'>
+                              <div>Read more</div>
+                              <div class='icon-embed-xxsmall w-embed'>
+                                <svg
+                                  width='16'
+                                  height='16'
+                                  viewBox='0 0 16 16'
+                                  fill='none'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path d='M6 3L11 8L6 13' stroke='CurrentColor' stroke-width='1.5'></path>
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              {/* <div class='swiper is-slider-main swiper-initialized swiper-horizontal swiper-pointer-events swiper-autoheight swiper-css-mode'>
                 <div class='swiper-wrapper is-slider-main h-[628px]'>
                   <div class='swiper-slide is-slider-main card is-active w-[416px] mr-4'>
                     <a class='connectButton tracker-cards_item-link w-inline-block interact-button'>
@@ -513,7 +601,7 @@ const ApiSDK = () => {
                   </div>
                 </div>
                 <span class='swiper-notification'></span>
-              </div>
+              </div> */}
               <div class='slider-main_top-wrapper'>
                 <div class='swiper-bullet-wrapper is-slider-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal'>
                   <button class='swiper-bullet is-active'></button>

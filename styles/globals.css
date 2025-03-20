@@ -6418,6 +6418,11 @@ figcaption {
   width: auto;
   display: flex;
 }
+
+.swiper-pagination-bullets.is-slider-main {
+  width: auto !important;
+}
+
 .swiper-bullet {
   background-color: var(--white-10-101);
   text-align: center;
