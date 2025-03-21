@@ -5,15 +5,17 @@ import Features from 'src/components/home/features'
 import Introduction from 'src/components/home/introduction'
 import LogoSlider from 'src/components/home/logo-slider'
 import NewsLetter from 'src/components/home/news-letter'
+import Download from 'src/components/home/download'
 
 const Home = () => {
   return (
-    <main class='main-wrapper'>
+    <main className='main-wrapper'>
       <Introduction />
       <LogoSlider />
       <Features />
       <Ecosystems />
       {/* <Applications /> */}
+      <Download />
       <Roadmap />
       <NewsLetter />
     </main>

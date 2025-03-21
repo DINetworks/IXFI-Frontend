@@ -6,8 +6,6 @@ const Layout = ({ children }) => {
   const router = useRouter()
   const topBgClass = router.pathname == '/' || router.pathname == '' ? 'main-background-hero' : 'pro-background-hero'
 
-  console.log(router.pathname)
-
   return (
     <div className={`page-wrapper ${topBgClass}`}>
       <AppHeader />

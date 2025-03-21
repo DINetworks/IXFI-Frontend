@@ -1,12 +1,13 @@
 import { useRef, useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
+import useWindowSize from 'src/hooks/use-window-size'
 import { roadmaps } from 'src/configs/constant'
 import 'swiper/css'
 
 const ApiSDK = () => {
   const swiperRef = useRef(null)
   const [activeSwipe, setActiveSwipe] = useState(0)
+  const { width, height } = useWindowSize()
 
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.swiper) {
@@ -20,6 +21,8 @@ const ApiSDK = () => {
 
   const isPrevClass = activeSwipe === 0 ? 'is-disabled' : ''
   const isNextClass = activeSwipe === roadmaps.length - 1 ? 'is-disabled' : ''
+
+  const slidesPerView = parseInt(width / 400)
 
   return (
     <section className='section_tracker-cards radius-corners-top'>
@@ -49,7 +52,7 @@ const ApiSDK = () => {
                 className='is-slider-main'
                 ref={swiperRef}
                 spaceBetween={30}
-                slidesPerView={4}
+                slidesPerView={slidesPerView}
                 onSlideChange={handleSlideChange}
               >
                 {roadmaps.map((slide, index) => (
@@ -59,9 +62,9 @@ const ApiSDK = () => {
                         <div>
                           <div className='roadmap-period margin-bottom margin-xxsmall'>{slide.period}</div>
                         </div>
-                        <div class='cards-small_icon-wrapper-wrapper margin-bottom margin-small'>
-                          <div class='cards-small_icon-wrapper'>
-                            <img src={`/images/icons/gasless.svg`} alt='' class='icon-1x1-small' />
+                        <div className='cards-small_icon-wrapper-wrapper margin-bottom margin-small'>
+                          <div className='cards-small_icon-wrapper'>
+                            <img src={`/images/icons/${slide.icon}`} alt='' className='icon-1x1-small' />
                           </div>
                         </div>
                         <div className='tracker-cards_item-content-top'>
@@ -76,14 +79,14 @@ const ApiSDK = () => {
                               ))}
                             </ul>
                           </div>
-                          <div className='tracker-cards_button-wrapper'>
+                          {/* <div className='tracker-cards_button-wrapper'>
                             <div className='button is-link is-icon'>
                               <div>Read more</div>
                               <div className='icon-embed-xxsmall w-embed'>
                                 <img src='/images/icons/right-arrow.svg' alt='' />
                               </div>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </a>

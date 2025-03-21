@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 const Header = () => {
   const router = useRouter()
   const [isDropdownVisible, setDropdownVisible] = useState(false)
+  const [isNavButtonVisible, setNavButtonVisible] = useState(false)
 
   const handleMouseEnter = () => {
     setDropdownVisible(true)
@@ -17,6 +18,19 @@ const Header = () => {
   const dropdownMenuClass = isDropdownVisible ? 'w--open' : ''
 
   const navMenuActiveClass = route => (router.pathname.includes(route) ? 'w--current' : '')
+
+  const scrollToDownload = () => {
+    const section = document.getElementById('download-section')
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const navbarOpen = () => {
+    setNavButtonVisible(!isNavButtonVisible)
+  }
+
+  const flexOrNone = isNavButtonVisible ? 'flex' : ''
 
   return (
     <div className='navbar_component w-nav'>
@@ -62,17 +76,11 @@ const Header = () => {
           <a className='navbar_link w-nav-link interact-button'>Documentation</a>
           <div className='nav-background-blur'></div>
         </div>
-        <div id='w-node-_9808c09c-041a-d6d4-c3be-ab9cddd7a758-ddd7a741' className='navbar_button-wrapper'>
-          <a className='button is-navbar-button w-button interact-button'>Download</a>
-          <div
-            data-w-id='9808c09c-041a-d6d4-c3be-ab9cddd7a75b'
-            className='navbar_menu-button w-nav-button'
-            aria-label='menu'
-            role='button'
-            aria-controls='w-nav-overlay-0'
-            aria-haspopup='menu'
-            aria-expanded='false'
-          >
+        <div className='navbar_button-wrapper'>
+          <button onClick={scrollToDownload} className='button is-navbar-button w-button interact-button'>
+            Download
+          </button>
+          <div onClick={navbarOpen} className='navbar_menu-button w-nav-button'>
             <div className='menu-icon2'>
               <div className='menu-icon2_line-top'></div>
               <div className='menu-icon2_line-middle'>
@@ -82,7 +90,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div id='w-node-_2e14337d-80c2-4b70-cd3e-4ba19a3f3884-ddd7a741' className='mobile_menu'>
+        <div className={`mobile_menu ${flexOrNone}`}>
           <div className='mobile_menu-link-wrapper'>
             <a className='navbar_link w-nav-link interact-button'>Home</a>
           </div>

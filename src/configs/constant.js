@@ -1,10 +1,12 @@
 const roadmaps = [
   {
+    icon: 'mvp.svg',
     period: '2025 Q1',
     title: 'MVP Development',
     items: ['Develop Gas Abstraction Layer', 'Develop Relayer Node System', 'Develop IXFI Token & GMP']
   },
   {
+    icon: 'development.svg',
     period: '2025 Q2',
     title: 'Development & Test',
     items: [
@@ -15,21 +17,25 @@ const roadmaps = [
     ]
   },
   {
+    icon: 'launch.svg',
     period: '2025 Q3',
     title: 'Mainnet Launch',
     items: ['Integration Test', 'Conduct Security Audit', 'Mainnet Lunch', 'Token Presale']
   },
   {
+    icon: 'strategy.svg',
     period: '2025 Q4',
     title: 'Development Network & Strategies',
     items: ['Develop Governance', 'Develop Staking', 'Incentive for Network Users', 'Development API & SDK']
   },
   {
+    icon: 'staking.svg',
     period: '2026 Q1',
     title: 'Launch Staking & Governance',
     items: ['Security Audit for Governance & Staking', 'Incentive for Network Users', 'Partnerships with 3rd parties']
   },
   {
+    icon: 'further.svg',
     period: '2026 Q2',
     title: 'Further Development & Maintenance',
     items: ['...', '...', '...']
