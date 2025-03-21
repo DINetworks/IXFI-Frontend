@@ -97,7 +97,6 @@ const logos = [
   'metamask.svg',
   'kucoin.svg',
   'fidelity.svg',
-  'light.svg',
   'degiro.svg',
   'crypto.svg',
   'coinbase.svg',

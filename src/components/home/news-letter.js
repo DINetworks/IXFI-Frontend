@@ -42,11 +42,11 @@ const NewsLetter = () => {
                   </form>
                   <div className='success-message w-form-done'>
                     <div className='div-block-2'>
-                      <img
+                      {/* <img
                         src='./Uniswap _ Portfolio Tracker_files/65266a4434fd99c7f31a619f_Radio.svg'
                         alt='Check symbol'
                         className='success-message-icon'
-                      />
+                      /> */}
                       <h5 className='text-color-black succes'>Thank you for signing up!</h5>
                     </div>
                     <div className='text-block-3 homepage-tnc'>
