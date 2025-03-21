@@ -1,11 +1,14 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import ConnectWallet from 'src/components/wallet/connect-wallet'
 
 const Header = () => {
   const router = useRouter()
   const [isDropdownVisible, setDropdownVisible] = useState(false)
   const [isNavButtonVisible, setNavButtonVisible] = useState(false)
+
+  const [account, setAccount] = useState(null)
 
   const handleMouseEnter = () => {
     setDropdownVisible(true)
@@ -14,10 +17,6 @@ const Header = () => {
   const handleMouseLeave = () => {
     setDropdownVisible(false)
   }
-
-  const dropdownMenuClass = isDropdownVisible ? 'w--open' : ''
-
-  const navMenuActiveClass = route => (router.pathname.includes(route) ? 'w--current' : '')
 
   const scrollToDownload = () => {
     const section = document.getElementById('download-section')
@@ -29,6 +28,10 @@ const Header = () => {
   const navbarOpen = () => {
     setNavButtonVisible(!isNavButtonVisible)
   }
+
+  const dropdownMenuClass = isDropdownVisible ? 'w--open' : ''
+
+  const navMenuActiveClass = route => (router.pathname.includes(route) ? 'w--current' : '')
 
   const flexOrNone = isNavButtonVisible ? 'flex' : ''
 
@@ -74,12 +77,16 @@ const Header = () => {
             </nav>
           </div>
           <a className='navbar_link w-nav-link interact-button'>Documentation</a>
+          <button
+            onClick={scrollToDownload}
+            className='connectButton button is-secondary is-small is-navbar w-button interact-button show'
+          >
+            Download
+          </button>
           <div className='nav-background-blur'></div>
         </div>
         <div className='navbar_button-wrapper'>
-          <button onClick={scrollToDownload} className='button is-navbar-button w-button interact-button'>
-            Download
-          </button>
+          <ConnectWallet account={account} setAccount={setAccount} />
           <div onClick={navbarOpen} className='navbar_menu-button w-nav-button'>
             <div className='menu-icon2'>
               <div className='menu-icon2_line-top'></div>
