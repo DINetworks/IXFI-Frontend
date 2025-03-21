@@ -21,6 +21,12 @@ import ThemeComponent from 'src/@core/theme/ThemeComponent'
 // ** Contexts
 import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext'
 
+// ** Wallet Connect **
+import { WagmiProvider } from 'wagmi'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { structuralSharing } from '@wagmi/core/query'
+import { config } from 'src/wallet/config'
+
 // ** Styled Components
 import ReactHotToast from 'src/@core/styles/libs/react-hot-toast'
 
@@ -66,6 +72,14 @@ const App = props => {
     Component.getLayout ?? (page => <LandingLayout contentHeightFixed={contentHeightFixed}>{page}</LandingLayout>)
   const setConfig = Component.setConfig ?? undefined
 
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        structuralSharing
+      }
+    }
+  })
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -77,21 +91,24 @@ const App = props => {
         <meta name='keywords' content='Cross Chain, CrossFi, Interoperability, IXFI, Interoperable XFI' />
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
-
-      <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
-        <SettingsConsumer>
-          {({ settings }) => {
-            return (
-              <ThemeComponent settings={settings}>
-                {getLayout(<Component {...pageProps} />)}
-                <ReactHotToast>
-                  <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
-                </ReactHotToast>
-              </ThemeComponent>
-            )
-          }}
-        </SettingsConsumer>
-      </SettingsProvider>
+      <WagmiProvider config={config}>
+        <QueryClientProvider client={queryClient}>
+          <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
+            <SettingsConsumer>
+              {({ settings }) => {
+                return (
+                  <ThemeComponent settings={settings}>
+                    {getLayout(<Component {...pageProps} />)}
+                    <ReactHotToast>
+                      <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
+                    </ReactHotToast>
+                  </ThemeComponent>
+                )
+              }}
+            </SettingsConsumer>
+          </SettingsProvider>
+        </QueryClientProvider>
+      </WagmiProvider>
     </CacheProvider>
   )
 }
