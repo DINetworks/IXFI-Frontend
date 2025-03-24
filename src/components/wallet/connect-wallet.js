@@ -9,12 +9,9 @@ import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import Menu from '@mui/material/Menu'
 import Fab from '@mui/material/Fab'
-import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
 import WalletOption from './wallet-options'
 import Icon from 'src/@core/components/icon'
-
-import { mainnet, bsc, optimism, base } from 'viem/chains'
 
 import CloseButton from 'src/components/wallet/close-connect'
 import { useRouter } from 'next/router'
