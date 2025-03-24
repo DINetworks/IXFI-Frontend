@@ -74,9 +74,8 @@ const ConnectWallet = () => {
   const chainSelector = () => {
     return (
       <div>
-        <Fab variant='extended' size='medium' color='info' className='selectchain-btn' onClick={handleChainClick}>
+        <Fab variant='extended' size='medium' color='primary' className='selectchain-btn' onClick={handleChainClick}>
           <img src={`/images/icons/chains/${chainLogos[chainId]}.png`} className='chain-icon' alt='' />
-          {supportedChains[chainId]}
         </Fab>
         <Menu
           anchorEl={anchorElChain}
