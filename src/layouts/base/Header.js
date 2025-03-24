@@ -79,7 +79,7 @@ const Header = () => {
           <a className='navbar_link w-nav-link interact-button'>Documentation</a>
           <button
             onClick={scrollToDownload}
-            className='connectButton button is-secondary is-small is-navbar w-button interact-button show'
+            className='button is-secondary is-small is-navbar w-button interact-button show'
           >
             Download
           </button>

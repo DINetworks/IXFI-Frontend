@@ -12460,3 +12460,28 @@ figcaption {
   height: 32px;
   margin-right: 20px;
 }
+
+.connectinfo-btn {
+  text-transform: none !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  font-size: 1rem !important;
+  margin-right: 0.8rem;
+}
+
+.selectchain-btn {
+  text-transform: none !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  font-size: 1rem !important;
+}
+
+.chain-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
+}
+
+.menuitem-image {
+  margin-right: 0.5rem;
+}

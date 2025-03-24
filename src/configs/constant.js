@@ -1,3 +1,5 @@
+import { mainnet, bsc, arbitrum, avalanche, optimism, base, polygon } from 'viem/chains'
+
 const roadmaps = [
   {
     icon: 'mvp.svg',
@@ -104,4 +106,26 @@ const logos = [
   'ameritrade.svg'
 ]
 
-export { roadmaps, useCases, features, logos }
+const supportedChains = {
+  4157: 'CrossFi',
+  [mainnet.id]: 'Ethereum',
+  [bsc.id]: 'BNB Smart Chain',
+  [polygon.id]: 'Polygon PoS',
+  [optimism.id]: 'Optimism',
+  [arbitrum.id]: 'Arbitrum',
+  [avalanche.id]: 'Avalanche',
+  [base.id]: 'Base'
+}
+
+const chainLogos = {
+  4157: 'crossfi',
+  [mainnet.id]: 'ethereum',
+  [bsc.id]: 'bsc',
+  [polygon.id]: 'polygon',
+  [optimism.id]: 'optimism',
+  [arbitrum.id]: 'arbitrum',
+  [avalanche.id]: 'avalanche',
+  [base.id]: 'base'
+}
+
+export { roadmaps, useCases, features, logos, supportedChains, chainLogos }
