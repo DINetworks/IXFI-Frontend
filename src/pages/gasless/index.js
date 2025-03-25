@@ -3,8 +3,9 @@ import { Box, Grid, Fab, Typography, TextField, Select, MenuItem, InputLabel, Fo
 import Icon from 'src/@core/components/icon'
 import { useAccount } from 'wagmi'
 import { truncateAddress } from 'src/wallet/utils'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import ChainSelector from 'src/components/wallet/chain-selector'
 
 const defaultTransferItem = {
   token: '',
@@ -16,6 +17,14 @@ const GasLess = () => {
   const router = useRouter()
   const [isClient, setIsClient] = useState(false)
   const { address, chain } = useAccount()
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  const [switchChainModal, setSwitchChainModal] = useState(false)
+  const [approveTokenModal, setApproveTokenModal] = useState(false)
+  const [topupXFIModal, setTopupXFIModal] = useState(false)
 
   const [transfers, setTransfers] = useState([defaultTransferItem])
 
@@ -33,6 +42,18 @@ const GasLess = () => {
     // Ensure the value is a valid float or empty
     const floatValue = value === '' || !isNaN(parseFloat(value)) ? value : transfers[index].amount
     handleInputChange(index, 'amount', floatValue)
+  }
+
+  const openSwitchChainModal = () => {
+    setSwitchChainModal(true)
+  }
+
+  const openApproveTokenModal = () => {
+    setApproveTokenModal(true)
+  }
+
+  const openTopupXFIModal = () => {
+    setTopupXFIModal(true)
   }
 
   const moveSwap = () => {
@@ -121,18 +142,40 @@ const GasLess = () => {
                     </Grid>
                   </Grid>
                   <div className='text-center'>
-                    <Fab variant='extended' size='large' color='primary' className='connectinfo-btn' sx={{ margin: 2 }}>
+                    <Fab
+                      variant='extended'
+                      size='large'
+                      color='primary'
+                      className='connectinfo-btn'
+                      sx={{ margin: 2 }}
+                      onClick={openSwitchChainModal}
+                    >
                       Switch Chain
                     </Fab>
 
-                    <Fab variant='extended' size='large' color='primary' className='connectinfo-btn' sx={{ margin: 2 }}>
+                    <Fab
+                      variant='extended'
+                      size='large'
+                      color='primary'
+                      className='connectinfo-btn'
+                      sx={{ margin: 2 }}
+                      onClick={openApproveTokenModal}
+                    >
                       Approve/Disapprove
                     </Fab>
 
-                    <Fab variant='extended' size='large' color='primary' className='connectinfo-btn' sx={{ margin: 2 }}>
+                    <Fab
+                      variant='extended'
+                      size='large'
+                      color='primary'
+                      className='connectinfo-btn'
+                      sx={{ margin: 2 }}
+                      onClick={openTopupXFIModal}
+                    >
                       Top up XFI
                     </Fab>
                   </div>
+                  <ChainSelector openModal={switchChainModal} setOpenModal={setSwitchChainModal} />
                 </div>
               </div>
             </div>

@@ -109,7 +109,7 @@ const logos = [
 const supportedChains = {
   4157: 'CrossFi',
   [mainnet.id]: 'Ethereum',
-  [bsc.id]: 'BNB Smart Chain',
+  [bsc.id]: 'BNB SC',
   [polygon.id]: 'Polygon PoS',
   [optimism.id]: 'Optimism',
   [arbitrum.id]: 'Arbitrum',

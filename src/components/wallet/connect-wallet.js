@@ -27,7 +27,7 @@ const ConnectWallet = () => {
   const chainId = useChainId()
   const { connect, connectors } = useConnect()
   const { disconnect } = useDisconnect()
-  const { chains, switchChain, isPending } = useSwitchChain()
+  const { chains, switchChain } = useSwitchChain()
   const router = useRouter()
 
   useEffect(() => {
@@ -147,7 +147,7 @@ const ConnectWallet = () => {
             overflow: 'visible'
           },
           '& .MuiBackdrop-root': {
-            backgroundColor: 'rgba(10, 10, 11, 0.85)' // Change background color
+            backgroundColor: 'rgba(10, 10, 11, 0.85)'
           }
         }}
       >

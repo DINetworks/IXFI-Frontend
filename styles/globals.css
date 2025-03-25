@@ -12472,6 +12472,11 @@ figcaption {
   margin-right: 20px;
 }
 
+.chain-selector-icon {
+  width: 40px;
+  height: 40px;
+}
+
 .connectinfo-btn {
   text-transform: none !important;
   padding-left: 1rem !important;
