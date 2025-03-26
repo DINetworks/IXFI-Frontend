@@ -1,3 +1,5 @@
+import { mainnet, bsc, arbitrum, avalanche, optimism, base, polygon } from 'viem/chains'
+
 const roadmaps = [
   {
     icon: 'mvp.svg',
@@ -104,4 +106,47 @@ const logos = [
   'ameritrade.svg'
 ]
 
-export { roadmaps, useCases, features, logos }
+const supportedChains = {
+  4157: 'CrossFi',
+  [mainnet.id]: 'Ethereum',
+  [bsc.id]: 'BNB SC',
+  [polygon.id]: 'Polygon PoS',
+  [optimism.id]: 'Optimism',
+  [arbitrum.id]: 'Arbitrum',
+  [avalanche.id]: 'Avalanche',
+  [base.id]: 'Base'
+}
+
+const chainLogos = {
+  4157: 'crossfi',
+  [mainnet.id]: 'ethereum',
+  [bsc.id]: 'bsc',
+  [polygon.id]: 'polygon',
+  [optimism.id]: 'optimism',
+  [arbitrum.id]: 'arbitrum',
+  [avalanche.id]: 'avalanche',
+  [base.id]: 'base'
+}
+
+const stepsForGasless = [
+  {
+    icon: 'gasless.svg',
+    title: 'Deposit XFI for Gas Fees',
+    description:
+      'Deposit XFI or IXFI on any supported chain to cover future transaction fees seamlessly. If your gas balance runs low, you can top up at any time to continue using gasless transactions without interruptions.'
+  },
+  {
+    icon: 'evm.svg',
+    title: 'Approve Tokens Once',
+    description:
+      'Grant approval for your preferred tokens once, enabling smooth and gasless transactions without repeated confirmations. If needed, you can modify your token approvals at any time by adding or removing tokens.'
+  },
+  {
+    icon: 'cross-chain.svg',
+    title: 'Start Transactions',
+    description:
+      'You’re all set! It’s time to go. Execute cross-chain transactions effortlessly without worrying about gas fees using our gasless meta-transaction system.'
+  }
+]
+
+export { roadmaps, useCases, features, logos, stepsForGasless, supportedChains, chainLogos }

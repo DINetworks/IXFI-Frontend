@@ -9,23 +9,25 @@ import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import Menu from '@mui/material/Menu'
 import Fab from '@mui/material/Fab'
-import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
-import WalletOption from './wallet-options'
+import WalletOption from './wallet-option'
 import Icon from 'src/@core/components/icon'
 
 import CloseButton from 'src/components/wallet/close-connect'
 import { useRouter } from 'next/router'
+import { chainLogos } from 'src/configs/constant'
 
 const ConnectWallet = () => {
   const [isClient, setIsClient] = useState(false)
 
-  const [anchorEl, setAnchorEl] = useState(null)
+  const [anchorElConnect, setAnchorElConnect] = useState(null)
+  const [anchorElChain, setAnchorElChain] = useState(null)
   const [openModal, setOpenModal] = useState(false)
   const { address, isConnected } = useAccount()
   const chainId = useChainId()
   const { connect, connectors } = useConnect()
   const { disconnect } = useDisconnect()
+  const { chains, switchChain } = useSwitchChain()
   const router = useRouter()
 
   useEffect(() => {
@@ -33,15 +35,28 @@ const ConnectWallet = () => {
   }, [])
 
   useEffect(() => {
-    // console.log('chainId', chainId)
-  }, [isConnected])
+    console.log('chainId', chainId)
+  }, [isConnected, chainId])
 
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget)
+  const handleConnectClick = event => {
+    setAnchorElConnect(event.currentTarget)
   }
 
-  const handleClose = () => {
-    setAnchorEl(null)
+  const handleCloseConnect = () => {
+    setAnchorElConnect(null)
+  }
+
+  const handleChainClick = event => {
+    setAnchorElChain(event.currentTarget)
+  }
+
+  const handleCloseChain = () => {
+    setAnchorElChain(null)
+  }
+
+  const selectChain = id => {
+    switchChain({ chainId: id })
+    handleCloseChain()
   }
 
   const handleConnectDialogOpen = () => setOpenModal(true)
@@ -56,16 +71,61 @@ const ConnectWallet = () => {
     // router.push('/dashboard')
   }
 
-  if (isConnected && isClient) {
+  const chainSelector = () => {
     return (
       <div>
-        <Button variant='outlined' size='large' aria-controls='simple-menu' aria-haspopup='true' onClick={handleClick}>
-          {truncateAddress(address)}
-        </Button>
-        <Menu keepMounted id='simple-menu' anchorEl={anchorEl} onClose={handleClose} open={Boolean(anchorEl)}>
-          <MenuItem onClick={disconnect}>Disconnect</MenuItem>
+        <Fab variant='extended' size='medium' color='primary' className='selectchain-btn' onClick={handleChainClick}>
+          <img src={`/images/icons/chains/${chainLogos[chainId]}.png`} className='chain-icon' alt='' />
+        </Fab>
+        <Menu
+          anchorEl={anchorElChain}
+          open={Boolean(anchorElChain)}
+          PaperProps={{
+            sx: { width: 220, mt: 2 }
+          }}
+          onClose={handleCloseChain}
+        >
+          {chains &&
+            chains.map((chain, idx) => (
+              <MenuItem key={idx} onClick={() => selectChain(chain.id)}>
+                <img src={`/images/icons/chains/${chainLogos[chain.id]}.png`} className='chain-icon' alt='' />
+                {chain.name}
+              </MenuItem>
+            ))}
         </Menu>
       </div>
+    )
+  }
+
+  const connectInfo = () => {
+    return (
+      <div>
+        <Fab variant='extended' size='medium' color='primary' className='connectinfo-btn' onClick={handleConnectClick}>
+          <img src='/images/icons/wallet.svg' className='menuitem-image' alt='' /> {truncateAddress(address)}
+        </Fab>
+        <Menu
+          anchorEl={anchorElConnect}
+          onClose={handleCloseConnect}
+          open={Boolean(anchorElConnect)}
+          PaperProps={{
+            sx: { width: 160, mt: 2 }
+          }}
+        >
+          <MenuItem onClick={disconnect}>
+            <img src='/images/icons/disconnect.svg' className='menuitem-image' alt='' />
+            Disconnect
+          </MenuItem>
+        </Menu>
+      </div>
+    )
+  }
+
+  if (isConnected && isClient) {
+    return (
+      <Box display='flex' gap={4}>
+        {chainSelector()}
+        {connectInfo()}
+      </Box>
     )
   }
 
@@ -87,7 +147,7 @@ const ConnectWallet = () => {
             overflow: 'visible'
           },
           '& .MuiBackdrop-root': {
-            backgroundColor: 'rgba(10, 10, 11, 0.85)' // Change background color
+            backgroundColor: 'rgba(10, 10, 11, 0.85)'
           }
         }}
       >

@@ -164,7 +164,7 @@ const CustomTextField = forwardRef((props, ref) => {
       size={size}
       inputRef={ref}
       {...rest}
-      variant='filled'
+      variant='outlined'
       InputLabelProps={{ ...InputLabelProps, shrink: true }}
     />
   )
