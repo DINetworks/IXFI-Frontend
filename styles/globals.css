@@ -12479,8 +12479,8 @@ figcaption {
 
 .connectinfo-btn {
   text-transform: none !important;
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
   font-size: 1rem !important;
   margin-right: 0.8rem;
 }
@@ -12521,4 +12521,31 @@ figcaption {
 
 .text-info {
   color: '#00CFE8' !important;
+}
+
+/* Global Scrollbar Styling */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 8px; /* Adjust width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent; /* Track background */
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #555; /* Scrollbar thumb color */
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #333; /* Darker thumb on hover */
 }
