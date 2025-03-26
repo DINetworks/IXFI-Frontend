@@ -1,11 +1,13 @@
 import { stepsForGasless } from 'src/configs/constant'
 import { Box, Grid, Fab, Typography, TextField, Select, MenuItem, InputLabel, FormControl } from '@mui/material'
 import Icon from 'src/@core/components/icon'
-import { useAccount } from 'wagmi'
+import { useAccount, useChainId } from 'wagmi'
 import { truncateAddress } from 'src/wallet/utils'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import ChainSelector from 'src/components/wallet/chain-selector'
+import ApproveSelector from 'src/components/wallet/approve-selector'
+import tokenData from 'src/configs/token-list.json'
 
 const defaultTransferItem = {
   token: '',
@@ -17,6 +19,7 @@ const GasLess = () => {
   const router = useRouter()
   const [isClient, setIsClient] = useState(false)
   const { address, chain } = useAccount()
+  const chainId = useChainId()
 
   useEffect(() => {
     setIsClient(true)
@@ -156,26 +159,53 @@ const GasLess = () => {
                     <Fab
                       variant='extended'
                       size='large'
-                      color='primary'
+                      color='info'
                       className='connectinfo-btn'
                       sx={{ margin: 2 }}
                       onClick={openApproveTokenModal}
                     >
-                      Approve/Disapprove
+                      Approve
                     </Fab>
 
                     <Fab
                       variant='extended'
                       size='large'
-                      color='primary'
+                      color='warning'
+                      className='connectinfo-btn'
+                      sx={{ margin: 2 }}
+                      onClick={openApproveTokenModal}
+                    >
+                      Disapprove
+                    </Fab>
+
+                    <Fab
+                      variant='extended'
+                      size='large'
+                      color='info'
                       className='connectinfo-btn'
                       sx={{ margin: 2 }}
                       onClick={openTopupXFIModal}
                     >
-                      Top up XFI
+                      Deposit XFI
+                    </Fab>
+
+                    <Fab
+                      variant='extended'
+                      size='large'
+                      color='warning'
+                      className='connectinfo-btn'
+                      sx={{ margin: 2 }}
+                      onClick={openTopupXFIModal}
+                    >
+                      Withdraw XFI
                     </Fab>
                   </div>
                   <ChainSelector openModal={switchChainModal} setOpenModal={setSwitchChainModal} />
+                  <ApproveSelector
+                    openModal={approveTokenModal}
+                    setOpenModal={setApproveTokenModal}
+                    tokenData={tokenData}
+                  />
                 </div>
               </div>
             </div>

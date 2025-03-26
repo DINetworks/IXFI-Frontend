@@ -10,12 +10,12 @@ import DialogTitle from '@mui/material/DialogTitle'
 import Menu from '@mui/material/Menu'
 import Fab from '@mui/material/Fab'
 import MenuItem from '@mui/material/MenuItem'
-import WalletOption from './wallet-options'
+import WalletOption from './wallet-option'
 import Icon from 'src/@core/components/icon'
 
 import CloseButton from 'src/components/wallet/close-connect'
 import { useRouter } from 'next/router'
-import { chainLogos, supportedChains } from 'src/configs/constant'
+import { chainLogos } from 'src/configs/constant'
 
 const ConnectWallet = () => {
   const [isClient, setIsClient] = useState(false)
