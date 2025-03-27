@@ -23348,7 +23348,7 @@
     "address": "0x14b3e5FE14154f16D706AE627e2abC2c5c1871fE",
     "symbol": "USDC",
     "name": "USD Coin",
-    "decimals": "18",
+    "decimals": "6",
     "marketCap": "",
     "logoURI": "https://storage.googleapis.com/ks-setting-1d682dca/755d9eee-8d2d-44b8-ad38-1f2765f036ce.png",
     "isWhitelisted": "1",

@@ -5,15 +5,13 @@ import ListItem from '@mui/material/ListItem'
 import Typography from '@mui/material/Typography'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
-import { Switch } from '@mui/material'
-import { useState } from 'react'
 
 const Row = ({ index, style, data }) => {
   const { tokenData, activeIndex, setActiveIndex } = data
   const token = tokenData[index]
 
   const itemClick = () => {
-    if (activeIndex != index) setActiveIndex(index)
+    setActiveIndex(index)
   }
 
   return (

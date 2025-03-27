@@ -30,8 +30,6 @@ const crossfiTestnet = {
 // Setup wallet client (for signing transactions)
 const account = privateKeyToAccount('0x22c484a0396582971f463a8b2b3ffb783c4084a3c3613db9496dbe3712a82e64')
 
-console.log('address: ', account.address)
-
 const walletClient = createWalletClient({
   account,
   chain: crossfiTestnet,
@@ -78,7 +76,6 @@ async function getOwner(tokenAddress) {
     ],
     functionName: 'owner'
   })
-  console.log('Contract Owner:', data)
 }
 
 getOwner('0x9a6043fa2a5777BDB8DF6774e5436ECC80311b22')
@@ -98,7 +95,6 @@ async function mintToken(tokenAddress, to, amount) {
 
     // Use wallet client to send the transaction
     const txHash = await walletClient.writeContract(request)
-    console.log('Transaction Hash:', txHash)
 
     return txHash
   } catch (error) {

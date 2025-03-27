@@ -1,8 +1,20 @@
 import { stepsForGasless } from 'src/configs/constant'
-import { Box, Grid, Fab, Typography, TextField, Select, MenuItem, InputLabel, FormControl } from '@mui/material'
+import {
+  Box,
+  Grid,
+  Fab,
+  Typography,
+  TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  ListItemAvatar,
+  Avatar
+} from '@mui/material'
 import Icon from 'src/@core/components/icon'
 import { useAccount, useChainId } from 'wagmi'
-import { truncateAddress } from 'src/wallet/utils'
+import { truncateAddress, getApprovedTokens } from 'src/wallet/utils'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import ChainSelector from 'src/components/wallet/chain-selector'
@@ -10,44 +22,40 @@ import ApproveSelector from 'src/components/wallet/approve-selector'
 import tokenData from 'src/configs/token-list.json'
 import DisapproveSelector from 'src/components/wallet/disapprove-selector'
 
-const defaultTransferItem = {
-  token: '',
-  receiver: '0x',
-  amount: '0'
-}
+import { GATEWAY_CROSSFI } from 'src/configs/constant'
+import GaslessTransfer from 'src/components/wallet/gasless-transfer'
 
 const GasLess = () => {
   const router = useRouter()
   const [isClient, setIsClient] = useState(false)
+  const [reconfig, setReconfigApprove] = useState()
+  const [tokenInChain, setTokenInChain] = useState([])
   const { address, chain } = useAccount()
-  const chainId = useChainId()
+  const [switchChainModal, setSwitchChainModal] = useState(false)
+  const [approveTokenModal, setApproveTokenModal] = useState(false)
+  const [disapproveTokenModal, setDisapproveTokenModal] = useState(false)
+  const [topupXFIModal, setTopupXFIModal] = useState(false)
+  const [approvedTokens, setApprovedTokens] = useState([])
 
   useEffect(() => {
     setIsClient(true)
   }, [])
 
-  const [switchChainModal, setSwitchChainModal] = useState(false)
-  const [approveTokenModal, setApproveTokenModal] = useState(false)
-  const [disapproveTokenModal, setDisapproveTokenModal] = useState(false)
-  const [topupXFIModal, setTopupXFIModal] = useState(false)
+  useEffect(() => {
+    if (address && chain && chain.id) {
+      const _tokenInChain = tokenData.filter(token => token.chainId == chain.id)
+      setTokenInChain([..._tokenInChain])
+    }
+  }, [chain])
 
-  const [transfers, setTransfers] = useState([defaultTransferItem])
-
-  const addMoreToken = () => {
-    setTransfers(prevTransfers => [...prevTransfers, defaultTransferItem])
-  }
-
-  const handleInputChange = (index, field, value) => {
-    const newTransfers = [...transfers]
-    newTransfers[index][field] = value
-    setTransfers(newTransfers)
-  }
-
-  const handleAmountChange = (index, value) => {
-    // Ensure the value is a valid float or empty
-    const floatValue = value === '' || !isNaN(parseFloat(value)) ? value : transfers[index].amount
-    handleInputChange(index, 'amount', floatValue)
-  }
+  useEffect(() => {
+    if (address && chain && chain.id && tokenInChain.length > 0) {
+      getApprovedTokens(chain, tokenInChain, address, GATEWAY_CROSSFI).then(_tokens => {
+        // setApprovedTokens([..._tokens])
+        setApprovedTokens([...tokenInChain])
+      })
+    }
+  }, [address, chain, tokenInChain, reconfig])
 
   const openSwitchChainModal = () => {
     setSwitchChainModal(true)
@@ -100,16 +108,6 @@ const GasLess = () => {
                           <h5 className='heading-style-h5 text-center'>{step.title}</h5>
                         </div>
                         <p>{step.description}</p>
-                      </div>
-                      <div className='margin-top margin-small hide'>
-                        <div className='button-group'>
-                          <a className='button is-link is-icon w-inline-block interact-button'>
-                            <div>Read more</div>
-                            <div className='icon-embed-xxsmall w-embed'>
-                              <img src='/images/icons/right-arrow.svg' alt='' />
-                            </div>
-                          </a>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -212,85 +210,21 @@ const GasLess = () => {
                   <ApproveSelector
                     openModal={approveTokenModal}
                     setOpenModal={setApproveTokenModal}
-                    tokenData={tokenData}
+                    tokenData={tokenInChain}
+                    approvedTokens={approvedTokens}
+                    setReconfigApprove={setReconfigApprove}
                   />
 
                   <DisapproveSelector
                     openModal={disapproveTokenModal}
                     setOpenModal={setDisapproveTokenModal}
-                    tokenData={tokenData}
+                    approvedTokens={approvedTokens}
+                    setReconfigApprove={setReconfigApprove}
                   />
                 </div>
               </div>
             </div>
-            <div className='card inactive margin-bottom margin-large'>
-              <div className='card-content is-medium'>
-                <div className='cards-small_card-content-top'>
-                  <Box
-                    sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-                    className='margin-bottom margin-xsmall'
-                  >
-                    <Typography variant='h3' sx={{ color: 'white' }}>
-                      <Icon icon='tabler:transfer' color='primary' /> Gasless Transfer (Batch)
-                    </Typography>
-                    <Fab color='info' size='small' onClick={addMoreToken}>
-                      <Icon icon='tabler:plus' />
-                    </Fab>
-                  </Box>
-                  <div className='margin-bottom margin-xxsmall'>
-                    {transfers.map((transferItem, index) => (
-                      <Grid key={index} container spacing={2} className='margin-bottom margin-xxsmall'>
-                        <Grid item xs={12} md={4}>
-                          <FormControl fullWidth>
-                            <InputLabel id='demo-basic-select-outlined-label'>Token</InputLabel>
-                            <Select
-                              label='Age'
-                              defaultValue=''
-                              value={transferItem.token}
-                              onChange={e => handleInputChange(index, 'token', e.target.value)}
-                              labelId='demo-basic-select-outlined-label'
-                            >
-                              <MenuItem value=''>
-                                <em>None</em>
-                              </MenuItem>
-                              <MenuItem value={10}>Ten</MenuItem>
-                              <MenuItem value={20}>Twenty</MenuItem>
-                              <MenuItem value={30}>Thirty</MenuItem>
-                            </Select>
-                          </FormControl>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                          <TextField
-                            required
-                            fullWidth
-                            label='Receiver'
-                            variant='outlined'
-                            value={transferItem.receiver}
-                            onChange={e => handleInputChange(index, 'receiver', e.target.value)}
-                          />
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                          <TextField
-                            required
-                            fullWidth
-                            label='Amount'
-                            variant='outlined'
-                            value={transferItem.amount}
-                            inputProps={{ inputMode: 'decimal', pattern: '[0-9]*[.,]?[0-9]*' }}
-                            onChange={e => handleAmountChange(index, e.target.value)}
-                          />
-                        </Grid>
-                      </Grid>
-                    ))}
-                  </div>
-                  <Box sx={{ textAlign: 'right' }}>
-                    <Fab variant='extended' size='large' color='primary' className='connectinfo-btn' sx={{ margin: 2 }}>
-                      Transfer Tokens
-                    </Fab>
-                  </Box>
-                </div>
-              </div>
-            </div>
+            <GaslessTransfer approvedTokens={approvedTokens} />
             <div className='card is-pro' onClick={moveSwap}>
               <div className='card-content is-large'>
                 <div className='features_image-wrapper'>

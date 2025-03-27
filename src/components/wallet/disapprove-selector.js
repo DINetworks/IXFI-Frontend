@@ -1,17 +1,14 @@
 import { useEffect, useState } from 'react'
-import { Dialog, DialogTitle, Box, Typography } from '@mui/material'
+import { Dialog, DialogTitle, Box, Typography, CircularProgress } from '@mui/material'
 import CloseButton from './close-connect'
 import Icon from 'src/@core/components/icon'
 import { useAccount, useWriteContract } from 'wagmi'
 import TokenSelector from './token-selector'
-import { getApprovedTokens } from 'src/wallet/utils'
-import { RELAYER_CROSSFI } from 'src/configs/constant'
+import { GATEWAY_CROSSFI } from 'src/configs/constant'
 
-const DisapproveSelector = ({ openModal, setOpenModal, tokenData }) => {
-  const { address, chain } = useAccount()
-  const { writeContract, isPending } = useWriteContract()
+const DisapproveSelector = ({ openModal, setOpenModal, approvedTokens, setReconfigureApprove }) => {
+  const { writeContract, isPending, isSuccess } = useWriteContract()
   const [activeIndex, setActiveIndex] = useState([])
-  const [approvedTokens, setApprovedTokens] = useState([])
 
   const chainDialogClose = () => {
     setOpenModal(false)
@@ -24,19 +21,15 @@ const DisapproveSelector = ({ openModal, setOpenModal, tokenData }) => {
       address: tokenAddress,
       abi: erc20Abi,
       functionName: 'approve',
-      args: [RELAYER_CROSSFI, BigInt('0')]
+      args: [GATEWAY_CROSSFI, BigInt('0')]
     })
   }
 
   useEffect(() => {
-    if (address && chain && chain.id) {
-      const tokenInChain = tokenData.filter(token => token.chainId == chain.id)
-
-      getApprovedTokens(chain, tokenInChain, address, RELAYER_CROSSFI).then(_tokens => {
-        setApprovedTokens([..._tokens])
-      })
+    if (isSuccess) {
+      //   setReconfigureApprove(Math.random())
     }
-  }, [address, tokenData, chain])
+  }, [isSuccess])
 
   return (
     <Dialog
@@ -88,7 +81,7 @@ const DisapproveSelector = ({ openModal, setOpenModal, tokenData }) => {
                 Apply
               </Typography>
             ) : (
-              <CircularProgress color='white' size='medium' />
+              <CircularProgress color='white' size={24} />
             )}
           </Box>
         </Box>

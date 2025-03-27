@@ -6,18 +6,19 @@ import { useChainId, useWriteContract } from 'wagmi'
 
 import TokenSelector from './token-selector'
 import erc20Abi from 'src/contracts/erc20.json'
-import { MAX_UINT256, RELAYER_CROSSFI } from 'src/configs/constant'
+import { MAX_UINT256, GATEWAY_CROSSFI } from 'src/configs/constant'
 
-const ApproveSelector = ({ openModal, setOpenModal, tokenData }) => {
-  const chainId = useChainId()
-  const { writeContract, isPending } = useWriteContract()
+const ApproveSelector = ({ openModal, setOpenModal, tokenData, approvedTokens, setReconfigureApprove }) => {
+  const { writeContract, isPending, isSuccess } = useWriteContract()
   const [activeIndex, setActiveIndex] = useState([])
 
   const chainDialogClose = () => {
     setOpenModal(false)
   }
 
-  const _tokenData = tokenData.filter(token => token.chainId == chainId)
+  const _tokenData = tokenData.filter(_token =>
+    approvedTokens.some(approvedToken => approvedToken.address === _token.address)
+  )
 
   const applyApproveTokens = () => {
     const tokenAddress = _tokenData[activeIndex].address
@@ -26,9 +27,15 @@ const ApproveSelector = ({ openModal, setOpenModal, tokenData }) => {
       address: tokenAddress,
       abi: erc20Abi,
       functionName: 'approve',
-      args: [RELAYER_CROSSFI, MAX_UINT256]
+      args: [GATEWAY_CROSSFI, MAX_UINT256]
     })
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      // setReconfigureApprove(Math.random())
+    }
+  }, [isSuccess])
 
   return (
     <Dialog
@@ -80,7 +87,7 @@ const ApproveSelector = ({ openModal, setOpenModal, tokenData }) => {
                 Apply
               </Typography>
             ) : (
-              <CircularProgress color='white' size='medium' />
+              <CircularProgress size={24} />
             )}
           </Box>
         </Box>

@@ -150,7 +150,7 @@ const stepsForGasless = [
 ]
 
 const MAX_UINT256 = BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
-const RELAYER_CROSSFI = '0xa9315C1C008c022c4145E993eC9d1a3AF73D0A62'
+const GATEWAY_CROSSFI = '0x24acE36D6565Fc3A27e2Bb9F2f0Fa164d3F2adf6'
 
 export {
   roadmaps,
@@ -161,5 +161,5 @@ export {
   supportedChains,
   chainLogos,
   MAX_UINT256,
-  RELAYER_CROSSFI
+  GATEWAY_CROSSFI
 }
