@@ -1,3 +1,6 @@
+import { createPublicClient, http } from 'viem'
+import erc20Abi from 'src/contracts/erc20.json'
+
 export const truncateAddress = address => {
   if (!address) return 'No Account'
 
@@ -19,4 +22,30 @@ export const formatPercent = value => {
 
 export const isOnlyNumber = value => {
   return /^-?\d*\.?\d*$/.test(value)
+}
+
+export const getApprovedTokens = async (chain, tokens, owner, spender) => {
+  const approvedTokens = []
+
+  const client = createPublicClient({
+    chain,
+    transport: http(chain.rpcUrls?.default?.http[0])
+  })
+
+  for (const token of tokens) {
+    try {
+      const allowance = await client.readContract({
+        address: token.address,
+        abi: erc20Abi,
+        functionName: 'allowance',
+        args: [owner, spender]
+      })
+
+      if (allowance > 0n) approvedTokens.push(token)
+    } catch (error) {
+      console.error(`Error checking allowance for token: ${token.address}`, error)
+    }
+  }
+
+  return approvedTokens
 }

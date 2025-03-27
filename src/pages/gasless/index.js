@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import ChainSelector from 'src/components/wallet/chain-selector'
 import ApproveSelector from 'src/components/wallet/approve-selector'
 import tokenData from 'src/configs/token-list.json'
+import DisapproveSelector from 'src/components/wallet/disapprove-selector'
 
 const defaultTransferItem = {
   token: '',
@@ -27,6 +28,7 @@ const GasLess = () => {
 
   const [switchChainModal, setSwitchChainModal] = useState(false)
   const [approveTokenModal, setApproveTokenModal] = useState(false)
+  const [disapproveTokenModal, setDisapproveTokenModal] = useState(false)
   const [topupXFIModal, setTopupXFIModal] = useState(false)
 
   const [transfers, setTransfers] = useState([defaultTransferItem])
@@ -53,6 +55,10 @@ const GasLess = () => {
 
   const openApproveTokenModal = () => {
     setApproveTokenModal(true)
+  }
+
+  const openDisapproveTokenModal = () => {
+    setDisapproveTokenModal(true)
   }
 
   const openTopupXFIModal = () => {
@@ -173,7 +179,7 @@ const GasLess = () => {
                       color='warning'
                       className='connectinfo-btn'
                       sx={{ margin: 2 }}
-                      onClick={openApproveTokenModal}
+                      onClick={openDisapproveTokenModal}
                     >
                       Disapprove
                     </Fab>
@@ -200,10 +206,18 @@ const GasLess = () => {
                       Withdraw XFI
                     </Fab>
                   </div>
+
                   <ChainSelector openModal={switchChainModal} setOpenModal={setSwitchChainModal} />
+
                   <ApproveSelector
                     openModal={approveTokenModal}
                     setOpenModal={setApproveTokenModal}
+                    tokenData={tokenData}
+                  />
+
+                  <DisapproveSelector
+                    openModal={disapproveTokenModal}
+                    setOpenModal={setDisapproveTokenModal}
                     tokenData={tokenData}
                   />
                 </div>

@@ -1,34 +1,42 @@
 import { useEffect, useState } from 'react'
-import { Dialog, DialogTitle, Box, Typography, CircularProgress } from '@mui/material'
+import { Dialog, DialogTitle, Box, Typography } from '@mui/material'
 import CloseButton from './close-connect'
 import Icon from 'src/@core/components/icon'
-import { useChainId, useWriteContract } from 'wagmi'
-
+import { useAccount, useWriteContract } from 'wagmi'
 import TokenSelector from './token-selector'
-import erc20Abi from 'src/contracts/erc20.json'
-import { MAX_UINT256, RELAYER_CROSSFI } from 'src/configs/constant'
+import { getApprovedTokens } from 'src/wallet/utils'
+import { RELAYER_CROSSFI } from 'src/configs/constant'
 
-const ApproveSelector = ({ openModal, setOpenModal, tokenData }) => {
-  const chainId = useChainId()
+const DisapproveSelector = ({ openModal, setOpenModal, tokenData }) => {
+  const { address, chain } = useAccount()
   const { writeContract, isPending } = useWriteContract()
   const [activeIndex, setActiveIndex] = useState([])
+  const [approvedTokens, setApprovedTokens] = useState([])
 
   const chainDialogClose = () => {
     setOpenModal(false)
   }
 
-  const _tokenData = tokenData.filter(token => token.chainId == chainId)
-
-  const applyApproveTokens = () => {
-    const tokenAddress = _tokenData[activeIndex].address
+  const applyDisapproveTokens = () => {
+    const tokenAddress = approvedTokens[activeIndex].address
 
     writeContract({
       address: tokenAddress,
       abi: erc20Abi,
       functionName: 'approve',
-      args: [RELAYER_CROSSFI, MAX_UINT256]
+      args: [RELAYER_CROSSFI, BigInt('0')]
     })
   }
+
+  useEffect(() => {
+    if (address && chain && chain.id) {
+      const tokenInChain = tokenData.filter(token => token.chainId == chain.id)
+
+      getApprovedTokens(chain, tokenInChain, address, RELAYER_CROSSFI).then(_tokens => {
+        setApprovedTokens([..._tokens])
+      })
+    }
+  }, [address, tokenData, chain])
 
   return (
     <Dialog
@@ -57,7 +65,7 @@ const ApproveSelector = ({ openModal, setOpenModal, tokenData }) => {
         <Icon icon='tabler:x' color='white' fontSize='1.25rem' />
       </CloseButton>
       <Box sx={{ px: 12, py: 4 }}>
-        <TokenSelector tokenData={_tokenData} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+        <TokenSelector tokenData={approvedTokens} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
         <Box>
           <Box
@@ -73,7 +81,7 @@ const ApproveSelector = ({ openModal, setOpenModal, tokenData }) => {
                 background: '#00CFE8'
               }
             }}
-            onClick={applyApproveTokens}
+            onClick={applyDisapproveTokens}
           >
             {!isPending ? (
               <Typography variant='h4' color='white' className='text-center'>
@@ -91,4 +99,4 @@ const ApproveSelector = ({ openModal, setOpenModal, tokenData }) => {
   )
 }
 
-export default ApproveSelector
+export default DisapproveSelector
