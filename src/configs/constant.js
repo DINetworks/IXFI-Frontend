@@ -4,6 +4,7 @@ const roadmaps = [
   {
     icon: 'mvp.svg',
     period: '2025 Q1',
+    active: true,
     title: 'MVP Development',
     items: ['Develop Gas Abstraction Layer', 'Develop Relayer Node System', 'Develop IXFI Token & GMP']
   },
@@ -15,7 +16,7 @@ const roadmaps = [
       'Improve & Update MVP Version',
       'Develop Cross Chain Aggregator',
       'Develop Cross Chain Bridge',
-      'IXN Token & Presale'
+      'IXN Token & Community, Marketing'
     ]
   },
   {
@@ -137,9 +138,9 @@ const stepsForGasless = [
   },
   {
     icon: 'evm.svg',
-    title: 'Approve Tokens Once',
+    title: 'Approve Tokens',
     description:
-      'Grant approval for your preferred tokens once, enabling smooth and gasless transactions without repeated confirmations. If needed, you can modify your token approvals at any time by adding or removing tokens.'
+      'Grant approval for your preferred tokens, enabling smooth and gasless transactions without repeated confirmations. If needed, you can modify your token approvals at any time by adding or removing tokens.'
   },
   {
     icon: 'cross-chain.svg',
@@ -149,4 +150,17 @@ const stepsForGasless = [
   }
 ]
 
-export { roadmaps, useCases, features, logos, stepsForGasless, supportedChains, chainLogos }
+const MAX_UINT256 = BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
+const GATEWAY_CROSSFI = '0x24acE36D6565Fc3A27e2Bb9F2f0Fa164d3F2adf6'
+
+export {
+  roadmaps,
+  useCases,
+  features,
+  logos,
+  stepsForGasless,
+  supportedChains,
+  chainLogos,
+  MAX_UINT256,
+  GATEWAY_CROSSFI
+}

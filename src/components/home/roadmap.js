@@ -60,7 +60,11 @@ const ApiSDK = () => {
                     <a className='tracker-cards_item-link w-inline-block interact-button'>
                       <div className='card-content is-medium'>
                         <div>
-                          <div className='roadmap-period margin-bottom margin-xxsmall'>{slide.period}</div>
+                          <div
+                            className={`roadmap-period margin-bottom margin-xxsmall ${slide.active ? 'active' : ''}`}
+                          >
+                            {slide.period}
+                          </div>
                         </div>
                         <div className='cards-small_icon-wrapper-wrapper margin-bottom margin-small'>
                           <div className='cards-small_icon-wrapper'>

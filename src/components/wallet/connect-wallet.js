@@ -34,10 +34,6 @@ const ConnectWallet = () => {
     setIsClient(true)
   }, [])
 
-  useEffect(() => {
-    console.log('chainId', chainId)
-  }, [isConnected, chainId])
-
   const handleConnectClick = event => {
     setAnchorElConnect(event.currentTarget)
   }

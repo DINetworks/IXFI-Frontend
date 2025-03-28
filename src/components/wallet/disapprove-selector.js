@@ -2,13 +2,11 @@ import { useEffect, useState } from 'react'
 import { Dialog, DialogTitle, Box, Typography, CircularProgress } from '@mui/material'
 import CloseButton from './close-connect'
 import Icon from 'src/@core/components/icon'
-import { useChainId, useWriteContract } from 'wagmi'
-
+import { useAccount, useWriteContract } from 'wagmi'
 import TokenSelector from './token-selector'
-import erc20Abi from 'src/contracts/erc20.json'
-import { MAX_UINT256, GATEWAY_CROSSFI } from 'src/configs/constant'
+import { GATEWAY_CROSSFI } from 'src/configs/constant'
 
-const ApproveSelector = ({ openModal, setOpenModal, tokenData, approvedTokens, setReconfigureApprove }) => {
+const DisapproveSelector = ({ openModal, setOpenModal, approvedTokens, setReconfigureApprove }) => {
   const { writeContract, isPending, isSuccess } = useWriteContract()
   const [activeIndex, setActiveIndex] = useState([])
 
@@ -16,24 +14,20 @@ const ApproveSelector = ({ openModal, setOpenModal, tokenData, approvedTokens, s
     setOpenModal(false)
   }
 
-  const _tokenData = tokenData.filter(_token =>
-    approvedTokens.some(approvedToken => approvedToken.address === _token.address)
-  )
-
-  const applyApproveTokens = () => {
-    const tokenAddress = _tokenData[activeIndex].address
+  const applyDisapproveTokens = () => {
+    const tokenAddress = approvedTokens[activeIndex].address
 
     writeContract({
       address: tokenAddress,
       abi: erc20Abi,
       functionName: 'approve',
-      args: [GATEWAY_CROSSFI, MAX_UINT256]
+      args: [GATEWAY_CROSSFI, BigInt('0')]
     })
   }
 
   useEffect(() => {
     if (isSuccess) {
-      // setReconfigureApprove(Math.random())
+      //   setReconfigureApprove(Math.random())
     }
   }, [isSuccess])
 
@@ -64,7 +58,7 @@ const ApproveSelector = ({ openModal, setOpenModal, tokenData, approvedTokens, s
         <Icon icon='tabler:x' color='white' fontSize='1.25rem' />
       </CloseButton>
       <Box sx={{ px: 12, py: 4 }}>
-        <TokenSelector tokenData={_tokenData} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+        <TokenSelector tokenData={approvedTokens} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
         <Box>
           <Box
@@ -80,14 +74,14 @@ const ApproveSelector = ({ openModal, setOpenModal, tokenData, approvedTokens, s
                 background: '#00CFE8'
               }
             }}
-            onClick={applyApproveTokens}
+            onClick={applyDisapproveTokens}
           >
             {!isPending ? (
               <Typography variant='h4' color='white' className='text-center'>
                 Apply
               </Typography>
             ) : (
-              <CircularProgress size={24} />
+              <CircularProgress color='white' size={24} />
             )}
           </Box>
         </Box>
@@ -98,4 +92,4 @@ const ApproveSelector = ({ openModal, setOpenModal, tokenData, approvedTokens, s
   )
 }
 
-export default ApproveSelector
+export default DisapproveSelector

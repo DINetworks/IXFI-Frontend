@@ -5,24 +5,26 @@ import ListItem from '@mui/material/ListItem'
 import Typography from '@mui/material/Typography'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
-import { Switch } from '@mui/material'
 
 const Row = ({ index, style, data }) => {
-  const { tokenData, manageToken } = data
+  const { tokenData, activeIndex, setActiveIndex } = data
   const token = tokenData[index]
 
-  const handleSwitchChange = value => {
-    manageToken(token.address, value)
+  const itemClick = () => {
+    setActiveIndex(index)
   }
 
   return (
     <ListItem
       style={style}
       key={index}
-      secondaryAction={<Switch color='info' onChange={e => handleSwitchChange(e.target.checked)} />}
+      onClick={itemClick}
       sx={{
+        borderRadius: '8px',
+        cursor: 'pointer',
+        backgroundColor: activeIndex == index ? 'var(--violet)' : '',
         '&:hover': {
-          backgroundColor: 'action.hover'
+          backgroundColor: activeIndex == index ? 'var(--violet)' : 'action.hover'
         }
       }}
     >
@@ -43,14 +45,14 @@ const Row = ({ index, style, data }) => {
   )
 }
 
-const TokenSelector = ({ tokenData, manageToken }) => {
+const TokenSelector = ({ tokenData, activeIndex, setActiveIndex }) => {
   return (
     <FixedSizeList
       height={420}
       width='100%'
       itemSize={72}
       itemCount={tokenData.length}
-      itemData={{ tokenData, manageToken }}
+      itemData={{ tokenData, activeIndex, setActiveIndex }}
       overscanCount={5}
     >
       {Row}
