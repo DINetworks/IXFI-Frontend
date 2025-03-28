@@ -52,7 +52,7 @@ const GasLess = () => {
     if (address && chain && chain.id && tokenInChain.length > 0) {
       getApprovedTokens(chain, tokenInChain, address, GATEWAY_CROSSFI).then(_tokens => {
         // setApprovedTokens([..._tokens])
-        setApprovedTokens([...tokenInChain])
+        setApprovedTokens([..._tokens])
       })
     }
   }, [address, chain, tokenInChain, reconfig])
@@ -129,17 +129,22 @@ const GasLess = () => {
                     spacing={2}
                     sx={{ fontSize: '1.2rem', margin: '2rem' }}
                   >
-                    <Grid item xs={4}>
+                    <Grid item xs={3}>
                       <strong>Chain:</strong>{' '}
-                      <Typography variant='h5' sx={{ color: '#00CFE8' }}>
+                      <Typography variant='h5' sx={{ color: '#00CFE8', mt: 2 }}>
                         {isClient && chain?.name}
                       </Typography>
                     </Grid>
-                    <Grid item xs={5}>
+                    <Grid item xs={6}>
                       <strong>Allowed Tokens:</strong>{' '}
-                      <Typography variant='h5' sx={{ color: '#00CFE8' }}>
-                        $XFI{' '}
-                      </Typography>
+                      <Box gap={2} sx={{ display: 'flex', alignItems: 'center', color: 'white', mt: 2 }}>
+                        {approvedTokens.map(token => (
+                          <Box gap={1} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'cener' }}>
+                            <Avatar src={token.logoURI} alt={token.symbol} sx={{ width: 28, height: 28 }} />{' '}
+                            <span>{token.symbol}</span>
+                          </Box>
+                        ))}
+                      </Box>
                     </Grid>
                     <Grid item xs={3}>
                       <strong>XFI Balance:</strong>{' '}
