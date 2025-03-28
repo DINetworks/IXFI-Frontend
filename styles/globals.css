@@ -12369,6 +12369,10 @@ figcaption {
   padding: 0.4rem 1.2rem;
 }
 
+.roadmap-period.active {
+  background-color: var(--deep-pink-100);
+}
+
 .download-card {
   grid-column-gap: 5rem;
   grid-row-gap: 2rem;

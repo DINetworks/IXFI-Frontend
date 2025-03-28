@@ -4,6 +4,7 @@ const roadmaps = [
   {
     icon: 'mvp.svg',
     period: '2025 Q1',
+    active: true,
     title: 'MVP Development',
     items: ['Develop Gas Abstraction Layer', 'Develop Relayer Node System', 'Develop IXFI Token & GMP']
   },
@@ -15,7 +16,7 @@ const roadmaps = [
       'Improve & Update MVP Version',
       'Develop Cross Chain Aggregator',
       'Develop Cross Chain Bridge',
-      'IXN Token & Presale'
+      'IXN Token & Community, Marketing'
     ]
   },
   {
