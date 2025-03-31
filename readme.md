@@ -1,9 +1,9 @@
 <div align="center">
-    <a href="https://ixfi.meta.com">
+    <a href="https://ixfi.network.com">
         <img alt="logo" src="https://github.com/IXFILabs/IXFI-Frontend/blob/main/public/images/logo.png" style="width: 240px;">
     </a>
     <h1 style="border-bottom: none">
-        <b><a href="https://ixfi.meta.com">IXFI Protocol</a></b><br />
+        <b><a href="https://ixfi.network.com">IXFI Protocol</a></b><br />
     </h1>
 </div>
 

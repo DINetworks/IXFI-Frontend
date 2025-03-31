@@ -138,8 +138,12 @@ const GasLess = () => {
                     <Grid item xs={6}>
                       <strong>Allowed Tokens:</strong>{' '}
                       <Box gap={2} sx={{ display: 'flex', alignItems: 'center', color: 'white', mt: 2 }}>
-                        {approvedTokens.map(token => (
-                          <Box gap={1} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'cener' }}>
+                        {approvedTokens.map((token, index) => (
+                          <Box
+                            key={index}
+                            gap={1}
+                            sx={{ display: 'flex', alignItems: 'center', justifyContent: 'cener' }}
+                          >
                             <Avatar src={token.logoURI} alt={token.symbol} sx={{ width: 28, height: 28 }} />{' '}
                             <span>{token.symbol}</span>
                           </Box>
