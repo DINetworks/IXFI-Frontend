@@ -136,9 +136,11 @@ const GaslessTransfer = ({ approvedTokens }) => {
       // Prepare transfer data
       const targets = transfers.map(transfer => transfer.token)
       const recipients = transfers.map(transfer => transfer.receiver)
+
       const amounts = transfers.map(transfer => {
         const tokenData = approvedTokens.find(token => token.address == transfer.token)
         const decimals = tokenData.decimals
+
         return parseUnits(transfer.amount.toString(), decimals)
       })
 
@@ -156,6 +158,7 @@ const GaslessTransfer = ({ approvedTokens }) => {
       // Send to relayer
       const relayerHost = process.env.NEXT_PUBLIC_RELAYER_HOST
       const endpoint = `${relayerHost}/relay`
+
       const params = {
         sender: address,
         transferData,
