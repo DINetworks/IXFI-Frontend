@@ -16,8 +16,8 @@ const ApproveSelector = ({ openModal, setOpenModal, tokenData, approvedTokens, s
     setOpenModal(false)
   }
 
-  const _tokenData = tokenData.filter(_token =>
-    approvedTokens.some(approvedToken => approvedToken.address === _token.address)
+  const _tokenData = tokenData.filter(
+    _token => !approvedTokens.some(approvedToken => approvedToken.address === _token.address)
   )
 
   const applyApproveTokens = () => {
