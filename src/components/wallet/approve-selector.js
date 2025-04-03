@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react'
 import { Dialog, DialogTitle, Box, Typography, CircularProgress } from '@mui/material'
 import CloseButton from './close-connect'
 import Icon from 'src/@core/components/icon'
-import { useChainId, useWriteContract } from 'wagmi'
+import { useWriteContract } from 'wagmi'
+import { showToast } from '../utils/toast'
 
 import TokenSelector from './token-selector'
 import erc20Abi from 'src/contracts/erc20.json'
 import { MAX_UINT256, GATEWAY_CROSSFI } from 'src/configs/constant'
 
-const ApproveSelector = ({ openModal, setOpenModal, tokenData, approvedTokens, setReconfigureApprove }) => {
-  const { writeContract, isPending, isSuccess } = useWriteContract()
-  const [activeIndex, setActiveIndex] = useState([])
+const ApproveSelector = ({ openModal, setOpenModal, tokenData, approvedTokens, setReconfigApprove }) => {
+  const { writeContract, isPending, isSuccess, isError, error } = useWriteContract()
+  const [activeIndex, setActiveIndex] = useState()
 
   const chainDialogClose = () => {
     setOpenModal(false)
@@ -32,10 +33,20 @@ const ApproveSelector = ({ openModal, setOpenModal, tokenData, approvedTokens, s
   }
 
   useEffect(() => {
+    setActiveIndex(-1)
+  }, [openModal])
+
+  useEffect(() => {
     if (isSuccess) {
-      // setReconfigureApprove(Math.random())
+      setReconfigApprove(Math.random())
+      chainDialogClose()
+      showToast('success', `$${_tokenData[activeIndex].symbol} successfully approved`)
     }
-  }, [isSuccess])
+    if (isError) {
+      chainDialogClose()
+      console.log(error)
+    }
+  }, [isSuccess, isError, error])
 
   return (
     <Dialog
@@ -75,6 +86,7 @@ const ApproveSelector = ({ openModal, setOpenModal, tokenData, approvedTokens, s
               mx: 2,
               cursor: 'pointer',
               color: 'black',
+              textAlign: 'center',
               p: 4,
               '&:hover': {
                 background: '#00CFE8'
