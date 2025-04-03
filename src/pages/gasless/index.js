@@ -46,14 +46,19 @@ const GasLess = () => {
       const _tokenInChain = tokenData.filter(token => token.chainId == chain.id)
       setTokenInChain([..._tokenInChain])
     }
-  }, [chain])
+  }, [chain, address])
 
   useEffect(() => {
     if (address && chain && chain.id && tokenInChain.length > 0) {
-      getApprovedTokens(chain, tokenInChain, address, GATEWAY_CROSSFI).then(_tokens => {
-        // setApprovedTokens([..._tokens])
-        setApprovedTokens([..._tokens])
-      })
+      console.log('reconfig', reconfig)
+      const delay = reconfig ? 3000 : 0
+      setTimeout(() => {
+        getApprovedTokens(chain, tokenInChain, address, GATEWAY_CROSSFI).then(_tokens => {
+          // setApprovedTokens([..._tokens])
+          console.log(_tokens)
+          setApprovedTokens([..._tokens])
+        })
+      }, delay)
     }
   }, [address, chain, tokenInChain, reconfig])
 

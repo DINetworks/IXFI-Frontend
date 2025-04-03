@@ -25,27 +25,36 @@ export const isOnlyNumber = value => {
 }
 
 export const getApprovedTokens = async (chain, tokens, owner, spender) => {
-  const approvedTokens = []
-
   const client = createPublicClient({
     chain,
     transport: http(chain.rpcUrls?.default?.http[0])
   })
 
-  for (const token of tokens) {
-    try {
-      const allowance = await client.readContract({
-        address: token.address,
-        abi: erc20Abi,
-        functionName: 'allowance',
-        args: [owner, spender]
-      })
+  try {
+    console.log('here', tokens)
 
-      if (allowance > 0n) approvedTokens.push(token)
-    } catch (error) {
-      console.error(`Error checking allowance for token: ${token.address}`, error)
-    }
+    const allowances = await Promise.all(
+      tokens.map(token =>
+        client
+          .readContract({
+            address: token.address,
+            abi: erc20Abi,
+            functionName: 'allowance',
+            args: [owner, spender]
+          })
+          .then(allowance => ({ token, allowance }))
+          .catch(error => {
+            console.error(`Error checking allowance for token: ${token.address}`, error)
+
+            return { token, allowance: 0n } // Return zero allowance in case of error
+          })
+      )
+    )
+
+    return allowances.filter(({ allowance }) => allowance > 0n).map(({ token }) => token)
+  } catch (error) {
+    console.error('Error fetching allowances', error)
+
+    return []
   }
-
-  return approvedTokens
 }

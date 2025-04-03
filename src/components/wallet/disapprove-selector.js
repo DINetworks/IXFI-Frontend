@@ -2,13 +2,15 @@ import { useEffect, useState } from 'react'
 import { Dialog, DialogTitle, Box, Typography, CircularProgress } from '@mui/material'
 import CloseButton from './close-connect'
 import Icon from 'src/@core/components/icon'
-import { useAccount, useWriteContract } from 'wagmi'
+import { useWriteContract } from 'wagmi'
+import { showToast } from '../utils/toast'
 import TokenSelector from './token-selector'
+import erc20Abi from 'src/contracts/erc20.json'
 import { GATEWAY_CROSSFI } from 'src/configs/constant'
 
-const DisapproveSelector = ({ openModal, setOpenModal, approvedTokens, setReconfigureApprove }) => {
-  const { writeContract, isPending, isSuccess } = useWriteContract()
-  const [activeIndex, setActiveIndex] = useState([])
+const DisapproveSelector = ({ openModal, setOpenModal, approvedTokens, setReconfigApprove }) => {
+  const { writeContract, isPending, data, isSuccess, isError, error } = useWriteContract()
+  const [activeIndex, setActiveIndex] = useState()
 
   const chainDialogClose = () => {
     setOpenModal(false)
@@ -26,10 +28,22 @@ const DisapproveSelector = ({ openModal, setOpenModal, approvedTokens, setReconf
   }
 
   useEffect(() => {
-    if (isSuccess) {
-      //   setReconfigureApprove(Math.random())
+    setActiveIndex(-1)
+  }, [openModal])
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      console.log('data', data)
+      setReconfigApprove(Math.random())
+      chainDialogClose()
+      showToast('success', `$${approvedTokens[activeIndex].symbol} successfully disapproved`)
     }
-  }, [isSuccess])
+    if (isError) {
+      chainDialogClose()
+      showToast('error', `error happend`)
+      console.log(error)
+    }
+  }, [isSuccess, isError, error])
 
   return (
     <Dialog
@@ -52,7 +66,7 @@ const DisapproveSelector = ({ openModal, setOpenModal, approvedTokens, setReconf
       }}
     >
       <DialogTitle className='text-center' variant='h3' color='primary' id='connect-dialog'>
-        Select Tokens to Approve
+        Select Tokens to Disapprove
       </DialogTitle>
       <CloseButton aria-label='close' onClick={chainDialogClose}>
         <Icon icon='tabler:x' color='white' fontSize='1.25rem' />
@@ -70,6 +84,7 @@ const DisapproveSelector = ({ openModal, setOpenModal, approvedTokens, setReconf
               cursor: 'pointer',
               color: 'black',
               p: 4,
+              textAlign: 'center',
               '&:hover': {
                 background: '#00CFE8'
               }
@@ -81,7 +96,7 @@ const DisapproveSelector = ({ openModal, setOpenModal, approvedTokens, setReconf
                 Apply
               </Typography>
             ) : (
-              <CircularProgress color='white' size={24} />
+              <CircularProgress size={24} />
             )}
           </Box>
         </Box>
