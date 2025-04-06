@@ -28,6 +28,7 @@ import {
 
 import { GATEWAY_CROSSFI } from 'src/configs/constant'
 import axios from 'axios'
+import { showToast } from '../utils/toast'
 
 const defaultTransferItem = {
   token: '',
@@ -168,9 +169,9 @@ const GaslessTransfer = ({ approvedTokens }) => {
 
       const response = await axios.post(endpoint, params)
 
-      return response.data.transactionHash
+      showToast('success', `Batch Transfers\n TxId: ${response.data.transactionHash}`)
     } catch (error) {
-      console.error('Transfer error:', error)
+      showToast('error', `${error}`)
       throw error
     }
   }
