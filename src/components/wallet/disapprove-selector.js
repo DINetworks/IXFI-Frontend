@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Box, Typography, CircularProgress } from '@mui/material'
 import { useWriteContract } from 'wagmi'
 import { showToast } from '../utils/toast'
 import TokenSelector from './token-selector'
