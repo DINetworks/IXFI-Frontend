@@ -1,5 +1,5 @@
-import { createPublicClient, http } from 'viem'
-import erc20Abi from 'src/contracts/erc20.json'
+import { GATEWAY_CROSSFI } from 'src/configs/constant'
+import { erc20Abi, createPublicClient, createWalletClient, http } from 'viem'
 
 export const truncateAddress = address => {
   if (!address) return 'No Account'
@@ -8,12 +8,6 @@ export const truncateAddress = address => {
   if (!match) return address
 
   return `${match[1]}⋯${match[2]}`
-}
-
-export const toHex = num => {
-  const val = Number(num)
-
-  return '0x' + val.toString(16)
 }
 
 export const formatPercent = value => {
@@ -57,4 +51,69 @@ export const getApprovedTokens = async (chain, tokens, owner, spender) => {
 
     return []
   }
+}
+
+export const getGatewayNonce = async (chain, sender) => {
+  const publicClient = createPublicClient({
+    chain: chain,
+    transport: http(chain.rpcUrls?.default?.http[0])
+  })
+
+  return publicClient.readContract({
+    address: GATEWAY_CROSSFI,
+    abi: [
+      {
+        constant: true,
+        inputs: [{ name: 'owner', type: 'address' }],
+        name: 'nonces',
+        outputs: [{ name: '', type: 'uint256' }],
+        type: 'function',
+        stateMutability: 'view'
+      }
+    ],
+    functionName: 'nonces',
+    args: [sender]
+  })
+}
+
+export const generateEIP712Signature = async (chain, sender, transferData, nonce) => {
+  // 1. Define EIP-712 domain separator
+  const domain = {
+    name: 'IXFIGateway',
+    version: '1',
+    chainId: chain.id,
+    verifyingContract: GATEWAY_CROSSFI
+  }
+
+  // 2. Define the message types
+  const types = {
+    Transfer: [
+      { name: 'sender', type: 'address' },
+      { name: 'transferData', type: 'bytes' },
+      { name: 'nonce', type: 'uint256' }
+    ]
+  }
+
+  // 3. Create the message value
+  const message = {
+    sender,
+    transferData,
+    nonce
+  }
+
+  // Create wallet client with proper event listeners
+  const walletClient = createWalletClient({
+    account: address,
+    chain,
+    transport: custom(window.ethereum)
+  })
+
+  // 4. Generate and sign the typed data
+  return walletClient.signTypedData({
+    account: address,
+    domain,
+    types,
+    primaryType: 'Transfer',
+    message
+  })
 }

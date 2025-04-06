@@ -8,8 +8,6 @@ const Header = () => {
   const [isDropdownVisible, setDropdownVisible] = useState(false)
   const [isNavButtonVisible, setNavButtonVisible] = useState(false)
 
-  const [account, setAccount] = useState(null)
-
   const handleMouseEnter = () => {
     setDropdownVisible(true)
   }
@@ -86,7 +84,7 @@ const Header = () => {
           <div className='nav-background-blur'></div>
         </div>
         <div className='navbar_button-wrapper'>
-          <ConnectWallet account={account} setAccount={setAccount} />
+          <ConnectWallet />
           <div onClick={navbarOpen} className='navbar_menu-button w-nav-button'>
             <div className='menu-icon2'>
               <div className='menu-icon2_line-top'></div>
