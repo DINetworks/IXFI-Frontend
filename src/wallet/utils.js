@@ -1,5 +1,5 @@
 import { GASRELAYER_CROSSFI, GATEWAY_CROSSFI, IXFI_CROSSFI } from 'src/configs/constant'
-import { erc20Abi, createPublicClient, createWalletClient, http, formatEther } from 'viem'
+import { erc20Abi, createPublicClient, createWalletClient, http, formatEther, custom, parseEther } from 'viem'
 import GasRelayerXFI from 'src/contracts/GasRelayerXFI.json'
 import IXFI from 'src/contracts/IXFI.json'
 
@@ -26,14 +26,18 @@ export const isOnlyNumber = value => {
   return /^-?\d*\.?\d*$/.test(value)
 }
 
-const getPublicClient = chain => {
+export const isInvalidAmount = amount => {
+  return !amount || isNaN(amount) || parseFloat(amount) <= 0
+}
+
+export const getPublicClient = chain => {
   return createPublicClient({
     chain,
     transport: http(chain.rpcUrls?.default?.http[0])
   })
 }
 
-const getWalletClient = (chain, address) => {
+export const getWalletClient = (chain, address) => {
   return createWalletClient({
     account: address,
     chain,
@@ -144,4 +148,42 @@ export const generateEIP712Signature = async (chain, sender, transferData, nonce
     primaryType: 'Transfer',
     message
   })
+}
+
+export const depositXFI = (address, chain, amount) => {
+  return getWalletClient(address, chain).sendTransaction({
+    to: GASRELAYER_CROSSFI,
+    value: parseEther(amount.toString())
+  })
+}
+
+export const depositIXFI = (address, chain, amount) => {
+  return getWalletClient(address, chain).writeContract({
+    address: GASRELAYER_CROSSFI,
+    abi: GasRelayerXFI.abi,
+    functionName: 'depositGasIXFI',
+    args: [parseEther(amount.toString())]
+  })
+}
+
+export const withdrawXFI = (address, chain, amount) => {
+  return getWalletClient(address, chain).writeContract({
+    address: GASRELAYER_CROSSFI,
+    abi: GasRelayerXFI.abi,
+    functionName: 'withdrawGas',
+    args: [parseEther(amount.toString())]
+  })
+}
+
+export const withdrawIXFI = (address, chain, amount) => {
+  return getWalletClient(address, chain).writeContract({
+    address: GASRELAYER_CROSSFI,
+    abi: GasRelayerXFI.abi,
+    functionName: 'withdrawGasIXFI',
+    args: [parseEther(amount.toString())]
+  })
+}
+
+export const waitForTransactionReceipt = (chain, hash) => {
+  return getPublicClient(chain).waitForTransactionReceipt({ hash })
 }

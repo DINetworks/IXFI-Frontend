@@ -1,6 +1,6 @@
 import { stepsForGasless } from 'src/configs/constant'
 import { Box, Grid, Fab, Typography, Avatar } from '@mui/material'
-import { truncateAddress, getApprovedTokens } from 'src/wallet/utils'
+import { truncateAddress, getApprovedTokens, getBalanceInApp, formatNumber } from 'src/wallet/utils'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import ChainSelector from 'src/components/wallet/dialog/chain-selector'
@@ -18,6 +18,7 @@ const GasLess = () => {
   const [isClient, setIsClient] = useState(false)
   const [reconfig, setReconfigApprove] = useState()
   const [tokenInChain, setTokenInChain] = useState([])
+  const [credit, setCredit] = useState(0)
   const { address, chain } = useAccount()
   const [switchChainModal, setSwitchChainModal] = useState(false)
   const [approveTokenModal, setApproveTokenModal] = useState(false)
@@ -34,6 +35,7 @@ const GasLess = () => {
     if (address && chain && chain.id) {
       const _tokenInChain = tokenData.filter(token => token.chainId == chain.id)
       setTokenInChain([..._tokenInChain])
+      fetchCredit(chain, address)
     }
   }, [chain, address])
 
@@ -66,6 +68,13 @@ const GasLess = () => {
   const openDepositWithdrawModal = _isDeposit => {
     setDeposit(_isDeposit)
     setDepositModal(true)
+  }
+
+  const fetchCredit = (chain, address) => {
+    getBalanceInApp(chain, address).then(balance => {
+      const _balance = formatNumber(balance)
+      setCredit(_balance ?? 0)
+    })
   }
 
   const moveSwap = () => {
@@ -161,9 +170,9 @@ const GasLess = () => {
                       </Box>
                     </Grid>
                     <Grid item xs={3}>
-                      <strong>XFI Balance:</strong>{' '}
+                      <strong>Credit:</strong>{' '}
                       <Typography variant='h5' sx={{ color: '#00CFE8' }}>
-                        100
+                        {credit}
                       </Typography>
                     </Grid>
                   </Grid>
