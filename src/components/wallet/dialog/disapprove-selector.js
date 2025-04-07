@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useWriteContract } from 'wagmi'
+import { useAccount, useWriteContract } from 'wagmi'
 import { erc20Abi } from 'viem'
 
 import { showToast } from 'src/components/utils/toast'
@@ -8,18 +8,23 @@ import TokenSelector from 'src/components/wallet/token-selector'
 import { GATEWAY_CROSSFI } from 'src/configs/constant'
 import BaseDialog from 'src/components/wallet/base/base-dialog'
 import DialogButton from 'src/components/wallet/base/dialog-button'
+import { waitForTransactionReceipt } from 'src/wallet/utils'
 
 const DisapproveSelector = ({ openModal, setOpenModal, approvedTokens, setReconfigApprove }) => {
-  const { writeContract, isPending, data, isSuccess, isError, error } = useWriteContract()
+  const { writeContract, data, isSuccess, isError, error } = useWriteContract()
   const [activeIndex, setActiveIndex] = useState()
+  const [isPending, setPending] = useState(false)
+  const { chain } = useAccount()
 
   const closeDialog = () => {
+    setActiveIndex(-1)
     setOpenModal(false)
   }
 
   const applyDisapproveTokens = () => {
     const tokenAddress = approvedTokens[activeIndex].address
 
+    setPending(true)
     writeContract({
       address: tokenAddress,
       abi: erc20Abi,
@@ -33,17 +38,34 @@ const DisapproveSelector = ({ openModal, setOpenModal, approvedTokens, setReconf
   }, [openModal])
 
   useEffect(() => {
-    if (isSuccess && data) {
-      setReconfigApprove(Math.random())
-      closeDialog()
-      showToast('success', `$${approvedTokens[activeIndex].symbol} successfully disapproved`)
-    }
     if (isError) {
-      closeDialog()
       showToast('error', `error happend`)
+      setPending(false)
+      closeDialog()
       console.log(error)
     }
-  }, [isSuccess, isError, error])
+  }, [isError, error])
+
+  useEffect(() => {
+    const showSuccessResult = async () => {
+      const receipt = await waitForTransactionReceipt(chain, data)
+
+      const event = receipt.logs.find(log => {
+        return log.address.toLowerCase() === approvedTokens[activeIndex].address.toLowerCase()
+      })
+
+      if (event) {
+        showToast('success', `$${approvedTokens[activeIndex].symbol} successfully disapproved`)
+        closeDialog()
+        setReconfigApprove(Math.random())
+      }
+    }
+
+    if (isSuccess) {
+      setPending(false)
+      showSuccessResult()
+    }
+  }, [isSuccess, data])
 
   return (
     <BaseDialog openModal={openModal} setOpenModal={setOpenModal} title='Select Tokens to Disapprove'>
