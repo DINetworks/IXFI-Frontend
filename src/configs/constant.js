@@ -152,6 +152,8 @@ const stepsForGasless = [
 
 const MAX_UINT256 = BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
 const GATEWAY_CROSSFI = '0x24acE36D6565Fc3A27e2Bb9F2f0Fa164d3F2adf6'
+const GASRELAYER_CROSSFI = '0xf337fc4d623b5a2664138947aa6cea8ce783f3f2'
+const IXFI_CROSSFI = '0x0ebf472aa078bbfce4f154fdef3abe3d9fa5c5ec'
 
 export {
   roadmaps,
@@ -162,5 +164,7 @@ export {
   supportedChains,
   chainLogos,
   MAX_UINT256,
-  GATEWAY_CROSSFI
+  GATEWAY_CROSSFI,
+  GASRELAYER_CROSSFI,
+  IXFI_CROSSFI
 }
