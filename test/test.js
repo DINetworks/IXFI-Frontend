@@ -1,6 +1,5 @@
 const { createWalletClient, createPublicClient, http, parseUnits } = require('viem')
 const { privateKeyToAccount } = require('viem/accounts')
-const erc20Abi = require('../src/contracts/erc20.json')
 
 const rpcUrlCrossFi = `https://crossfi-testnet.g.alchemy.com/v2/6wuyMqGSzF1QeZ1rZa_t9DnkYtaoFAF4`
 
@@ -62,6 +61,7 @@ const mintAbi = [
     type: 'function'
   }
 ]
+
 async function getOwner(tokenAddress) {
   const { data } = await publicClient.readContract({
     address: tokenAddress,

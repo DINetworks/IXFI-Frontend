@@ -14,20 +14,11 @@ import {
 import Icon from 'src/@core/components/icon'
 import { useAccount, useChainId, useWalletClient } from 'wagmi'
 import { useEffect, useState } from 'react'
-import {
-  erc20Abi,
-  encodeAbiParameters,
-  keccak256,
-  parseUnits,
-  createPublicClient,
-  http,
-  createWalletClient,
-  toHex,
-  custom
-} from 'viem'
+import { encodeAbiParameters, parseUnits, createPublicClient, http, createWalletClient, custom } from 'viem'
 
-import { GATEWAY_CROSSFI } from 'src/configs/constant'
 import axios from 'axios'
+import { showToast } from '../utils/toast'
+import { generateEIP712Signature, getGatewayNonce } from 'src/wallet/utils'
 
 const defaultTransferItem = {
   token: '',
@@ -58,74 +49,6 @@ const GaslessTransfer = ({ approvedTokens }) => {
     handleInputChange(index, 'amount', floatValue)
   }
 
-  const generateEIP712Signature = async (address, transferData, nonce) => {
-    // 1. Define EIP-712 domain separator
-    const domain = {
-      name: 'IXFIGateway',
-      version: '1',
-      chainId: chain.id,
-      verifyingContract: GATEWAY_CROSSFI
-    }
-
-    // 2. Define the message types
-    const types = {
-      Transfer: [
-        { name: 'sender', type: 'address' },
-        { name: 'transferData', type: 'bytes' },
-        { name: 'nonce', type: 'uint256' }
-      ]
-    }
-
-    // 3. Create the message value
-    const message = {
-      sender: address,
-      transferData,
-      nonce
-    }
-
-    // Create wallet client with proper event listeners
-    const client = createWalletClient({
-      account: address,
-      chain,
-      transport: custom(window.ethereum)
-    })
-
-    // 4. Generate and sign the typed data
-    const signature = await client.signTypedData({
-      account: address,
-      domain,
-      types,
-      primaryType: 'Transfer',
-      message
-    })
-
-    return signature
-  }
-
-  const getNonce = async () => {
-    // Set up clients
-    const publicClient = createPublicClient({
-      chain: chain,
-      transport: http(chain.rpcUrls?.default?.http[0])
-    })
-
-    return await publicClient.readContract({
-      address: GATEWAY_CROSSFI,
-      abi: [
-        {
-          constant: true,
-          inputs: [{ name: 'owner', type: 'address' }],
-          name: 'nonces',
-          outputs: [{ name: '', type: 'uint256' }],
-          type: 'function',
-          stateMutability: 'view'
-        }
-      ],
-      functionName: 'nonces',
-      args: [address]
-    })
-  }
-
   const transferTokens = async () => {
     try {
       // First ensure wallet is connected
@@ -145,7 +68,7 @@ const GaslessTransfer = ({ approvedTokens }) => {
       })
 
       // Get nonce
-      const nonce = await getNonce()
+      const nonce = await getGatewayNonce(chain, address)
 
       // Encode and hash data
       const transferData = encodeAbiParameters(
@@ -153,7 +76,7 @@ const GaslessTransfer = ({ approvedTokens }) => {
         [targets, recipients, amounts]
       )
 
-      const signature = await generateEIP712Signature(address, transferData, nonce)
+      const signature = await generateEIP712Signature(chain, address, transferData, nonce)
 
       // Send to relayer
       const relayerHost = process.env.NEXT_PUBLIC_RELAYER_HOST
@@ -168,9 +91,9 @@ const GaslessTransfer = ({ approvedTokens }) => {
 
       const response = await axios.post(endpoint, params)
 
-      return response.data.transactionHash
+      showToast('success', `Batch Transfers\n TxId: ${response.data.transactionHash}`)
     } catch (error) {
-      console.error('Transfer error:', error)
+      showToast('error', `${error}`)
       throw error
     }
   }
