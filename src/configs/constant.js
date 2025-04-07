@@ -150,9 +150,10 @@ const stepsForGasless = [
   }
 ]
 
+const CROSSFI_CHAINID = 4157
 const MAX_UINT256 = BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
 const GATEWAY_CROSSFI = '0x24acE36D6565Fc3A27e2Bb9F2f0Fa164d3F2adf6'
-const GASRELAYER_CROSSFI = '0xf337fc4d623b5a2664138947aa6cea8ce783f3f2'
+const GASRELAYER_CROSSFI = '0xFC4C231D2293180a30eCd10Ce9A84bDBF27B3967'
 const IXFI_CROSSFI = '0x0ebf472aa078bbfce4f154fdef3abe3d9fa5c5ec'
 
 export {
@@ -163,6 +164,7 @@ export {
   stepsForGasless,
   supportedChains,
   chainLogos,
+  CROSSFI_CHAINID,
   MAX_UINT256,
   GATEWAY_CROSSFI,
   GASRELAYER_CROSSFI,
