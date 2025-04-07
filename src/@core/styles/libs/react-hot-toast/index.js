@@ -5,6 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 
 // ** Hook Import
 import { useSettings } from 'src/@core/hooks/useSettings'
+import { useEffect, useLayoutEffect } from 'react'
 
 const ReactHotToast = styled(Box)(({ theme }) => {
   // ** Hook & Var
@@ -16,10 +17,7 @@ const ReactHotToast = styled(Box)(({ theme }) => {
       left: `${theme.spacing(6)} !important`,
       right: `${theme.spacing(6)} !important`,
       bottom: `${theme.spacing(6)} !important`,
-      top: layout === 'horizontal' && !navHidden ? '139px !important' : '75px !important',
-      zIndex: useMediaQuery(theme.breakpoints.down('lg'))
-        ? `${theme.zIndex.drawer - 1} !important`
-        : `${theme.zIndex.drawer + 1} !important`
+      top: layout === 'horizontal' && !navHidden ? '139px !important' : '75px !important'
     },
     '& .react-hot-toast': {
       fontWeight: 400,

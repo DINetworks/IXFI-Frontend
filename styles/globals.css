@@ -12553,3 +12553,7 @@ figcaption {
 *::-webkit-scrollbar-thumb:hover {
   background: #333; /* Darker thumb on hover */
 }
+
+.react-hot-toast {
+  z-index: 99999 !important
+}
