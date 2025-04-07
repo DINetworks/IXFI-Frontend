@@ -1,5 +1,7 @@
-import { GATEWAY_CROSSFI } from 'src/configs/constant'
-import { erc20Abi, createPublicClient, createWalletClient, http } from 'viem'
+import { GASRELAYER_CROSSFI, GATEWAY_CROSSFI, IXFI_CROSSFI } from 'src/configs/constant'
+import { erc20Abi, createPublicClient, createWalletClient, http, formatEther } from 'viem'
+import GasRelayerXFI from 'src/contracts/GasRelayerXFI.json'
+import IXFI from 'src/contracts/IXFI.json'
 
 export const truncateAddress = address => {
   if (!address) return 'No Account'
@@ -14,19 +16,57 @@ export const formatPercent = value => {
   return parseFloat(formatNumber(value) * 100).toFixed(2)
 }
 
+export const formatNumber = bigNumberValue => {
+  if (typeof bigNumberValue != 'bigint') return 0
+
+  return parseFloat(formatEther(bigNumberValue)).toFixed(2)
+}
+
 export const isOnlyNumber = value => {
   return /^-?\d*\.?\d*$/.test(value)
 }
 
-export const getApprovedTokens = async (chain, tokens, owner, spender) => {
-  const client = createPublicClient({
+const getPublicClient = chain => {
+  return createPublicClient({
     chain,
     transport: http(chain.rpcUrls?.default?.http[0])
   })
+}
+
+const getWalletClient = (chain, address) => {
+  return createWalletClient({
+    account: address,
+    chain,
+    transport: custom(window.ethereum)
+  })
+}
+
+export const getBalanceInApp = async (chain, owner) => {
+  return getPublicClient(chain).readContract({
+    address: GASRELAYER_CROSSFI,
+    abi: GasRelayerXFI.abi,
+    functionName: 'gasBalance',
+    args: [owner]
+  })
+}
+
+export const getXFIBalanceInWallet = async (chain, owner) => {
+  return getPublicClient(chain).getBalance({ address: owner })
+}
+
+export const getIXFIBalanceInWallet = async (chain, owner) => {
+  return getPublicClient(chain).readContract({
+    address: IXFI_CROSSFI,
+    abi: IXFI.abi,
+    functionName: 'balanceOf',
+    args: [owner]
+  })
+}
+
+export const getApprovedTokens = async (chain, tokens, owner, spender) => {
+  const client = getPublicClient(chain)
 
   try {
-    console.log('here', tokens)
-
     const allowances = await Promise.all(
       tokens.map(token =>
         client
@@ -54,12 +94,7 @@ export const getApprovedTokens = async (chain, tokens, owner, spender) => {
 }
 
 export const getGatewayNonce = async (chain, sender) => {
-  const publicClient = createPublicClient({
-    chain: chain,
-    transport: http(chain.rpcUrls?.default?.http[0])
-  })
-
-  return publicClient.readContract({
+  return getPublicClient(chain).readContract({
     address: GATEWAY_CROSSFI,
     abi: [
       {
@@ -101,15 +136,8 @@ export const generateEIP712Signature = async (chain, sender, transferData, nonce
     nonce
   }
 
-  // Create wallet client with proper event listeners
-  const walletClient = createWalletClient({
-    account: address,
-    chain,
-    transport: custom(window.ethereum)
-  })
-
   // 4. Generate and sign the typed data
-  return walletClient.signTypedData({
+  return getWalletClient(address, chain).signTypedData({
     account: address,
     domain,
     types,

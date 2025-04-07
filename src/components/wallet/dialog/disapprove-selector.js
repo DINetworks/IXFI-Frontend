@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useWriteContract } from 'wagmi'
-import { showToast } from '../utils/toast'
-import TokenSelector from './token-selector'
-import erc20Abi from 'src/contracts/erc20.json'
+import { erc20Abi } from 'viem'
+
+import { showToast } from 'src/components/utils/toast'
+import TokenSelector from 'src/components/wallet/token-selector'
+
 import { GATEWAY_CROSSFI } from 'src/configs/constant'
-import BaseDialog from './base-dialog'
-import DialogButton from './dialog-button'
+import BaseDialog from 'src/components/wallet/base/base-dialog'
+import DialogButton from 'src/components/wallet/base/dialog-button'
 
 const DisapproveSelector = ({ openModal, setOpenModal, approvedTokens, setReconfigApprove }) => {
   const { writeContract, isPending, data, isSuccess, isError, error } = useWriteContract()

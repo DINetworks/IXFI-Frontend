@@ -7,7 +7,6 @@ const DialogButton = ({ text, onClick, isPending }) => {
         background: '#00CFE899',
         borderRadius: 2,
         my: 4,
-        mx: 2,
         cursor: 'pointer',
         color: 'black',
         textAlign: 'center',

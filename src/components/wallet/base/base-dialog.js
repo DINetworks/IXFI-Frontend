@@ -1,6 +1,6 @@
 import { Dialog, DialogTitle, Box } from '@mui/material'
 import Icon from 'src/@core/components/icon'
-import CloseButton from './close-connect'
+import CloseButton from 'src/components/wallet/connect/close-connect'
 
 const BaseDialog = ({ openModal, setOpenModal, title, width, children }) => {
   const closeDialog = () => {

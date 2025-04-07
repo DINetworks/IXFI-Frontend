@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Box, Typography, Grid } from '@mui/material'
 import { useChainId, useSwitchChain } from 'wagmi'
 import { chainLogos, supportedChains } from 'src/configs/constant'
-import BaseDialog from './base-dialog'
+import BaseDialog from 'src/components/wallet/base/base-dialog'
 
 const ChainSelector = ({ openModal, setOpenModal }) => {
   const chainId = useChainId()

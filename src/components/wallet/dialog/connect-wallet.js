@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react'
-
 import { useAccount, useConnect, useDisconnect, useSwitchChain } from 'wagmi'
+import { useRouter } from 'next/router'
 
 // ** MUI Imports
 import { Box, Fab } from '@mui/material'
-import WalletOption from './wallet-option'
+import WalletOption from 'src/components/wallet/connect/wallet-option'
 
-import { useRouter } from 'next/router'
-import BaseDialog from './base-dialog'
-import ChainSelectorDropdown from './chain-selector-dropdown'
-import ConnectInfo from './connect-info'
+import BaseDialog from 'src/components/wallet/base/base-dialog'
+import ChainSelectorDropdown from 'src/components/wallet/connect/chain-selector-dropdown'
+import ConnectInfo from 'src/components/wallet/connect/connect-info'
 
 const ConnectWallet = () => {
   const [isClient, setIsClient] = useState(false)

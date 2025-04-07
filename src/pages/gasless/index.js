@@ -1,29 +1,17 @@
 import { stepsForGasless } from 'src/configs/constant'
-import {
-  Box,
-  Grid,
-  Fab,
-  Typography,
-  TextField,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-  ListItemAvatar,
-  Avatar
-} from '@mui/material'
-import Icon from 'src/@core/components/icon'
-import { useAccount, useChainId } from 'wagmi'
+import { Box, Grid, Fab, Typography, Avatar } from '@mui/material'
 import { truncateAddress, getApprovedTokens } from 'src/wallet/utils'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import ChainSelector from 'src/components/wallet/chain-selector'
-import ApproveSelector from 'src/components/wallet/approve-selector'
+import ChainSelector from 'src/components/wallet/dialog/chain-selector'
+import ApproveSelector from 'src/components/wallet/dialog/approve-selector'
 import tokenData from 'src/configs/token-list.json'
-import DisapproveSelector from 'src/components/wallet/disapprove-selector'
+import DisapproveSelector from 'src/components/wallet/dialog/disapprove-selector'
 
 import { GATEWAY_CROSSFI } from 'src/configs/constant'
 import GaslessTransfer from 'src/components/wallet/gasless-transfer'
+import DepositWithdrawDialog from 'src/components/wallet/dialog/deposit-withdraw-dialog'
+import { useAccount } from 'wagmi'
 
 const GasLess = () => {
   const router = useRouter()
@@ -34,7 +22,8 @@ const GasLess = () => {
   const [switchChainModal, setSwitchChainModal] = useState(false)
   const [approveTokenModal, setApproveTokenModal] = useState(false)
   const [disapproveTokenModal, setDisapproveTokenModal] = useState(false)
-  const [topupXFIModal, setTopupXFIModal] = useState(false)
+  const [depositModal, setDepositModal] = useState(false)
+  const [isDeposit, setDeposit] = useState(true)
   const [approvedTokens, setApprovedTokens] = useState([])
 
   useEffect(() => {
@@ -74,12 +63,28 @@ const GasLess = () => {
     setDisapproveTokenModal(true)
   }
 
-  const openTopupXFIModal = () => {
-    setTopupXFIModal(true)
+  const openDepositWithdrawModal = _isDeposit => {
+    setDeposit(_isDeposit)
+    setDepositModal(true)
   }
 
   const moveSwap = () => {
     router.push('/swap')
+  }
+
+  const ActionButton = ({ text, color, onClick }) => {
+    return (
+      <Fab
+        variant='extended'
+        size='large'
+        color={color}
+        className='connectinfo-btn'
+        sx={{ margin: 2 }}
+        onClick={onClick}
+      >
+        {text}
+      </Fab>
+    )
   }
 
   return (
@@ -163,60 +168,15 @@ const GasLess = () => {
                     </Grid>
                   </Grid>
                   <div className='text-center'>
-                    <Fab
-                      variant='extended'
-                      size='large'
-                      color='primary'
-                      className='connectinfo-btn'
-                      sx={{ margin: 2 }}
-                      onClick={openSwitchChainModal}
-                    >
-                      Switch Chain
-                    </Fab>
+                    <ActionButton text='Switch Chain' color='primary' onClick={openSwitchChainModal} />
 
-                    <Fab
-                      variant='extended'
-                      size='large'
-                      color='info'
-                      className='connectinfo-btn'
-                      sx={{ margin: 2 }}
-                      onClick={openApproveTokenModal}
-                    >
-                      Approve
-                    </Fab>
+                    <ActionButton text='Approve' color='info' onClick={openApproveTokenModal} />
 
-                    <Fab
-                      variant='extended'
-                      size='large'
-                      color='warning'
-                      className='connectinfo-btn'
-                      sx={{ margin: 2 }}
-                      onClick={openDisapproveTokenModal}
-                    >
-                      Disapprove
-                    </Fab>
+                    <ActionButton text='Disapporve' color='warning' onClick={openDisapproveTokenModal} />
 
-                    <Fab
-                      variant='extended'
-                      size='large'
-                      color='info'
-                      className='connectinfo-btn'
-                      sx={{ margin: 2 }}
-                      onClick={openTopupXFIModal}
-                    >
-                      Deposit XFI
-                    </Fab>
+                    <ActionButton text='Deposit Gas' color='info' onClick={() => openDepositWithdrawModal(true)} />
 
-                    <Fab
-                      variant='extended'
-                      size='large'
-                      color='warning'
-                      className='connectinfo-btn'
-                      sx={{ margin: 2 }}
-                      onClick={openTopupXFIModal}
-                    >
-                      Withdraw XFI
-                    </Fab>
+                    <ActionButton text='Withdraw Gas' color='warning' onClick={() => openDepositWithdrawModal(false)} />
                   </div>
 
                   <ChainSelector openModal={switchChainModal} setOpenModal={setSwitchChainModal} />
@@ -234,6 +194,12 @@ const GasLess = () => {
                     setOpenModal={setDisapproveTokenModal}
                     approvedTokens={approvedTokens}
                     setReconfigApprove={setReconfigApprove}
+                  />
+
+                  <DepositWithdrawDialog
+                    openModal={depositModal}
+                    setOpenModal={setDepositModal}
+                    isDeposit={isDeposit}
                   />
                 </div>
               </div>
