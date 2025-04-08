@@ -12,9 +12,9 @@ import {
   Avatar
 } from '@mui/material'
 import Icon from 'src/@core/components/icon'
-import { useAccount, useChainId, useWalletClient } from 'wagmi'
-import { useEffect, useState } from 'react'
-import { encodeAbiParameters, parseUnits, createPublicClient, http, createWalletClient, custom } from 'viem'
+import { useAccount } from 'wagmi'
+import { useState } from 'react'
+import { encodeAbiParameters, parseUnits } from 'viem'
 
 import axios from 'axios'
 import { showToast } from '../utils/toast'
@@ -138,7 +138,7 @@ const GaslessTransfer = ({ approvedTokens }) => {
                             <Typography variant='body1'>{selectedToken.symbol}</Typography>
                           </Box>
                         ) : (
-                          <em>None</em> // If no token is selected, show "None"
+                          <em>None</em>
                         )
                       }}
                     >
@@ -207,7 +207,8 @@ const GaslessTransfer = ({ approvedTokens }) => {
               sx={{ margin: 2 }}
               onClick={transferTokens}
             >
-              Transfer Tokens
+              <Icon icon={`tabler:moneybag-move`} fontSize='1.5rem' />
+              <span style={{ marginLeft: '8px' }}>Transfer Tokens</span>
             </Fab>
           </Box>
         </div>

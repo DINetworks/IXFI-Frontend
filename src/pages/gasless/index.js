@@ -12,6 +12,7 @@ import { GATEWAY_CROSSFI } from 'src/configs/constant'
 import GaslessTransfer from 'src/components/wallet/gasless-transfer'
 import DepositWithdrawDialog from 'src/components/wallet/dialog/deposit-withdraw-dialog'
 import { useAccount } from 'wagmi'
+import { Icon } from '@iconify/react'
 
 const GasLess = () => {
   const router = useRouter()
@@ -75,7 +76,7 @@ const GasLess = () => {
     router.push('/swap')
   }
 
-  const ActionButton = ({ text, color, onClick }) => {
+  const ActionButton = ({ text, icon, color, onClick }) => {
     return (
       <Fab
         variant='extended'
@@ -85,7 +86,7 @@ const GasLess = () => {
         sx={{ margin: 2 }}
         onClick={onClick}
       >
-        {text}
+        <Icon icon={`tabler:${icon}`} fontSize='1.5rem' /> <span style={{ marginLeft: '8px' }}>{text}</span>
       </Fab>
     )
   }
@@ -171,15 +172,35 @@ const GasLess = () => {
                     </Grid>
                   </Grid>
                   <div className='text-center'>
-                    <ActionButton text='Switch Chain' color='primary' onClick={openSwitchChainModal} />
+                    <ActionButton text='Switch Chain' icon='switch-2' color='primary' onClick={openSwitchChainModal} />
 
-                    <ActionButton text='Approve' color='info' onClick={openApproveTokenModal} />
+                    <ActionButton
+                      text='Approve'
+                      icon='rosette-discount-check-filled'
+                      color='info'
+                      onClick={openApproveTokenModal}
+                    />
 
-                    <ActionButton text='Disapporve' color='warning' onClick={openDisapproveTokenModal} />
+                    <ActionButton
+                      text='Disapporve'
+                      icon='rosette-discount-check'
+                      color='warning'
+                      onClick={openDisapproveTokenModal}
+                    />
 
-                    <ActionButton text='Deposit Gas' color='info' onClick={() => openDepositWithdrawModal(true)} />
+                    <ActionButton
+                      text='Deposit Gas'
+                      icon='basket-plus'
+                      color='info'
+                      onClick={() => openDepositWithdrawModal(true)}
+                    />
 
-                    <ActionButton text='Withdraw Gas' color='warning' onClick={() => openDepositWithdrawModal(false)} />
+                    <ActionButton
+                      text='Withdraw Gas'
+                      icon='basket-minus'
+                      color='warning'
+                      onClick={() => openDepositWithdrawModal(false)}
+                    />
                   </div>
 
                   <ChainSelector openModal={switchChainModal} setOpenModal={setSwitchChainModal} />
