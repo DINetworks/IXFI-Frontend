@@ -1,6 +1,6 @@
-import { stepsForGasless } from 'src/configs/constant'
+import { chainLogos, stepsForGasless } from 'src/configs/constant'
 import { Box, Grid, Fab, Typography, Avatar } from '@mui/material'
-import { truncateAddress, getApprovedTokens, getBalanceInApp, formatNumber } from 'src/wallet/utils'
+import { getApprovedTokens, getBalanceInApp, formatNumber } from 'src/wallet/utils'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import ChainSelector from 'src/components/wallet/dialog/chain-selector'
@@ -13,6 +13,7 @@ import GaslessTransfer from 'src/components/wallet/gasless-transfer'
 import DepositWithdrawDialog from 'src/components/wallet/dialog/deposit-withdraw-dialog'
 import { useAccount } from 'wagmi'
 import { Icon } from '@iconify/react'
+import ConnectWallet from 'src/components/wallet/dialog/connect-wallet'
 
 const GasLess = () => {
   const router = useRouter()
@@ -76,6 +77,10 @@ const GasLess = () => {
     router.push('/swap')
   }
 
+  if (!isClient) {
+    return null
+  }
+
   const ActionButton = ({ text, icon, color, onClick }) => {
     return (
       <Fab
@@ -132,10 +137,19 @@ const GasLess = () => {
               <div className='card-content is-medium'>
                 <div className='cards-small_card-content-top'>
                   <div className='margin-bottom margin-xsmall'>
-                    <Typography variant='h3' className='heading-style-h5' sx={{ color: 'white' }}>
-                      <img src='/images/icons/wallet.svg' className='section-image' alt='' /> Wallet Information{' '}
-                      {isClient && truncateAddress(address)}
-                    </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <Typography variant='h3' className='heading-style-h5' sx={{ color: 'white' }}>
+                        <img src='/images/icons/wallet.svg' className='section-image' alt='' /> Wallet Information
+                      </Typography>
+                      {isClient &&
+                        (address ? (
+                          <Typography variant='h4' sx={{ color: '#00CFE8' }}>
+                            {address}
+                          </Typography>
+                        ) : (
+                          <ConnectWallet />
+                        ))}
+                    </Box>
                   </div>
                   <Grid
                     container
@@ -146,6 +160,9 @@ const GasLess = () => {
                     <Grid item xs={3}>
                       <strong>Chain:</strong>{' '}
                       <Typography variant='h5' sx={{ color: '#00CFE8', mt: 2 }}>
+                        {isClient && chain && (
+                          <img src={`/images/icons/chains/${chainLogos[chain.id]}.png`} alt='' className='chain-icon' />
+                        )}
                         {isClient && chain?.name}
                       </Typography>
                     </Grid>
@@ -171,37 +188,44 @@ const GasLess = () => {
                       </Typography>
                     </Grid>
                   </Grid>
-                  <div className='text-center'>
-                    <ActionButton text='Switch Chain' icon='switch-2' color='primary' onClick={openSwitchChainModal} />
+                  {address && (
+                    <div className='text-center'>
+                      <ActionButton
+                        text='Switch Chain'
+                        icon='switch-2'
+                        color='primary'
+                        onClick={openSwitchChainModal}
+                      />
 
-                    <ActionButton
-                      text='Approve'
-                      icon='rosette-discount-check-filled'
-                      color='info'
-                      onClick={openApproveTokenModal}
-                    />
+                      <ActionButton
+                        text='Approve'
+                        icon='rosette-discount-check-filled'
+                        color='info'
+                        onClick={openApproveTokenModal}
+                      />
 
-                    <ActionButton
-                      text='Disapporve'
-                      icon='rosette-discount-check'
-                      color='warning'
-                      onClick={openDisapproveTokenModal}
-                    />
+                      <ActionButton
+                        text='Disapporve'
+                        icon='rosette-discount-check'
+                        color='warning'
+                        onClick={openDisapproveTokenModal}
+                      />
 
-                    <ActionButton
-                      text='Deposit Gas'
-                      icon='basket-plus'
-                      color='info'
-                      onClick={() => openDepositWithdrawModal(true)}
-                    />
+                      <ActionButton
+                        text='Deposit Gas'
+                        icon='basket-plus'
+                        color='info'
+                        onClick={() => openDepositWithdrawModal(true)}
+                      />
 
-                    <ActionButton
-                      text='Withdraw Gas'
-                      icon='basket-minus'
-                      color='warning'
-                      onClick={() => openDepositWithdrawModal(false)}
-                    />
-                  </div>
+                      <ActionButton
+                        text='Withdraw Gas'
+                        icon='basket-minus'
+                        color='warning'
+                        onClick={() => openDepositWithdrawModal(false)}
+                      />
+                    </div>
+                  )}
 
                   <ChainSelector openModal={switchChainModal} setOpenModal={setSwitchChainModal} />
 

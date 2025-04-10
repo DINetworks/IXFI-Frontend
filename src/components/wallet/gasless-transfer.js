@@ -19,6 +19,7 @@ import { encodeAbiParameters, parseUnits } from 'viem'
 import axios from 'axios'
 import { showToast } from '../utils/toast'
 import { generateEIP712Signature, getGatewayNonce } from 'src/wallet/utils'
+import ConnectWallet from './dialog/connect-wallet'
 
 const defaultTransferItem = {
   token: '',
@@ -113,104 +114,112 @@ const GaslessTransfer = ({ approvedTokens }) => {
               <Icon icon='tabler:plus' />
             </Fab>
           </Box>
-          <div className='margin-bottom margin-xxsmall'>
-            {transfers.map((transferItem, index) => (
-              <Grid key={index} container spacing={2} className='margin-bottom margin-xxsmall'>
-                <Grid item xs={12} md={4}>
-                  <FormControl fullWidth>
-                    <InputLabel>Token</InputLabel>
-                    <Select
-                      label='Token'
-                      value={transferItem.token}
-                      onChange={e => handleInputChange(index, 'token', e.target.value)}
-                      renderValue={selected => {
-                        // Find the selected token from the list
-                        const selectedToken = approvedTokens.find(token => token.address === selected)
+          {address ? (
+            <div className='margin-bottom margin-xxsmall'>
+              {transfers.map((transferItem, index) => (
+                <Grid key={index} container spacing={2} className='margin-bottom margin-xxsmall'>
+                  <Grid item xs={12} md={4}>
+                    <FormControl fullWidth>
+                      <InputLabel>Token</InputLabel>
+                      <Select
+                        label='Token'
+                        value={transferItem.token}
+                        onChange={e => handleInputChange(index, 'token', e.target.value)}
+                        renderValue={selected => {
+                          // Find the selected token from the list
+                          const selectedToken = approvedTokens.find(token => token.address === selected)
 
-                        return selectedToken ? (
-                          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            <Avatar
-                              size='small'
-                              src={selectedToken.logoURI}
-                              alt={selectedToken.symbol}
-                              sx={{ marginRight: 1, width: 22, height: 22 }}
-                            />
-                            <Typography variant='body1'>{selectedToken.symbol}</Typography>
-                          </Box>
-                        ) : (
+                          return selectedToken ? (
+                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                              <Avatar
+                                size='small'
+                                src={selectedToken.logoURI}
+                                alt={selectedToken.symbol}
+                                sx={{ marginRight: 1, width: 22, height: 22 }}
+                              />
+                              <Typography variant='body1'>{selectedToken.symbol}</Typography>
+                            </Box>
+                          ) : (
+                            <em>None</em>
+                          )
+                        }}
+                      >
+                        <MenuItem value=''>
                           <em>None</em>
-                        )
-                      }}
-                    >
-                      <MenuItem value=''>
-                        <em>None</em>
-                      </MenuItem>
-                      {approvedTokens.map((token, index) => (
-                        <MenuItem
-                          key={index}
-                          sx={{
-                            borderRadius: '8px',
-                            cursor: 'pointer',
-                            padding: '8px 16px'
-                          }}
-                          value={token.address}
-                        >
-                          <ListItemAvatar>
-                            <Avatar src={token.logoURI} alt={token.symbol} />
-                          </ListItemAvatar>
-                          <Box sx={{ flex: 1 }}>
-                            <Typography variant='body1'>{token.symbol}</Typography>
-                            <Typography variant='body2' color='text.secondary'>
-                              {token.name}
-                            </Typography>
-                          </Box>
                         </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                  <TextField
-                    required
-                    fullWidth
-                    label='Receiver'
-                    variant='outlined'
-                    value={transferItem.receiver}
-                    onChange={e => handleInputChange(index, 'receiver', e.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center' }}>
-                  <TextField
-                    required
-                    fullWidth
-                    label='Amount'
-                    variant='outlined'
-                    value={transferItem.amount}
-                    sx={{ mr: 3 }}
-                    inputProps={{ inputMode: 'decimal', pattern: '[0-9]*[.,]?[0-9]*' }}
-                    onChange={e => handleAmountChange(index, e.target.value)}
-                  />
+                        {approvedTokens.map((token, index) => (
+                          <MenuItem
+                            key={index}
+                            sx={{
+                              borderRadius: '8px',
+                              cursor: 'pointer',
+                              padding: '8px 16px'
+                            }}
+                            value={token.address}
+                          >
+                            <ListItemAvatar>
+                              <Avatar src={token.logoURI} alt={token.symbol} />
+                            </ListItemAvatar>
+                            <Box sx={{ flex: 1 }}>
+                              <Typography variant='body1'>{token.symbol}</Typography>
+                              <Typography variant='body2' color='text.secondary'>
+                                {token.name}
+                              </Typography>
+                            </Box>
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <TextField
+                      required
+                      fullWidth
+                      label='Receiver'
+                      variant='outlined'
+                      value={transferItem.receiver}
+                      onChange={e => handleInputChange(index, 'receiver', e.target.value)}
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center' }}>
+                    <TextField
+                      required
+                      fullWidth
+                      label='Amount'
+                      variant='outlined'
+                      value={transferItem.amount}
+                      sx={{ mr: 3 }}
+                      inputProps={{ inputMode: 'decimal', pattern: '[0-9]*[.,]?[0-9]*' }}
+                      onChange={e => handleAmountChange(index, e.target.value)}
+                    />
 
-                  <Fab color='black' size='small' onClick={() => removeTransfer(index)}>
-                    <Icon icon='tabler:minus' />
-                  </Fab>
+                    <Fab color='black' size='small' onClick={() => removeTransfer(index)}>
+                      <Icon icon='tabler:minus' />
+                    </Fab>
+                  </Grid>
                 </Grid>
-              </Grid>
-            ))}
-          </div>
-          <Box sx={{ textAlign: 'right' }}>
-            <Fab
-              variant='extended'
-              size='large'
-              color='primary'
-              className='connectinfo-btn'
-              sx={{ margin: 2 }}
-              onClick={transferTokens}
-            >
-              <Icon icon={`tabler:moneybag-move`} fontSize='1.5rem' />
-              <span style={{ marginLeft: '8px' }}>Transfer Tokens</span>
-            </Fab>
-          </Box>
+              ))}
+            </div>
+          ) : (
+            <div className='text-center'>
+              <ConnectWallet />
+            </div>
+          )}
+          {address && (
+            <Box sx={{ textAlign: 'right' }}>
+              <Fab
+                variant='extended'
+                size='large'
+                color='primary'
+                className='connectinfo-btn'
+                sx={{ margin: 2 }}
+                onClick={transferTokens}
+              >
+                <Icon icon={`tabler:moneybag-move`} fontSize='1.5rem' />
+                <span style={{ marginLeft: '8px' }}>Transfer Tokens</span>
+              </Fab>
+            </Box>
+          )}
         </div>
       </div>
     </div>
