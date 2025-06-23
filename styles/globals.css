@@ -3236,6 +3236,12 @@ figcaption {
   width: 2rem;
   height: 2rem;
 }
+
+.member-photo {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 1rem;
+}
 .class-label-row {
   grid-column-gap: 0.25rem;
   grid-row-gap: 0.25rem;

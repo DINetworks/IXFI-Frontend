@@ -93,6 +93,30 @@ const features = [
   }
 ]
 
+const teamMembers = [
+  {
+    name: 'Yew Hoong Poon',
+    role: 'Co-founder, Product Owner',
+    position: 'Protocol Architect',
+    photo: '/images/team/wayne.jpg',
+    socials: { in: 'wayne-poon1', x: 'wayne_poon3' }
+  },
+  {
+    name: 'Cha Sui Soon',
+    role: 'Co-founder',
+    position: 'Tech Lead, Backend, DevOps',
+    photo: '/images/team/sui.jpg',
+    socials: { in: 'bertrandchua', x: 'sui_soon918' }
+  },
+  {
+    name: 'Yew Hoong Poon',
+    role: 'Co-founder',
+    position: 'Frontend, Web3',
+    photo: '/images/team/Ilyasa.jpg',
+    socials: { in: 'ilyasasazali' }
+  }
+]
+
 const logos = [
   'walletconnect.svg',
   'trade-republic.svg',
@@ -162,6 +186,7 @@ export {
   features,
   logos,
   stepsForGasless,
+  teamMembers,
   supportedChains,
   chainLogos,
   CROSSFI_CHAINID,

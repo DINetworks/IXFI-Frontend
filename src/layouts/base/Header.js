@@ -36,23 +36,17 @@ const Header = () => {
   return (
     <div className='navbar_component w-nav'>
       <div className='navbar_container'>
-        <Link href={'/'} className='navbar_logo-link test w-nav-brand interact-button'>
+        <Link href={'/'} className='navbar_logo-link test w-nav-brand'>
           <img src='/images/logo.png' alt='Logo' className='site-logo' />
         </Link>
         <div className='navbar_menu w-nav-menu'>
-          <Link
-            href={'/gasless'}
-            className={`navbar_link w-nav-link interact-button ${navMenuActiveClass('/gasless')}`}
-          >
+          <Link href={'/gasless'} className={`navbar_link w-nav-link ${navMenuActiveClass('/gasless')}`}>
             Gasless
           </Link>
-          <Link href={'/swap'} className={`navbar_link w-nav-link interact-button ${navMenuActiveClass('/swap')}`}>
+          <Link href={'/swap'} className={`navbar_link w-nav-link ${navMenuActiveClass('/swap')}`}>
             Swap
           </Link>
-          <Link
-            href={'/lending'}
-            className={`navbar_link w-nav-link interact-button ${navMenuActiveClass('/lending')}`}
-          >
+          <Link href={'/lending'} className={`navbar_link w-nav-link ${navMenuActiveClass('/lending')}`}>
             Lending
           </Link>
           <div
@@ -68,23 +62,22 @@ const Header = () => {
             </div>
             <nav className={`navbar_dropdown-list w-dropdown-list ${dropdownMenuClass}`}>
               <div className='navbar_dropdown-grid'>
-                <a className='navbar_dropdown-link w-dropdown-link w--current interact-button'>Staking</a>
-                <a className='navbar_dropdown-link w-dropdown-link interact-button'>Governance</a>
-                <a className='navbar_dropdown-link w-dropdown-link interact-button'>IXN</a>
+                <a className='navbar_dropdown-link w-dropdown-link w--current'>Staking</a>
+                <a className='navbar_dropdown-link w-dropdown-link'>Governance</a>
+                <a className='navbar_dropdown-link w-dropdown-link'>IXN</a>
+                <Link
+                  href={'/about'}
+                  className={`navbar_dropdown-link w-dropdown-link ${navMenuActiveClass('/about')}`}
+                >
+                  About
+                </Link>
               </div>
             </nav>
           </div>
-          <a
-            target='_blank'
-            className='navbar_link w-nav-link interact-button'
-            href='/document/Protocol-Documentation.pdf'
-          >
+          <a target='_blank' className='navbar_link w-nav-link' href='/document/Protocol-Documentation.pdf'>
             Documentation
           </a>
-          <button
-            onClick={scrollToDownload}
-            className='button is-secondary is-small is-navbar w-button interact-button show'
-          >
+          <button onClick={scrollToDownload} className='button is-secondary is-small is-navbar w-button show'>
             Download
           </button>
           <div className='nav-background-blur'></div>
@@ -103,29 +96,38 @@ const Header = () => {
         </div>
         <div className={`mobile_menu ${flexOrNone}`}>
           <div className='mobile_menu-link-wrapper'>
-            <a className='navbar_link w-nav-link interact-button'>Home</a>
+            <Link href={'/'} className='navbar_link w-nav-link'>
+              Home
+            </Link>
           </div>
           <div className='mobile_menu-link-wrapper'>
-            <div className='heading-style-subtitle-tiny'>Trackers</div>
+            <div className='heading-style-subtitle-tiny'>Ecosystems</div>
             <div className='mobile_menu-subgrid'>
-              <a aria-current='page' className='navbar_link is-subitem w-nav-link w--current interact-button'>
-                Crypto
-              </a>
-              <a className='navbar_link is-subitem w-nav-link interact-button'>Stocks</a>
-              <a className='navbar_link is-subitem w-nav-link interact-button'>NFTs</a>
-              <a className='navbar_link is-subitem w-nav-link interact-button'>Funds</a>
-              <a className='navbar_link is-subitem w-nav-link interact-button'>Indices</a>
-              <a className='navbar_link is-subitem w-nav-link interact-button'>Commodities</a>
-              <a className='navbar_link is-subitem w-nav-link interact-button'>Forex</a>
+              <Link href={'/gasless'} className={`navbar_link is-subitem w-nav-link`}>
+                Gasless
+              </Link>
+              <Link href={'/swap'} className={`navbar_link is-subitem w-nav-link`}>
+                Swap
+              </Link>
+              <Link href={'/lending'} className={`navbar_link is-subitem w-nav-link`}>
+                Lending
+              </Link>
+              <Link href={'/lending'} className={`navbar_link is-subitem w-nav-link`}>
+                Earn
+              </Link>
             </div>
           </div>
           <div className='mobile_menu-link-wrapper'>
-            <a className='navbar_link w-nav-link interact-button'>Features</a>
+            <Link href={'/lending'} className={`navbar_link is-subitem w-nav-link`}>
+              About
+            </Link>
           </div>
-          <div className='mobile_menu-link-wrapper is-last'>
-            <a className='navbar_link w-nav-link interact-button'>Get PRO</a>
+          <div className='mobile_menu-link-wrapper'>
+            <Link href={'/lending'} className={`navbar_link is-subitem w-nav-link`}>
+              Documentation
+            </Link>
           </div>
-          <a target='_blank' className='button is-mobile-button w-button interact-button'>
+          <a target='_blank' className='button is-mobile-button w-button'>
             Download
           </a>
         </div>
