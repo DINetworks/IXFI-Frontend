@@ -100,7 +100,7 @@ const GasLess = () => {
     <section className='section_header-text-image'>
       <div className='container-large'>
         <div className='header-text-image_content'>
-          <div className='margin-bottom margin-small'>
+          <Box className='margin-bottom margin-small' px={4}>
             <div className='margin-bottom margin-small'>
               <div className='text-align-center'>
                 <div className='max-width-large align-center'>
@@ -112,7 +112,7 @@ const GasLess = () => {
                 </div>
               </div>
             </div>
-            <div className='w-layout-grid cards-small_component margin-bottom margin-large'>
+            <Box className='w-layout-grid cards-small_component margin-bottom margin-large'>
               <div className='w-layout-grid cards-small_row'>
                 {stepsForGasless.map((step, index) => (
                   <div key={index} className='card'>
@@ -132,8 +132,8 @@ const GasLess = () => {
                   </div>
                 ))}
               </div>
-            </div>
-            <div className='card inactive margin-bottom margin-large'>
+            </Box>
+            <Box className='card inactive margin-bottom margin-large'>
               <div className='card-content is-medium'>
                 <div className='cards-small_card-content-top'>
                   <div className='margin-bottom margin-xsmall'>
@@ -251,7 +251,7 @@ const GasLess = () => {
                   />
                 </div>
               </div>
-            </div>
+            </Box>
             <GaslessTransfer approvedTokens={approvedTokens} />
             <div className='card is-pro' onClick={moveSwap}>
               <div className='card-content is-large'>
@@ -272,7 +272,7 @@ const GasLess = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </Box>
         </div>
       </div>
     </section>
