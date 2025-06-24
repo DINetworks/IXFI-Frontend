@@ -41,7 +41,7 @@ const Ecosystems = () => {
                 {useCases.map((useCase, index) => (
                   <a
                     key={index}
-                    className={`card is-tabitem-pro w-inline-block w-tab-link interact-button ${isActiveClass(index)}`}
+                    className={`card is-tabitem-pro w-inline-block w-tab-link  ${isActiveClass(index)}`}
                     onClick={() => setActiveCase(index)}
                   >
                     <div className='card-content is-small is-tabitem'>

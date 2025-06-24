@@ -36,7 +36,7 @@ const Features = () => {
                       </div>
                       <div className='margin-top margin-small hide'>
                         <div className='button-group'>
-                          <a className='button is-link is-icon w-inline-block interact-button'>
+                          <a className='button is-link is-icon w-inline-block '>
                             <div>Read more</div>
                             <div className='icon-embed-xxsmall w-embed'>
                               <img src='/images/icons/right-arrow.svg' alt='' />

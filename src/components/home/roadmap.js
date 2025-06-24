@@ -57,7 +57,7 @@ const ApiSDK = () => {
               >
                 {roadmaps.map((slide, index) => (
                   <SwiperSlide key={index} className={`is-slider-main card ${index == activeSwipe ? 'is-active' : ''}`}>
-                    <a className='tracker-cards_item-link w-inline-block interact-button'>
+                    <a className='tracker-cards_item-link w-inline-block '>
                       <div className='card-content is-medium'>
                         <div>
                           <div
@@ -105,7 +105,7 @@ const ApiSDK = () => {
                 </div>
                 <div className='slider-main_inner-wrapper'>
                   <a
-                    className={`slider-main_arrow swiper-prev w-inline-block interact-button ${isPrevClass}`}
+                    className={`slider-main_arrow swiper-prev w-inline-block  ${isPrevClass}`}
                     onClick={() => swiperRef.current.swiper.slidePrev()}
                   >
                     <div className='slider-main_button-icon is-reversed w-embed'>
@@ -113,7 +113,7 @@ const ApiSDK = () => {
                     </div>
                   </a>
                   <a
-                    className={`slider-main_arrow swiper-next w-inline-block interact-button ${isNextClass}`}
+                    className={`slider-main_arrow swiper-next w-inline-block  ${isNextClass}`}
                     onClick={() => swiperRef.current.swiper.slideNext()}
                   >
                     <div className='slider-main_button-icon w-embed'>
