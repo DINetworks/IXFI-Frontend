@@ -5,10 +5,8 @@ const About = () => {
   return (
     <section className='section_header-text-image'>
       <Box className='container-large' px={4}>
-        <Typography variant='h1' fontWeight='bold' textAlign='center' className='text-gradient-light-pink-lilac' mb={4}>
-          About Our Team
-        </Typography>
-        <Box fontSize='1.5rem' lineHeight='2rem' textAlign='justify'>
+        <h3 className='text-gradient-light-pink-lilac text-center'>About Our Team</h3>
+        <Box fontSize='1.5rem' lineHeight='2rem' textAlign='justify' mt={8} mb={20}>
           <Box mb={2}>
             Our core team consists of seasoned professionals with extensive experience in both Web2 and Web3
             development. With a deep understanding of blockchain infrastructure, we have successfully built and
@@ -25,30 +23,48 @@ const About = () => {
             that enhances cross-chain asset transfers while maintaining security, efficiency, and decentralization.
           </Box>
         </Box>
-        <Typography variant='h1' fontWeight='bold' textAlign='center' className='text-gradient-light-pink-lilac' my={8}>
-          Experience
-        </Typography>
-        <Box>
-          <Box fontSize='1.25rem'>DEX Aggregators & Cross Chain Swap</Box>
-          <Box fontSize='1.25rem'>Lending & Borrowing Platform</Box>
-          <Box fontSize='1.25rem'>Governance & DAO Platforms</Box>
-          <Box fontSize='1.25rem'>Cross Chain Messaging</Box>
+        <h3 className='text-gradient-light-pink-lilac text-center'>Experience</h3>
+        <Box className='w-layout-grid' mt={8} mb={20}>
+          <Box className={`card is-tabitem-pro w-tab-link`}>
+            <Box className='card-content is-small'>
+              <h5 className='heading-style-h5'>
+                <strong>DEX Aggregators & Cross Chain Swap</strong>
+              </h5>
+            </Box>
+          </Box>
+          <Box className={`card is-tabitem-pro w-tab-link`}>
+            <Box className='card-content is-small'>
+              <h5 className='heading-style-h5'>
+                <strong>Lending & Borrowing Platform</strong>
+              </h5>
+            </Box>
+          </Box>
+          <Box className={`card is-tabitem-pro w-tab-link`}>
+            <Box className='card-content is-small'>
+              <h5 className='heading-style-h5'>
+                <strong>Governance & DAO Platforms</strong>
+              </h5>
+            </Box>
+          </Box>
+          <Box className={`card is-tabitem-pro w-tab-link`}>
+            <Box className='card-content is-small'>
+              <h5 className='heading-style-h5'>
+                <strong>Cross Chain Messaging</strong>
+              </h5>
+            </Box>
+          </Box>
         </Box>
-        <Typography variant='h1' fontWeight='bold' textAlign='center' className='text-gradient-light-pink-lilac' my={8}>
-          Lending & Borrowing Platform
-        </Typography>
-        <Box>
-          <Box fontSize='1.25rem'>
+        <h3 className='text-gradient-light-pink-lilac text-center'>Main Tech Stacks</h3>
+        <Box mt={8} mb={20}>
+          <Box fontSize='1.5rem'>
             - Blockchain & Smart Contract: Solidity/Vyper, Go/Rust, Foundry/Hardhat, Viem/Ethers
           </Box>
-          <Box fontSize='1.25rem'>- Backend: Go/Rust, Node.js+Express.js, Python/Django</Box>
-          <Box fontSize='1.25rem'>- FrontEnd: Next.js + Mui + Wagmi</Box>
+          <Box fontSize='1.5rem'>- Backend: Go/Rust, Node.js+Express.js, Python/Django</Box>
+          <Box fontSize='1.5rem'>- FrontEnd: Next.js + Mui + Wagmi</Box>
         </Box>
         <Box></Box>
-        <Typography variant='h1' fontWeight='bold' textAlign='center' className='text-gradient-light-pink-lilac' my={8}>
-          Core Members
-        </Typography>
-        <Box className='w-layout-grid cards-small_component margin-bottom margin-large' mx={2}>
+        <h3 className='text-gradient-light-pink-lilac text-center'>Core Members</h3>
+        <Box className='w-layout-grid cards-small_component' mt={8} mb={20}>
           <div className='w-layout-grid cards-small_row'>
             {teamMembers.map((member, index) => (
               <div key={index} className='card is-pro'>

@@ -29,7 +29,7 @@ const NewsLetter = () => {
                     </div>
                     <div className='text-size-tiny'>
                       By clicking Sign Up you're confirming that you agree with our
-                      <a href='#' className='text-link-light homepage-tnc interact-button'>
+                      <a href='#' className='text-link-light homepage-tnc '>
                         Terms and Conditions
                       </a>
                       .

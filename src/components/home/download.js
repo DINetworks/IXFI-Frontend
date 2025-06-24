@@ -9,7 +9,7 @@ const Download = () => {
                 <div className='max-width-large'>
                   <div className='margin-bottom margin-medium'>
                     <div className='margin-bottom margin-medium'>
-                      <button className='button is-navbar-button w-button interact-button'>Comming soon</button>
+                      <button className='button is-navbar-button w-button '>Comming soon</button>
                     </div>
                     <h3>Download IXFI App</h3>
                     <p className='download-page-paragraph'>

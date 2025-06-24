@@ -17,9 +17,9 @@ const AppFooter = () => {
                 </div>
                 <div className='footer_link-list'>
                   <div className='footer_column-heading'>Network</div>
-                  <a className='footer_link not_clickable interact-button'>Staking</a>
-                  <a className='footer_link not_clickable interact-button'>Governance</a>
-                  <a className='footer_link not_clickable interact-button'>IXN</a>
+                  <a className='footer_link not_clickable '>Staking</a>
+                  <a className='footer_link not_clickable '>Governance</a>
+                  <a className='footer_link not_clickable '>IXN</a>
                 </div>
                 <div className='footer_link-list'>
                   <div className='footer_column-heading'>Documentation</div>
@@ -29,36 +29,36 @@ const AppFooter = () => {
             <div>
               <div className='w-layout-grid footer_bottom'>
                 <div className='footer_row1'>
-                  <a className='footer_logo-link w-nav-brand interact-button'>
+                  <a className='footer_logo-link w-nav-brand '>
                     <img src='/images/logo.png' alt='Logo' className='site-logo' />
                   </a>
                   <div className='w-layout-grid footer_social-list'>
-                    <a target='_blank' className='footer_social-link w-inline-block interact-button'>
+                    <a target='_blank' className='footer_social-link w-inline-block '>
                       <div className='social-icon w-embed'>
                         <img src='/images/icons/facebook.svg' alt='' />
                       </div>
                     </a>
-                    <a target='_blank' className='footer_social-link w-inline-block interact-button'>
+                    <a target='_blank' className='footer_social-link w-inline-block '>
                       <div className='social-icon w-embed'>
                         <img src='/images/icons/instagram.svg' alt='' />
                       </div>
                     </a>
-                    <a target='_blank' className='footer_social-link w-inline-block interact-button'>
+                    <a target='_blank' className='footer_social-link w-inline-block '>
                       <div className='social-icon w-embed'>
                         <img src='/images/icons/discord.svg' alt='' />
                       </div>
                     </a>
-                    <a target='_blank' className='footer_social-link w-inline-block interact-button'>
+                    <a target='_blank' className='footer_social-link w-inline-block '>
                       <div className='social-icon w-embed'>
                         <img src='/images/icons/twitter.svg' alt='' />
                       </div>
                     </a>
-                    <a target='_blank' className='footer_social-link w-inline-block interact-button'>
+                    <a target='_blank' className='footer_social-link w-inline-block '>
                       <div className='social-icon w-embed'>
                         <img src='/images/icons/linkedin.svg' alt='' />
                       </div>
                     </a>
-                    <a target='_blank' className='footer_social-link w-inline-block interact-button'>
+                    <a target='_blank' className='footer_social-link w-inline-block '>
                       <div className='social-icon w-embed'>
                         <img src='/images/icons/youtube.svg' alt='' />
                       </div>
@@ -66,13 +66,11 @@ const AppFooter = () => {
                   </div>
                 </div>
                 <div className='footer_row2'>
-                  <a className='footer_legal-text interact-button'>
-                    © 2025. Uniswap Investment Tracker. All right reserved.
-                  </a>
+                  <a className='footer_legal-text '>© 2025. DI Networks - IXFI Labs. All right reserved.</a>
                   <div className='w-layout-grid footer_link-list-horizontal'>
-                    <a className='footer_legal-link interact-button'>Privacy Policy</a>
-                    <a className='footer_legal-link interact-button'>Terms of Service</a>
-                    <a className='footer_legal-link interact-button'>Cookies Settings</a>
+                    <a className='footer_legal-link '>Privacy Policy</a>
+                    <a className='footer_legal-link '>Terms of Service</a>
+                    <a className='footer_legal-link '>Cookies Settings</a>
                   </div>
                 </div>
               </div>
