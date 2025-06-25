@@ -12561,5 +12561,81 @@ figcaption {
 }
 
 .react-hot-toast {
-  z-index: 99999 !important
+  z-index: 99999 !important;
+}
+
+.tw-font-squid-main {
+  font-family: 'Public Sans', sans-serif !important;
+}
+.tw-group\/tw-wallet-item:hover .group-hover\/tw-wallet-item\:tw-block {
+  display: block;
+}
+
+.tw-group\/tw-wallet-item:hover .group-hover\/tw-wallet-item\:tw-hidden {
+  display: none;
+}
+
+.tw-min-h-card-small {
+  background-image: linear-gradient(325deg, #364aff40, #307dff59);
+}
+
+.tw-text-grey-900 {
+  color: #242424 !important;
+}
+
+.tw-bg-button-md-tertiary-bg {
+  background-color: var(--white-10-101) !important;
+}
+
+.tw-bg-input-bg {
+  background-color: var(--white-10-101) !important;
+}
+
+.fav-token-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: fit-content;
+}
+
+.fav-token-badge:hover .fav-token-badge--visible-icon {
+  display: none;
+}
+
+.fav-token-badge:hover .fav-token-badge--hidden-icon {
+  display: block;
+}
+
+.fav-token-badge--visible-icon {
+  display: block;
+}
+
+.fav-token-badge--hidden-icon {
+  display: none;
+}
+
+.squid-router-transition-layer-hide-top {
+  transform: scale(1.05);
+  opacity: 0;
+  filter: blur(10px);
+  transition: transform 0.1s, opacity 0.1s, filter 0.1s;
+}
+
+.squid-router-transition-layer-hide-bottom {
+  transform: scale(0.95);
+  opacity: 0;
+  filter: blur(10px);
+  transition: transform 0.1s, opacity 0.1s, filter 0.1s;
+}
+
+.squid-router-transition-layer-active {
+  transform: scale(1);
+  opacity: 1;
+  filter: blur(0px);
+  transition: transform 0.1s, opacity 0.1s, filter 0.1s;
+}
+
+.tw-font-squid-main {
+  font-family: 'Public Sans', sans-serif !important;
 }
