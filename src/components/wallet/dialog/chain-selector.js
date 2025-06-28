@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Box, Typography, Grid } from '@mui/material'
 import { useChainId, useSwitchChain } from 'wagmi'
-import { chainLogos, supportedChains } from 'src/configs/constant'
+import { CHAIN_LOGOS, supportedChains } from 'src/configs/constant'
 import BaseDialog from 'src/components/wallet/base/base-dialog'
 
 const ChainSelector = ({ openModal, setOpenModal }) => {
@@ -48,7 +48,7 @@ const ChainSelector = ({ openModal, setOpenModal }) => {
               }}
               onClick={() => onSelectChain(chain.id)}
             >
-              <img src={`/images/icons/chains/${chainLogos[chain.id]}.png`} alt='' className='chain-selector-icon' />
+              <img src={`/images/icons/chains/${CHAIN_LOGOS[chain.id]}.png`} alt='' className='chain-selector-icon' />
               <Typography variant='h4'>{supportedChains[chain.id]}</Typography>
             </Box>
           </Grid>

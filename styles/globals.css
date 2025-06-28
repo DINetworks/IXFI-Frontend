@@ -12639,3 +12639,125 @@ figcaption {
 .tw-font-squid-main {
   font-family: 'Public Sans', sans-serif !important;
 }
+
+
+.earn-token {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 3rem;
+  box-shadow: 0 0 3px #3338;
+}
+
+.earn-token.small {
+  width: 1rem;
+  height: 1rem;
+}
+
+.earn-chain {
+  width: .85rem;
+  height: .85rem;
+  margin-left: -0.5rem;
+}
+
+.pool-item {
+  background-color: #0003;
+  backdrop-filter: blur(8px);
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.pool-item:hover {
+  background-color: #fff2;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+@keyframes participate_button_anim {
+  0% {
+      background-position: 0 50%;
+  }
+
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0 50%;
+  }
+}
+
+.mobile-lg\:tw-w-card-large {
+    height: fit-content !important;
+}
+
+@media (min-width: 480px) {
+  .mobile-lg\:tw-max-h-card-large {
+    max-height: 720px !important;
+    max-width: 440px !important;
+  }
+
+  .mobile-lg\:tw-w-card-large {
+    width: 440px !important;
+  }
+}
+
+.text-text {
+  color: white
+}
+
+.text-subText {
+  color: rgba(208, 212, 241, 0.68)
+}
+
+.text-accent {
+  color: #00cc33 !important;
+}
+
+.text-sm {
+  font-size: 1rem;
+}
+
+.text-xs {
+  font-size: 0.8rem;
+}
+
+
+.text-red {
+  color: #cc3333;
+}
+
+.text-warning {
+  color: #ff9901 !important
+}
+
+.text-error {
+  color: #cc3333
+}
+
+.transition-all {
+  transition-property: all;
+}
+
+.ease-in-out {
+  transition-timing-function: ease-in-out;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.cursor-pointer {
+  cursor: pointer
+}
