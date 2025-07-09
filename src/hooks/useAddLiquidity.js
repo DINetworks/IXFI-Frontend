@@ -1,38 +1,65 @@
+import { useEarnPoolsStore } from 'src/store/useEarnPoolsStore'
+import { useLiquidityPool } from './useLiquidityPool'
+import { useV3Liquidity } from './useV3Liquidity'
+import { useLiquidityDialogs } from './useLiquidityDialogs'
+
 export const useAddLiquidity = () => {
-  const handlePoolItemClick = pool => {
-    const { chainId: _chainId, address: ids, exchange: _exchange, tokens: _tokens } = pool
+  const { tokensForZap, zapOutToken, zapOutPercent, zapApiError } = useEarnPoolsStore(state => state.liquidityZap)
 
-    const exchangeToDex = _exchange => {
-      const supportedDexs = POOL_TYPE.map(item => item.replace('DEX_', '').replace('V3', '').toLowerCase())
+  const { pool, isLoadingInfo, chainId, ids, protocol, liquidityType, positionId, tokenId, dex } = useLiquidityPool()
+  const v3Liquidity = useV3Liquidity()
+  const dialogs = useLiquidityDialogs()
 
-      const formattedExchange = _exchange
-        .toLowerCase()
-        .replaceAll('_', '')
-        .replaceAll('-', '')
-        .replaceAll(' ', '')
-        .replaceAll('v3', '')
-      const dex = supportedDexs.find(item => formattedExchange.includes(item) || item.includes(formattedExchange))
+  const setLiquidityZapParam = (key, value) => {
+    useEarnPoolsStore.setState(state => ({
+      liquidityZap: {
+        ...state.liquidityZap,
+        [key]: value
+      }
+    }))
+  }
 
-      if (!dex) return null
+  const setTokensForZap = tokens => {
+    setLiquidityZapParam('tokensForZap', tokens)
+  }
 
-      const version = _exchange.toLowerCase().includes('v3') ? 'V3' : _exchange.toLowerCase().includes('v2') ? 'V2' : ''
-      return `DEX_${dex.toUpperCase()}${version}`
-    }
+  const setZapOutToken = token => {
+    setLiquidityZapParam('zapOutToken', token)
+  }
 
-    const protocol = exchangeToDex(_exchange)
+  const setZapOutPercent = percent => {
+    setLiquidityZapParam('zapOutPercent', percent)
+  }
 
-    if (protocol && setLiquidityModal) {
-      setLiquidityModal({
-        chainId: _chainId,
-        ids,
-        protocol,
-        tokens: _tokens,
-        type: 'add'
-      })
-    }
+  const setZapApiError = error => {
+    setLiquidityZapParam('zapApiError', error)
+  }
+
+  const setPositionId = id => {
+    setLiquidityZapParam('positionId', id)
   }
 
   return {
-    handlePoolItemClick
+    pool,
+    isLoadingInfo,
+    liquidityType,
+    chainId,
+    ids,
+    dex,
+    protocol,
+    positionId,
+    tokenId,
+    setPositionId,
+    tokensForZap,
+    setTokensForZap,
+    zapOutToken,
+    setZapOutToken,
+    zapOutPercent,
+    setZapOutPercent,
+    zapOutPercent,
+    zapApiError,
+    setZapApiError,
+    ...v3Liquidity,
+    ...dialogs
   }
 }

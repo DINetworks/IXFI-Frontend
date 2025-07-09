@@ -9,6 +9,7 @@ import PageHeader from 'src/components/earn/layout/PageHeader'
 import LoadingState from 'src/components/earn/states/LoadingState'
 import ErrorState from 'src/components/earn/states/ErrorState'
 import { useEarnPools } from 'src/hooks/useEarnPools'
+import PoolDialog from 'src/components/earn/PoolDialog'
 
 const PoolsPage = () => {
   const { tag, chainId, protocol, interval, query, sortBy, orderBy, page, setFilteredPools } = useEarnPools()
@@ -113,6 +114,8 @@ const PoolsPage = () => {
           </Box>
         )}
       </Box>
+
+      <PoolDialog />
     </EarnPageLayout>
   )
 }

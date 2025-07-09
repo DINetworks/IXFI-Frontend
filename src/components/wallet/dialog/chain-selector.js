@@ -48,8 +48,8 @@ const ChainSelector = ({ openModal, setOpenModal }) => {
               }}
               onClick={() => onSelectChain(chain.id)}
             >
-              <img src={`/images/icons/chains/${CHAIN_LOGOS[chain.id]}.png`} alt='' className='chain-selector-icon' />
-              <Typography variant='h4'>{supportedChains[chain.id]}</Typography>
+              <img src={CHAIN_LOGOS[chainId]} alt='' className='chain-selector-icon' />
+              <Typography variant='h4'>{supportedChains[chainId]}</Typography>
             </Box>
           </Grid>
         ))}

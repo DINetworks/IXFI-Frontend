@@ -4,7 +4,7 @@ import { DataGrid } from '@mui/x-data-grid'
 import { Chip, Pagination as MuiPagination, Typography } from '@mui/material'
 import { useEarnPools } from 'src/hooks/useEarnPools'
 import { CenterBox } from '../base/grid'
-import { formatNumber } from 'src/utils/format'
+import { formatNumber } from 'src/components/utils/format'
 import { useAddLiquidity } from 'src/hooks/useAddLiquidity'
 
 export default function PoolsGrid() {

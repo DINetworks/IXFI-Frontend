@@ -6,6 +6,7 @@ import PoolsCard from 'src/components/earn/PoolsCard'
 import EarnPageLayout from 'src/components/earn/layout/EarnPageLayout'
 import PageHeader from 'src/components/earn/layout/PageHeader'
 import { useEarnPools } from 'src/hooks/useEarnPools'
+import PoolDialog from 'src/components/earn/PoolDialog'
 
 const PoolCategorySection = React.memo(({ pools, isLoading = false }) => {
   const { highAPR, highlightedPools, lowVolatility, solidEarning } = pools || {}
@@ -72,6 +73,8 @@ const EarnPage = () => {
       <ExploreEarn />
 
       <PoolCategorySection pools={earnPools} isLoading={isLoading} />
+
+      <PoolDialog />
     </EarnPageLayout>
   )
 }

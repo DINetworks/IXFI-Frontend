@@ -9,7 +9,7 @@ const ChainSelectorDropdown = ({ anchorEl, onSelect, onClose, openDropdown }) =>
   return (
     <div>
       <Fab variant='extended' size='medium' color='primary' className='selectchain-btn' onClick={openDropdown}>
-        <img src={`/images/icons/chains/${CHAIN_LOGOS[chainId]}.png`} className='chain-icon' alt='' />
+        <img src={CHAIN_LOGOS[chainId]} className='chain-icon' alt='' />
       </Fab>
       <Menu
         anchorEl={anchorEl}
@@ -22,7 +22,7 @@ const ChainSelectorDropdown = ({ anchorEl, onSelect, onClose, openDropdown }) =>
         {chains &&
           chains.map((chain, idx) => (
             <MenuItem key={idx} onClick={() => onSelect(chain.id)}>
-              <img src={`/images/icons/chains/${CHAIN_LOGOS[chain.id]}.png`} className='chain-icon' alt='' />
+              <img src={CHAIN_LOGOS[chainId]} className='chain-icon' alt='' />
               {chain.name}
             </MenuItem>
           ))}

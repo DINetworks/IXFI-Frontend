@@ -2,6 +2,8 @@ import { id, keccak256 } from 'ethers'
 import { NETWORK_INFO } from 'src/configs/protocol'
 import { formatNumber } from './format'
 
+export const NATIVE_EVM_TOKEN_ADDRESS = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+
 export const ZOOM_LEVELS = {
   [100 /* LOWEST */]: {
     initialMin: 0.999,
