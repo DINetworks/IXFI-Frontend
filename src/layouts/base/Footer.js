@@ -66,7 +66,7 @@ const AppFooter = () => {
                   </div>
                 </div>
                 <div className='footer_row2'>
-                  <a className='footer_legal-text '>© 2025. DI Networks - IXFI Labs. All right reserved.</a>
+                  <a className='footer_legal-text '>© 2025. DI Networks - IXFI Protocol. All right reserved.</a>
                   <div className='w-layout-grid footer_link-list-horizontal'>
                     <a className='footer_legal-link '>Privacy Policy</a>
                     <a className='footer_legal-link '>Terms of Service</a>

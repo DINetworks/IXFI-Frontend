@@ -3,43 +3,42 @@ import { mainnet, bsc, arbitrum, avalanche, optimism, base, polygon, scroll, har
 const roadmaps = [
   {
     icon: 'mvp.svg',
-    period: '2025 Q1',
+    period: '2025 Q2',
     active: true,
     title: 'MVP Development',
-    items: ['Develop Gas Abstraction Layer', 'Develop Relayer Node System', 'Develop DI Token']
+    items: ['Develop Gas Abstraction Layer', 'Develop Relayer Node System', 'Develop IXI Token']
   },
   {
     icon: 'development.svg',
-    period: '2025 Q2',
+    period: '2025 Q3',
     title: 'Development & Test',
     items: [
       'Improve & Update MVP Version',
       'Develop Cross Chain Aggregator',
-      'Develop Cross Chain Bridge',
-      'DI Token & Community, Marketing'
+      'Develop MultiChain Liquidity Provisioning'
     ]
   },
   {
     icon: 'launch.svg',
-    period: '2025 Q3',
+    period: '2025 Q4',
     title: 'Mainnet Launch',
-    items: ['Integration Test', 'Conduct Security Audit', 'Mainnet Lunch', 'Token Presale']
+    items: ['Integration Test', 'Conduct Security Audit', 'Mainnet Lunch']
   },
   {
     icon: 'strategy.svg',
-    period: '2025 Q4',
+    period: '2026 Q1',
     title: 'Development Network & Strategies',
-    items: ['Develop Governance', 'Develop Staking', 'Incentive for Network Users', 'Development API & SDK']
+    items: ['Develop Token & Governance', 'Develop Staking', 'Incentive for Network Users']
   },
   {
     icon: 'staking.svg',
-    period: '2026 Q1',
+    period: '2026 Q2',
     title: 'Launch Staking & Governance',
     items: ['Security Audit for Governance & Staking', 'Incentive for Network Users', 'Partnerships with 3rd parties']
   },
   {
     icon: 'further.svg',
-    period: '2026 Q2',
+    period: '2026 Q3',
     title: 'Further Development & Maintenance',
     items: ['...', '...', '...']
   }
@@ -71,19 +70,19 @@ const features = [
     icon: 'gasless.svg',
     title: 'Gas-Less Transactions For Multiple Chains',
     description:
-      'Gas fees are a significant barrier to seamless blockchain interactions, often requiring users to hold native tokens for each network they interact with. The DI Protocol introduces a gas-less transaction system, enabling frictionless cross-chain interactions without requiring users to manage gas tokens for multiple chains.'
+      'Gas fees are a significant barrier to seamless blockchain interactions, often requiring users to hold native tokens for each network they interact with. The IXFI Protocol introduces a gas-less transaction system, enabling frictionless cross-chain interactions without requiring users to manage gas tokens for multiple chains.'
   },
   {
     icon: 'evm.svg',
     title: 'Supports All EVM Networks',
     description:
-      'The DI Protocol is designed to operate seamlessly across all EVM-compatible blockchains, ensuring maximum interoperability and accessibility for users. By supporting a wide range of networks, DI enables truly gasless transactions, liquidity aggregation, and smart contract interactions across multiple ecosystems.'
+      'The IXFI Protocol is designed to operate seamlessly across all EVM-compatible blockchains, ensuring maximum interoperability and accessibility for users. By supporting a wide range of networks, IXFI enables truly gasless transactions, liquidity aggregation, and smart contract interactions across multiple ecosystems.'
   },
   {
     icon: 'cross-chain.svg',
     title: 'The foundation for cross-chain DApps',
     description:
-      'The DI Protocol is more than just a cross-chain swap solution—it serves as the core infrastructure for the next wave of DApps. By enabling seamless interoperability, gas-less transactions, and liquidity aggregation across multiple chains, DI empowers developers and users to unlock the full potential of blockchain technology.'
+      'The IXFI Protocol is more than just a cross-chain swap solution—it serves as the core infrastructure for the next wave of DApps. By enabling seamless interoperability, gas-less transactions, and liquidity aggregation across multiple chains, IXFI empowers developers and users to unlock the full potential of blockchain technology.'
   }
 ]
 
@@ -105,7 +104,7 @@ const BUY_STEPS = [
     icon: 'cross-chain.svg',
     title: 'Receive tokens',
     description:
-      'DI tokens are locked in the smart contract after the purchase, tokens will be released at 2025 Q3-Q4, once v2 will be released.'
+      'IXFI tokens are locked in the smart contract after the purchase, tokens will be released at 2025 Q3-Q4, once v2 will be released.'
   }
 ]
 
@@ -209,19 +208,19 @@ const NETWORK_FEATURES = [
     icon: 'ri:charging-pile-fill',
     title: 'Gasless',
     users: 'traders',
-    content: 'Transfer and swap without native gas tokens on multiple chains, but only need DI tokens.'
+    content: 'Transfer and swap without native gas tokens on multiple chains, but only need IXFI tokens.'
   },
   {
     icon: 'hugeicons:money-bag-02',
     title: 'Earn',
     users: 'liquidity providers',
-    content: 'Transfer and swap without native gas tokens on multiple chains, but only need DI tokens.'
+    content: 'Transfer and swap without native gas tokens on multiple chains, but only need IXFI tokens.'
   },
   {
     icon: 'tabler:social',
     title: 'Govern',
-    users: 'DI holders',
-    content: 'Stake DI tokens to vote on governance proposals and earn rewards from trading fees.'
+    users: 'IXFI holders',
+    content: 'Stake IXFI tokens to vote on governance proposals and earn rewards from trading fees.'
   }
 ]
 
@@ -316,9 +315,9 @@ const EARN_CHAINS = [mainnet.id, bsc.id, polygon.id, optimism.id, arbitrum.id, a
 const STEPS_GASLESS = [
   {
     icon: 'gasless.svg',
-    title: 'Deposit DI for Gas Fees',
+    title: 'Deposit IXFI for Gas Fees',
     description:
-      'Deposit DI or IDI on any supported chain to cover future transaction fees seamlessly. If your gas balance runs low, you can top up at any time to continue using gasless transactions without interruptions.'
+      'Deposit XFI or IXFI on any supported chain to cover future transaction fees seamlessly. If your gas balance runs low, you can top up at any time to continue using gasless transactions without interruptions.'
   },
   {
     icon: 'evm.svg',

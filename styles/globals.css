@@ -4456,6 +4456,15 @@ figcaption {
   -webkit-background-clip: text;
   background-clip: text;
 }
+
+.text-gradient-cyan-lilac {
+  background-image: linear-gradient(to right, #00b6cc, var(--deep-pink-100));
+  text-shadow: 0 0 4px #3332;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
 .card {
   border: 1px solid var(--white-10-101);
   background-color: #0000;
@@ -12640,7 +12649,6 @@ figcaption {
   font-family: 'Public Sans', sans-serif !important;
 }
 
-
 .earn-token {
   width: 1.8rem;
   height: 1.8rem;
@@ -12654,8 +12662,8 @@ figcaption {
 }
 
 .earn-chain {
-  width: .85rem;
-  height: .85rem;
+  width: 0.85rem;
+  height: 0.85rem;
   margin-left: -0.5rem;
 }
 
@@ -12677,19 +12685,19 @@ figcaption {
 
 @keyframes participate_button_anim {
   0% {
-      background-position: 0 50%;
+    background-position: 0 50%;
   }
 
   50% {
-      background-position: 100% 50%;
+    background-position: 100% 50%;
   }
   100% {
-      background-position: 0 50%;
+    background-position: 0 50%;
   }
 }
 
 .mobile-lg\:tw-w-card-large {
-    height: fit-content !important;
+  height: fit-content !important;
 }
 
 @media (min-width: 480px) {
@@ -12704,11 +12712,11 @@ figcaption {
 }
 
 .text-text {
-  color: white
+  color: white;
 }
 
 .text-subText {
-  color: rgba(208, 212, 241, 0.68)
+  color: rgba(208, 212, 241, 0.68);
 }
 
 .text-accent {
@@ -12723,17 +12731,16 @@ figcaption {
   font-size: 0.8rem;
 }
 
-
 .text-red {
   color: #cc3333;
 }
 
 .text-warning {
-  color: #ff9901 !important
+  color: #ff9901 !important;
 }
 
 .text-error {
-  color: #cc3333
+  color: #cc3333;
 }
 
 .transition-all {
@@ -12759,5 +12766,5 @@ figcaption {
 }
 
 .cursor-pointer {
-  cursor: pointer
+  cursor: pointer;
 }
