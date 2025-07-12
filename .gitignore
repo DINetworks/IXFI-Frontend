@@ -28,6 +28,12 @@ yarn-error.log*
 .env
 .env*.local
 
+# service account and sensitive files
+serviceAccount.json
+**/serviceAccount.json
+*.pem
+*.p12
+
 # vercel
 .vercel
 
