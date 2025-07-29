@@ -1,4 +1,4 @@
-import { web3, Wallet } from '@project-serum/anchor'
+import { web3 } from '@project-serum/anchor'
 import { Connection, VersionedTransaction } from '@solana/web3.js'
 
 export class SolanaHandler {
@@ -16,7 +16,7 @@ export class SolanaHandler {
     let tx
 
     // sign tx using provided signer
-    if (signer instanceof Wallet || signer.constructor.name === 'NodeWallet') {
+    if (signer.constructor.name === 'NodeWallet' || signer.payer) {
       // offline signer
       const wallet = signer
       transaction.sign([wallet.payer])
