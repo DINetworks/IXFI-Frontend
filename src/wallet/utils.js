@@ -188,6 +188,21 @@ export const waitForTransactionReceipt = (chain, hash) => {
   return getPublicClient(chain).waitForTransactionReceipt({ hash })
 }
 
+export const onSubmitTx = async (account, chain, txData) => {
+  try {
+    const walletClient = createWalletClient({
+      account,
+      chain,
+      transport: custom(window.ethereum)
+    })
+
+    return await walletClient.sendTransaction(txData)
+  } catch (e) {
+    console.log(e)
+    throw e
+  }
+}
+
 export const getSwapPoints = amountUsd => {
   if (amountUsd < 100) return amountUsd
   else if (amountUsd < 500) return amountUsd * 1.2

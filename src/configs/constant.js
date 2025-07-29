@@ -139,6 +139,56 @@ const ALLOCATION_CATEGORIES = [
   }
 ]
 
+const teamMembers = [
+  {
+    name: 'Yew Hoong Poon',
+    role: 'Co-founder, Product Owner',
+    position: 'Protocol Architect',
+    photo: '/images/team/wayne.jpg',
+    socials: { in: 'wayne-poon1', x: 'wayne_poon3' }
+  },
+  {
+    name: 'Cha Sui Soon',
+    role: 'Co-founder',
+    position: 'Tech Lead, Backend, DevOps',
+    photo: '/images/team/sui.jpg',
+    socials: { in: 'bertrandchua', x: 'sui_soon918' }
+  },
+  {
+    name: 'Yew Hoong Poon',
+    role: 'Co-founder',
+    position: 'Frontend, Web3',
+    photo: '/images/team/Ilyasa.jpg',
+    socials: { in: 'ilyasasazali' }
+  }
+]
+
+const stepsForGasless = [
+  {
+    icon: 'gasless.svg',
+    title: 'Deposit XFI for Gas Fees',
+    description:
+      'Deposit XFI or IXFI on any supported chain to cover future transaction fees seamlessly. If your gas balance runs low, you can top up at any time to continue using gasless transactions without interruptions.'
+  },
+  {
+    icon: 'evm.svg',
+    title: 'Approve Tokens',
+    description:
+      'Grant approval for your preferred tokens, enabling smooth and gasless transactions without repeated confirmations. If needed, you can modify your token approvals at any time by adding or removing tokens.'
+  },
+  {
+    icon: 'cross-chain.svg',
+    title: 'Start Transactions',
+    description:
+      'You’re all set! It’s time to go. Execute cross-chain transactions effortlessly without worrying about gas fees using our gasless meta-transaction system.'
+  }
+]
+
+const CROSSFI_CHAINID = 4157
+const GATEWAY_CROSSFI = '0x24acE36D6565Fc3A27e2Bb9F2f0Fa164d3F2adf6'
+const GASRELAYER_CROSSFI = '0xFC4C231D2293180a30eCd10Ce9A84bDBF27B3967'
+const IXFI_CROSSFI = '0x0ebf472aa078bbfce4f154fdef3abe3d9fa5c5ec'
+
 const presaleTokens = [
   {
     address: '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853',
@@ -310,6 +360,17 @@ const CHAIN_LOGOS = {
   [linea.id]: '/images/icons/chains/linea.png'
 }
 
+const supportedChains = {
+  4157: 'CrossFi',
+  [mainnet.id]: 'Ethereum',
+  [bsc.id]: 'BNB SC',
+  [polygon.id]: 'Polygon PoS',
+  [optimism.id]: 'Optimism',
+  [arbitrum.id]: 'Arbitrum',
+  [avalanche.id]: 'Avalanche',
+  [base.id]: 'Base'
+}
+
 const EARN_CHAINS = [mainnet.id, bsc.id, polygon.id, optimism.id, arbitrum.id, avalanche.id, base.id]
 
 const STEPS_GASLESS = [
@@ -434,9 +495,6 @@ const EARN_TAGS = [
 ]
 
 const MAX_UINT256 = BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
-const META_CONTRACT = '0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1'
-const GAS_CREDIT_VAUT = '0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE'
-const IDI_CROSSFI = '0x0ebf472aa078bbfce4f154fdef3abe3d9fa5c5ec'
 
 const PRESALE_START = new Date(1754038800000) // 2025-08-01 + 3600_000 * 9
 const PRESALE_END = new Date(1766912400000) // 2025-12-28 + 3600_000 * 9
@@ -487,15 +545,17 @@ export {
   SUPPORT_CHAINS,
   boostCardData,
   CHAIN_LOGOS,
+  supportedChains,
   PARTNERS,
   TOP_CHAINS,
   SWAP_FEATURES,
   NETWORK_FEATURES,
   MAX_UINT256,
-  META_CONTRACT,
-  GAS_CREDIT_VAUT,
-  IDI_CROSSFI,
   ZERO_ADDRESS,
+  GATEWAY_CROSSFI,
+  GASRELAYER_CROSSFI,
+  IXFI_CROSSFI,
+  teamMembers,
   TOKEN_CHAIN,
   TOKEN_ADDRESSES,
   PRESALE_START,

@@ -1,4 +1,4 @@
-import { CHAIN_LOGOS, stepsForGasless } from 'src/configs/constant'
+import { CHAIN_LOGOS, STEPS_GASLESS } from 'src/configs/constant'
 import { Box, Grid, Fab, Typography, Avatar } from '@mui/material'
 import { getApprovedTokens, getBalanceInApp, formatNumber } from 'src/wallet/utils'
 import { useEffect, useState } from 'react'
@@ -114,7 +114,7 @@ const GasLess = () => {
             </div>
             <Box className='w-layout-grid cards-small_component margin-bottom margin-large'>
               <div className='w-layout-grid cards-small_row'>
-                {stepsForGasless.map((step, index) => (
+                {STEPS_GASLESS.map((step, index) => (
                   <div key={index} className='card'>
                     <div className='card-content is-medium'>
                       <div className='cards-small_card-content-top'>
