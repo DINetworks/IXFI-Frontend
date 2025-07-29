@@ -25,13 +25,13 @@ module.exports = {
     'import/no-anonymous-default-export': 'off',
 
     // add new line above comment
-    'lines-around-comment': 'off',,
+    'lines-around-comment': 'off',
 
     // add new line above return
     'newline-before-return': 'off',
 
     // add new line below import
-    'import/newline-after-import':  'off',
+    'import/newline-after-import': 'off',
 
     // add new line after each var, const, let declaration
     'padding-line-between-statements': 'off'
