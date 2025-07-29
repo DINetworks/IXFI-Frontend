@@ -8,10 +8,19 @@ const path = require('path')
 module.exports = {
   trailingSlash: true,
   reactStrictMode: false,
+  transpilePackages: ['@0xsquid/ui', '@0xsquid/squid-types'],
   webpack: config => {
     config.resolve.alias = {
       ...config.resolve.alias,
       apexcharts: path.resolve(__dirname, './node_modules/apexcharts-clevision')
+    }
+
+    // Handle SSR issues with browser-only modules
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      net: false,
+      tls: false
     }
 
     return config
