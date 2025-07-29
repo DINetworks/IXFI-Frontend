@@ -1,8 +1,28 @@
 import { Box } from '@mui/material'
+import dynamic from 'next/dynamic'
+import { useState } from 'react'
 import { FullCenterBox } from 'src/components/base/grid'
 import { SWAP_WIDGET_CONFING } from 'src/components/swap/config'
-import SwapWidget from 'src/components/swap/widget'
 import { useHydrated } from 'src/hooks/useHydrated'
+
+const SwapWidget = dynamic(() => import('src/components/swap/widget'), {
+  ssr: false,
+  loading: () => (
+    <Box
+      sx={{
+        width: '100%',
+        height: '600px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0,0,0,0.05)',
+        borderRadius: 2
+      }}
+    >
+      Loading Swap Widget...
+    </Box>
+  )
+})
 
 const Swap = () => {
   const hydrated = useHydrated()
