@@ -46,8 +46,8 @@ const Header = () => {
           <Link href={'/swap'} className={`navbar_link w-nav-link ${navMenuActiveClass('/swap')}`}>
             Swap
           </Link>
-          <Link href={'/lending'} className={`navbar_link w-nav-link ${navMenuActiveClass('/lending')}`}>
-            Lending
+          <Link href={'/earn'} className={`navbar_link w-nav-link ${navMenuActiveClass('/earn')}`}>
+            Earn
           </Link>
           <div
             className='navbar_menu-dropdown w-dropdown'

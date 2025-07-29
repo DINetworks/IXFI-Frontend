@@ -1,4 +1,4 @@
-import { chainLogos, stepsForGasless } from 'src/configs/constant'
+import { CHAIN_LOGOS, stepsForGasless } from 'src/configs/constant'
 import { Box, Grid, Fab, Typography, Avatar } from '@mui/material'
 import { getApprovedTokens, getBalanceInApp, formatNumber } from 'src/wallet/utils'
 import { useEffect, useState } from 'react'
@@ -160,9 +160,7 @@ const GasLess = () => {
                     <Grid item xs={3}>
                       <strong>Chain:</strong>{' '}
                       <Typography variant='h5' sx={{ color: '#00CFE8', mt: 2 }}>
-                        {isClient && chain && (
-                          <img src={`/images/icons/chains/${chainLogos[chain.id]}.png`} alt='' className='chain-icon' />
-                        )}
+                        {isClient && chain && <img src={CHAIN_LOGOS[chain.id]} alt='' className='chain-icon' />}
                         {isClient && chain?.name}
                       </Typography>
                     </Grid>

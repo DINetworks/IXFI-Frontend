@@ -22,7 +22,7 @@ const ApiSDK = () => {
   const isPrevClass = activeSwipe === 0 ? 'is-disabled' : ''
   const isNextClass = activeSwipe === roadmaps.length - 1 ? 'is-disabled' : ''
 
-  const slidesPerView = parseInt(width / 400)
+  const slidesPerView = parseInt(width / 440)
 
   return (
     <section className='section_tracker-cards radius-corners-top'>

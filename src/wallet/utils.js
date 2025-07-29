@@ -187,3 +187,11 @@ export const withdrawIXFI = (address, chain, amount) => {
 export const waitForTransactionReceipt = (chain, hash) => {
   return getPublicClient(chain).waitForTransactionReceipt({ hash })
 }
+
+export const getSwapPoints = amountUsd => {
+  if (amountUsd < 100) return amountUsd
+  else if (amountUsd < 500) return amountUsd * 1.2
+  else if (amountUsd < 2000) return amountUsd * 1.5
+  else if (amountUsd < 5000) return amountUsd * 2
+  else return amountUsd * 3
+}

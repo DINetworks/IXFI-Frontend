@@ -4456,6 +4456,15 @@ figcaption {
   -webkit-background-clip: text;
   background-clip: text;
 }
+
+.text-gradient-cyan-lilac {
+  background-image: linear-gradient(to right, #00b6cc, var(--deep-pink-100));
+  text-shadow: 0 0 4px #3332;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
 .card {
   border: 1px solid var(--white-10-101);
   background-color: #0000;
@@ -12561,5 +12570,201 @@ figcaption {
 }
 
 .react-hot-toast {
-  z-index: 99999 !important
+  z-index: 99999 !important;
+}
+
+.tw-font-squid-main {
+  font-family: 'Public Sans', sans-serif !important;
+}
+.tw-group\/tw-wallet-item:hover .group-hover\/tw-wallet-item\:tw-block {
+  display: block;
+}
+
+.tw-group\/tw-wallet-item:hover .group-hover\/tw-wallet-item\:tw-hidden {
+  display: none;
+}
+
+.tw-min-h-card-small {
+  background-image: linear-gradient(325deg, #364aff40, #307dff59);
+}
+
+.tw-text-grey-900 {
+  color: #242424 !important;
+}
+
+.tw-bg-button-md-tertiary-bg {
+  background-color: var(--white-10-101) !important;
+}
+
+.tw-bg-input-bg {
+  background-color: var(--white-10-101) !important;
+}
+
+.fav-token-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: fit-content;
+}
+
+.fav-token-badge:hover .fav-token-badge--visible-icon {
+  display: none;
+}
+
+.fav-token-badge:hover .fav-token-badge--hidden-icon {
+  display: block;
+}
+
+.fav-token-badge--visible-icon {
+  display: block;
+}
+
+.fav-token-badge--hidden-icon {
+  display: none;
+}
+
+.squid-router-transition-layer-hide-top {
+  transform: scale(1.05);
+  opacity: 0;
+  filter: blur(10px);
+  transition: transform 0.1s, opacity 0.1s, filter 0.1s;
+}
+
+.squid-router-transition-layer-hide-bottom {
+  transform: scale(0.95);
+  opacity: 0;
+  filter: blur(10px);
+  transition: transform 0.1s, opacity 0.1s, filter 0.1s;
+}
+
+.squid-router-transition-layer-active {
+  transform: scale(1);
+  opacity: 1;
+  filter: blur(0px);
+  transition: transform 0.1s, opacity 0.1s, filter 0.1s;
+}
+
+.tw-font-squid-main {
+  font-family: 'Public Sans', sans-serif !important;
+}
+
+.earn-token {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 3rem;
+  box-shadow: 0 0 3px #3338;
+}
+
+.earn-token.small {
+  width: 1rem;
+  height: 1rem;
+}
+
+.earn-chain {
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-left: -0.5rem;
+}
+
+.pool-item {
+  background-color: #0003;
+  backdrop-filter: blur(8px);
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.pool-item:hover {
+  background-color: #fff2;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+@keyframes participate_button_anim {
+  0% {
+    background-position: 0 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.mobile-lg\:tw-w-card-large {
+  height: fit-content !important;
+}
+
+@media (min-width: 480px) {
+  .mobile-lg\:tw-max-h-card-large {
+    max-height: 720px !important;
+    max-width: 440px !important;
+  }
+
+  .mobile-lg\:tw-w-card-large {
+    width: 440px !important;
+  }
+}
+
+.text-text {
+  color: white;
+}
+
+.text-subText {
+  color: rgba(208, 212, 241, 0.68);
+}
+
+.text-accent {
+  color: #00cc33 !important;
+}
+
+.text-sm {
+  font-size: 1rem;
+}
+
+.text-xs {
+  font-size: 0.8rem;
+}
+
+.text-red {
+  color: #cc3333;
+}
+
+.text-warning {
+  color: #ff9901 !important;
+}
+
+.text-error {
+  color: #cc3333;
+}
+
+.transition-all {
+  transition-property: all;
+}
+
+.ease-in-out {
+  transition-timing-function: ease-in-out;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
