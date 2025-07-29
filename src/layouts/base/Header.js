@@ -106,10 +106,7 @@ const Header = () => {
               <Link href={'/swap'} className={`navbar_link is-subitem w-nav-link`}>
                 Swap
               </Link>
-              <Link href={'/lending'} className={`navbar_link is-subitem w-nav-link`}>
-                Lending
-              </Link>
-              <Link href={'/lending'} className={`navbar_link is-subitem w-nav-link`}>
+              <Link href={'/earn'} className={`navbar_link is-subitem w-nav-link`}>
                 Earn
               </Link>
             </div>
@@ -120,7 +117,7 @@ const Header = () => {
             </Link>
           </div>
           <div className='mobile_menu-link-wrapper'>
-            <Link href={'/lending'} className={`navbar_link is-subitem w-nav-link`}>
+            <Link href={'https://docs.ixfi.fi'} className={`navbar_link is-subitem w-nav-link`}>
               Documentation
             </Link>
           </div>
