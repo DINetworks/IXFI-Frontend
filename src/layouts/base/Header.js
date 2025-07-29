@@ -74,12 +74,9 @@ const Header = () => {
               </div>
             </nav>
           </div>
-          <a target='_blank' className='navbar_link w-nav-link' href='/document/Protocol-Documentation.pdf'>
+          <a target='_blank' className='navbar_link w-nav-link' href='https://docs.ixfi.fi'>
             Documentation
           </a>
-          <button onClick={scrollToDownload} className='button is-secondary is-small is-navbar w-button show'>
-            Download
-          </button>
           <div className='nav-background-blur'></div>
         </div>
         <div className='navbar_button-wrapper'>
